@@ -15,7 +15,7 @@ function AssCGI(content, id = null) {
         //$("#item-input").empty().append();
 
         $("#contentGr").empty().append($("<form action='' name='frmcgi' id='frmcgi' method='post' enctype='multipart/form-data'>"
-            + "<div class='row col-lg-12'><div class='col-lg-6'>"
+            + "<div class='row col-lg-12'><div class='col-lg-6' id='cgi-post'>"
             + "<div class='card border-success'>"
             + "<div class='card-header'><b>คลินิกเฉพาะทาง</b></div>"
             + "<div id='cgi-clinic' class='card-body'></div></div><p>"
@@ -32,13 +32,25 @@ function AssCGI(content, id = null) {
                     $("#cgi-clinic").append($("<input type='radio' name='cgi_clinic' value='"+CGIdata[key].clinic_code+"'> "+CGIdata[key].clinic_name+"<br>"));
                 } 
             });
-            $("#cgi-scorll").append($("<input type='radio' name='cgi_scorll' value='1'> 1. Normal not  at all ill<br>")
-                                    ,$("<input type='radio' name='cgi_scorll' value='2'> 2.	Borderline Mentally ill<br>")
-                                    ,$("<input type='radio' name='cgi_scorll' value='3'> 3.	Mildly ill<br>")
-                                    ,$("<input type='radio' name='cgi_scorll' value='4'> 4.	Moderately ill<br>")
-                                    ,$("<input type='radio' name='cgi_scorll' value='5'> 5.	Markedly ill<br>")
-                                    ,$("<input type='radio' name='cgi_scorll' value='6'> 6.	Severely ill<br>")
-                                    ,$("<input type='radio' name='cgi_scorll' value='7'> 7.	Extremely ill<br>"));
+            $("#cgi-scorll").append($("<input type='radio' name='cgi_score' value='1'> 1. Normal not  at all ill<br>")
+                                    ,$("<input type='radio' name='cgi_score' value='2'> 2.	Borderline Mentally ill<br>")
+                                    ,$("<input type='radio' name='cgi_score' value='3'> 3.	Mildly ill<br>")
+                                    ,$("<input type='radio' name='cgi_score' value='4'> 4.	Moderately ill<br>")
+                                    ,$("<input type='radio' name='cgi_score' value='5'> 5.	Markedly ill<br>")
+                                    ,$("<input type='radio' name='cgi_score' value='6'> 6.	Severely ill<br>")
+                                    ,$("<input type='radio' name='cgi_score' value='7'> 7.	Extremely ill<br>"));
+
+            $("#cgi-post").append($("<input type='hidden' name='hn' value='"+$.cookie("hn")+"'>")
+                                ,$("<input type='hidden' name='vn' value='"+$.cookie("vn")+"'>")
+                                ,$("<input type='hidden' name='vstdate' value='"+$.cookie("vstdate")+"'>")
+                                ,$("<input type='hidden' name='sex' value='"+$.cookie("sex")+"'>")
+                                ,$("<input type='hidden' name='birthday' value='"+$.cookie("birthday")+"'>")
+                                ,$("<input type='hidden' name='pdx' value='"+$.cookie("pdx")+"'>")
+                                ,$("<input type='hidden' name='dx0' value='"+$.cookie("dx0")+"'>")
+                                ,$("<input type='hidden' name='dx1' value='"+$.cookie("dx1")+"'>")
+                                ,$("<input type='hidden' name='dx2' value='"+$.cookie("dx2")+"'>")
+                                ,$("<input type='hidden' name='dx3' value='"+$.cookie("dx3")+"'>")
+                                ,$("<input type='hidden' name='method' value='add_cgi'>"));                        
         $("#frmcgi").on('submit', (function (e) {
             e.preventDefault();
             var dataForm = new FormData(this);
@@ -47,7 +59,7 @@ function AssCGI(content, id = null) {
             // }
             var settings = {
                 type: "POST",
-                url: $.cookie('Readerurl') + "prcdrawAPI.php",
+                url: "../back/API/prcCGIAPI.php",
                 async: true,
                 crossDomain: true,
                 data: dataForm,
@@ -59,7 +71,7 @@ function AssCGI(content, id = null) {
             $.ajax(settings).done(function (result) {
                 alert(result.messege);
                 $("#body_text").empty();
-                AddBill("index_content");
+                AssCGI('#index_content',$.cookie('hn'));
                 //$("#index_content").empty().load('content/add_user.html');
 
             })
@@ -71,6 +83,8 @@ function AssCGI(content, id = null) {
     var column1 = ["วันที่ประเมิน", "คะแนน CGI-S"];
     console.log(id);
     console.log($.cookie('hn'));
+    console.log($.cookie('birthday'));
+    console.log($.cookie('pdx'));
     var CTb = new createTableAjax();
     //RemovejQueryCookie('year')
     // GetjQueryCookie('year',nowyear)

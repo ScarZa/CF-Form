@@ -8,7 +8,7 @@ function AssMENU(content, id = null) {
 
                                 $("a#alcohol").attr("onclick","#");
                                 $("a#cigarette").attr("onclick","#");
-                                $("a#cgi").attr("onclick","AssCGI('#index_content',"+$.cookie('hn')+");");
+                                $("a#cgi").attr("onclick","AssCGI('#index_content','"+$.cookie('hn')+"')");
                                 $("a#smi-v").attr("onclick","#");
                                 $("a#visit").attr("onclick","#");
 }

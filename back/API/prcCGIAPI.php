@@ -41,7 +41,7 @@ if ($method == 'add_cgi') {
         $dx3 = $conv->utf8_to_tis620($_POST['dx3']);
         $cgis_score = $_POST['cgi_score'];
         $clinic = $conv->utf8_to_tis620($_POST['cgi_clinic']);
-        $user = $conv->utf8_to_tis620('');
+        $user = $conv->utf8_to_tis620($_POST['user']);
         $dupdate = date('Y-m-d');
 
         $sql = "SELECT id+1 as id FROM cgi ORDER BY id desc limit 1 ";

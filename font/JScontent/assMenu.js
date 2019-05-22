@@ -4,11 +4,13 @@ function AssMENU(content, id = null) {
                                 ,$("<div class='col-md-12 col-lg-12'><a id='cigarette' class='btn btn-success btn-block' href='#'><img src='images/icon_set2/compose.ico' width='25'><b> ประเมินบุหรี่</b></a></div><br>")
                                 ,$("<div class='col-md-12 col-lg-12'><a id='cgi' class='btn btn-success btn-block' href='#'><img src='images/icon_set2/compose.ico' width='25'><b> ประเมิน CGI</b></a></div><br>")
                                 ,$("<div class='col-md-12 col-lg-12'><a id='smi-v' class='btn btn-success btn-block' href='#'><img src='images/icon_set2/compose.ico' width='25'><b> ประเมิน SMI-V</b></a></div><br>")
+                                ,$("<div class='col-md-12 col-lg-12'><a id='culture' class='btn btn-success btn-block' href='#'><img src='images/icon_set2/compose.ico' width='25'><b> ประเมิน culture</b></a></div><br>")
                                 ,$("<div class='col-md-12 col-lg-12'><a id='visit' class='btn btn-success btn-block' href='#'><img src='images/icon_set2/compose.ico' width='25'><b> ข้อมูลเยี่ยมบ้าน</b></a></div>"));
 
-                                $("a#alcohol").attr("onclick","#");
+                                $("a#alcohol").attr("onclick","AssAlcohol('#index_content')");
                                 $("a#cigarette").attr("onclick","#");
                                 $("a#cgi").attr("onclick","AssCGI('#index_content')");
+                                $("a#culture").attr("onclick","AssCulture('#index_content')");
                                 $("a#smi-v").attr("onclick","#");
                                 $("a#visit").attr("onclick","#");
 }

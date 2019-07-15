@@ -21,7 +21,7 @@ $rslt = array();
 $series = array();
 //$data1 = isset($_POST['data1'])?$_POST['data1']:$_GET['data1'];
 $data = isset($_POST['data1'])?$_POST['data1']:(isset($_GET['data1'])?$_GET['data1']:'');
-$sql = "SELECT dupdate,cgis_score FROM cgi WHERE hn like '%".$data."' ORDER BY dupdate desc";
+$sql = "SELECT dupdate,cgis_score FROM cgi WHERE hn like '%".$data."' ORDER BY id desc";
 
 $conn_DB->imp_sql($sql);
 $num_risk = $conn_DB->select();

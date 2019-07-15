@@ -23,7 +23,7 @@ function AssCGI(content, id = null) {
             + "<div class='card-header'><b>คะแนน CGI</b></div>"
             + "<div id='cgi-scorll' class='card-body'></div></div>"
             + "<br><center><input type='submit' class='btn btn-success' value='ประเมิน'></center></div>"
-            + "<div class='col-lg-6' id='sub-contentTB'></div></div></form>"));
+            + "<div class='col-lg-6'><div class='row col-lg-12' id='sub-contentTB'></div><div class='row col-lg-12' id='sub-contentGr'></div></div></div></form>"));
             $.getJSON('../back/API/CGI_clinic.php', function (CGIdata) {
                 
                 for (var key in CGIdata) {
@@ -95,5 +95,13 @@ function AssCGI(content, id = null) {
     CTb.GetNewTableAjax('sub-contentTB', '../back/API/DT_CGIscore.php?'+$.cookie('hn'), '../back/API/tempSendDataAPI.php', column1
         , null, null, null, null, false, false, null, false, null, false, null, null, null, null, null, null);
 
-
+        var title1 = "ผลการประเมิน CGIS";
+        var subtitle = "รายครั้ง";
+        var unit = "คะแนน";
+        $.getJSON('../back/API/graph_CGI.php',{data:$.cookie('hn')},function (data) { 
+            var date = data.date
+            
+            var CCharts =  new AJAXCharts('sub-contentGr','line',title1,unit,date,'../back/API/DC_columnCGI.php?'+$.cookie('hn'),subtitle);
+            $(CCharts.GetCL());
+            });
 }

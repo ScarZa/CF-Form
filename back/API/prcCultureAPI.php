@@ -47,7 +47,7 @@ if ($method == 'add_culture') {
         $a1_4 = $_POST['A1-4'];
         $a1_5 = $_POST['A1-5'];
         $a1_6 = $_POST['A1-6'];
-        $q1_7 = $_POST['Q1-7'];
+        $q1_7 = $conv->utf8_to_tis620($_POST['Q1-7']);
         $a1_7 = $_POST['A1-7'];
         $a1_8 = $_POST['A1-8'];
         $a2_1 = $_POST['A2-1'];
@@ -58,10 +58,10 @@ if ($method == 'add_culture') {
         $a2_6 = $_POST['A2-6'];
         $a2_7 = $_POST['A2-7'];
         $a2_8 = $_POST['A2-8'];
-        $q2_9 = $_POST['Q2-9'];
+        $q2_9 = $conv->utf8_to_tis620($_POST['Q2-9']);
         $a2_9 = $_POST['A2-9'];
         $result = $_POST['result'];
-        $user = $_POST['user'];
+        $user = $conv->utf8_to_tis620($_POST['user']);
         $dupdate = date('Y-m-d');
 
         // $sql = "SELECT id+1 as id FROM cgi ORDER BY id desc limit 1 ";

@@ -26,86 +26,66 @@ function insert_date($take_date_conv) {
 }
 $conv=new convers_encode();
 $method = isset($_POST['method']) ? $_POST['method'] : $_GET['method'];
-if ($method == 'add_alcohol') {
+if ($method == 'add_social') {
         //$i=0;
         //$hcode = $conv->utf8_to_tis620('14644');
         $vdate = $_POST['vstdate'];
         $vn = $_POST['vn'];
-        $pp_vn = $conv->utf8_to_tis620($vn);
         $hn = $_POST['hn'];
-        $pp_hn = $conv->utf8_to_tis620($hn);
-        $recorder = $conv->utf8_to_tis620($_POST['recorder']);
-        $place = $conv->utf8_to_tis620($_POST['place']);
-        // $sex = $conv->utf8_to_tis620($_POST['sex']);
-        // $dob = $_POST['birthday'];
-        // $pdx = $conv->utf8_to_tis620($_POST['pdx']);
-        // $dx0 = $conv->utf8_to_tis620($_POST['dx0']);
-        // $dx1 = $conv->utf8_to_tis620($_POST['dx1']);
-        // $dx2 = $conv->utf8_to_tis620($_POST['dx2']);
-        // $dx3 = $conv->utf8_to_tis620($_POST['dx3']);
-        // $cgis_score = $_POST['cgi_score'];
-        // $clinic = $conv->utf8_to_tis620($_POST['cgi_clinic']);
-        $Q1 = isset($_POST['Q1'])?$_POST['Q1']:0;
-        $Q2 = isset($_POST['Q2'])?$_POST['Q2']:0;
-        $Q3 = isset($_POST['Q3'])?$_POST['Q3']:0;
-        $Q4 = isset($_POST['Q4'])?$_POST['Q4']:0;
-        $Q5 = isset($_POST['Q5'])?$_POST['Q5']:0;
-        $Q6 = isset($_POST['Q6'])?$_POST['Q6']:0;
-        $Q7 = isset($_POST['Q7'])?$_POST['Q7']:0;
+        $contributor = $conv->utf8_to_tis620($_POST['contributor']);
+        $relevance = $conv->utf8_to_tis620($_POST['relevance']);
+        $symptom = $conv->utf8_to_tis620($_POST['symptom']);
+        $psych_history = $_POST['psych_history'];
+        $psych_comm = isset($_POST['psych_comm'])?$conv->utf8_to_tis620($_POST['psych_comm']):'';
+        $hurt_salf = $_POST['hurt_salf'];
+        $hurt_comm = isset($_POST['hurt_comm'])?$conv->utf8_to_tis620($_POST['hurt_comm']):'';
+        $evolu = $_POST['evolu'];
+        $evolu_comm = isset($_POST['evolu_comm'])?$conv->utf8_to_tis620($_POST['evolu_comm']):'';
+        $twitch = $_POST['twitch'];
+        $twitch_comm = isset($_POST['twitch_comm'])?$conv->utf8_to_tis620($_POST['twitch_comm']):'';
+        $educate = $_POST['educate'];
+        $fall = $_POST['fall'];
+        $fall_comm = isset($_POST['fall_comm'])?$conv->utf8_to_tis620($_POST['fall_comm']):'';
+        $career = $conv->utf8_to_tis620($_POST['career']);
+        $marry = $conv->utf8_to_tis620($_POST['marry']);
+        $addictive = $_POST['addictive'];
+        $addict_comm = isset($_POST['addictive_comm'])?$conv->utf8_to_tis620($_POST['addictive_comm']):'';
+        $accident = $conv->utf8_to_tis620($_POST['accident']);
+        $sick = $conv->utf8_to_tis620($_POST['sick']);
+        $habit = $conv->utf8_to_tis620($_POST['habit']);
+        $family = $conv->utf8_to_tis620($_POST['family']);
+        $spending = $_POST['spending'];
+        $spend_comm = isset($_POST['spend_comm'])?$conv->utf8_to_tis620($_POST['spend_comm']):'';
+        $congenital = $_POST['congenital'];
+        $conge_comm = isset($_POST['conge_comm'])?$conv->utf8_to_tis620($_POST['conge_comm']):'';
+        $Sdiag_1 = isset($_POST['Sdiag_1'])?$_POST['Sdiag_1']:'';
+        $Sdiag_2 = isset($_POST['Sdiag_2'])?$_POST['Sdiag_2']:'';
+        $Sdiag_3 = isset($_POST['Sdiag_3'])?$_POST['Sdiag_3']:'';
+        $Sdiag_4 = isset($_POST['Sdiag_4'])?$_POST['Sdiag_4']:'';
+        $Sdiag_5 = isset($_POST['Sdiag_5'])?$_POST['Sdiag_5']:'';
+        $help = $_POST['help'];
+        $help_comm = isset($_POST['help_comm'])?$conv->utf8_to_tis620($_POST['help_comm']):'';
+        $source = $_POST['source'];
+        $source_comm = isset($_POST['source_comm'])?$conv->utf8_to_tis620($_POST['source_comm']):'';
         $user = $conv->utf8_to_tis620($_POST['user']);
         $dupdate = date('Y-m-d');
-        $pp_date = date('Y-m-d H:i:s');
-        $hcode = $conv->utf8_to_tis620('14644');
-        $result = $Q2+$Q3+$Q4+$Q5+$Q6+$Q7;
-        $data = array($vdate,$hn,$vn,$Q1,$Q2,$Q3,$Q4,$Q5,$Q6,$Q7,$result,$user,$dupdate);
-        $table = "jvl_alcohol01";
-        $alcohol = $connDB->insert($table, $data);
-        if($alcohol===false){
-            $res = array("messege"=>'ไม่สามารถประเมิน Alcohol ได้!!!!');
-        }else{
-            if($Q1 != 2){
-            if($Q1 == 0){
-                $pp_code = $conv->utf8_to_tis620('270');
-            }elseif($Q1 == 1){
-                $pp_code = $conv->utf8_to_tis620('271');
-            }
-            $sql = "SELECT pp_special_id+1 as id FROM pp_special ORDER BY id desc limit 1 ";
-            $connDB->imp_sql($sql);
-            $id=$connDB->select_a();
-    
-            $data = array($id['id'],$pp_vn,$pp_code,$recorder,$place,$pp_date,$hcode,null,null,$pp_hn);
-            $field = array('pp_special_id','vn','pp_special_type_id','doctor','pp_special_service_place_type_id'
-                        ,'entry_datetime','dest_hospcode','hos_guid','pp_special_text','hn');
-            $table = "pp_special";
-            $pp_special= $connDB->insert($table, $data, $field);
-            }elseif($Q1 == 2){
-                if($result<=10){
-                    $pp_code[0] = $conv->utf8_to_tis620('272');
-                    $pp_code[1] = $conv->utf8_to_tis620('276');
-                }elseif($result>=11 and $result<=26){
-                    $pp_code[0] = $conv->utf8_to_tis620('273');
-                    $pp_code[1] = $conv->utf8_to_tis620('277');
-                }elseif($result>=27){
-                    $pp_code[0]= $conv->utf8_to_tis620('274');
-                    $pp_code[1] = $conv->utf8_to_tis620('277');
-                }
-                for($i=0;$i<=1;$i++){
-                    $sql = "SELECT pp_special_id+1 as id FROM pp_special ORDER BY id desc limit 1 ";
-                    $connDB->imp_sql($sql);
-                    $id=$connDB->select_a();
-                    $data = array($id['id'],$pp_vn,$pp_code[$i],$recorder,$place,$pp_date,$hcode,null,null,$pp_hn);
-                    $field = array('pp_special_id','vn','pp_special_type_id','doctor','pp_special_service_place_type_id','entry_datetime','dest_hospcode','hos_guid','pp_special_text','hn');
-                    $table = "pp_special";
-                    $pp_special= $connDB->insert($table, $data, $field);
-                }
-            }
-            if($pp_special===false){
-                $res = array("messege"=>'ไม่สามารถประเมิน Alcohol ได้!!!!');
-            }else{
-            $res = array("messege"=>'ประเมิน Alcohol สำเร็จ!!!!');
-            }
-        }
-            
+
+        // $sql = "SELECT id+1 as id FROM cgi ORDER BY id desc limit 1 ";
+        // $connDB->imp_sql($sql);
+        // $id=$connDB->select_a();
+
+        $data = array($vdate,$hn,$vn,$contributor,$relevance,$symptom,$psych_history,$psych_comm,$hurt_salf,$hurt_comm,$evolu,$evolu_comm
+        ,$twitch,$twitch_comm,$educate,$fall,$fall_comm,$career,$marry,$addictive,$addict_comm,$accident,$sick,$habit,$family,$spending,$spend_comm
+        ,$congenital,$conge_comm,$Sdiag_1,$Sdiag_2,$Sdiag_3,$Sdiag_4,$Sdiag_5,$help,$help_comm,$source,$source_comm,$user,$dupdate);
+        //$field = array('id','hcode','vdate','vn','hn','sex','dob','pdx','dx0','dx1','dx2','dx3','cgis_score','clinic','user','dupdate');
+        $table = "jvl_social01";
+        $social = $connDB->insert($table, $data);
+        $res = array("messege"=>$social);
+    if($social===false){
+        $res = array("messege"=>'ไม่สามารถประเมิน Social ได้!!!!');
+    }else{
+        $res = array("messege"=>'ประเมิน Social สำเร็จ!!!!');
+    }
         print json_encode($res);
         $connDB->close_PDO();
 }elseif ($method == 'edit_lotitem') {

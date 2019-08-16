@@ -1,0 +1,17 @@
+{
+    "todohighlight.keywords": [
+        "REVIEW:",
+        {
+            "text": "NOTE:",
+            "color": "#ff0000",
+            "backgroundColor": "yellow",
+            "overviewRulerColor": "grey"
+        },
+        {
+            "text": "WAINING:",
+            "color": "#ffffff",
+            "backgroundColor": "red",
+            "overviewRulerColor": "grey"
+        }
+    ]
+}

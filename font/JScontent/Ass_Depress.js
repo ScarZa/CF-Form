@@ -14,17 +14,17 @@ function AssDepress(content, id = null) {
     //     $("#body_text").empty().append("<b>เบิกครั้งที : " + data[0].ID + " เลขที่เบิก : " + data[0].bill_no + " วันที่ : " + data[0].bill_date + " หน่วยงาน : " + data[0].department_name + "</b><p>");
         //$("#item-input").empty().append();
 
-        $("#contentGr").empty().append($("<form action='' name='frmculture' id='frmculture' method='post' enctype='multipart/form-data'>"
+        $("#contentGr").empty().append($("<form action='' name='frmdepress' id='frmdepress' method='post' enctype='multipart/form-data'>"
             + "<div class='col-lg-12'><div class='row alert alert-success' role='alert'>"
             +"<div class='row col-lg-12'>"
             + "<div class='row col-lg-3 col-md-3 col-sm-12'>ผู้ประเมิน : <select name='recorder' class='form-control select2' id='recorder' required></select></div> &nbsp;"
             + "<div class='row col-lg-3 col-md-3 col-sm-12'>สถานที่รับบริการ : <select name='place' class='form-control select2' id='place' required></select></div> &nbsp;"
-            + "<div class='row col-lg-3 col-md-3 col-sm-12'>ประเภทการคัดกรอง : <select name='recorder' class='form-control select2' id='recorder' required></select></div></div>"
+            + "<div class='row col-lg-3 col-md-3 col-sm-12'>ประเภทการคัดกรอง : <select name='screen-type' class='form-control select2' id='screen-type' required></select></div></div>"
             +"<div class='row col-lg-12'>"
-            + "<div class='row col-lg-3 col-md-3 col-sm-12'>ประเภทผู้ป่วย : <select name='place' class='form-control select2' id='place' required></select></div> &nbsp;"
-            + "<div class='row col-lg-3 col-md-3 col-sm-12'>กลุ่มผู้ป่วย : <select name='place' class='form-control select2' id='place' required></select></div></div>"
+            + "<div class='row col-lg-3 col-md-3 col-sm-12'>ประเภทผู้ป่วย : <select name='patient-type' class='form-control select2' id='patient-type' required></select></div> &nbsp;"
+            + "<div class='row col-lg-3 col-md-3 col-sm-12'>กลุ่มผู้ป่วย : <select name='patient-group' class='form-control select2' id='patient-group' required></select></div></div>"
             + "</div></div>"
-            + "<div class='row col-lg-12'><div class='col-lg-8' id='cgi-post'>"
+            + "<div class='row'><div class='row col-lg-12'><div class='col-lg-7' id='cgi-post'>"
             + "<div class='card border-success'>"
             + "<div class='card-header'><b>แบบคัดกรองโรคซึมเศร้า 2 คำถาม (2Q)</b></div>"
             + "<div id='Question-1' class='card-body'></div></div><p>"
@@ -34,19 +34,21 @@ function AssDepress(content, id = null) {
             + "<div class='card border-success' id='panel3'>"
             + "<div class='card-header'><b>แบบประเมินการฆ่าตัวตาย 8 คำถาม (8Q)</b></div>"
             + "<div id='Question-3' class='card-body'></div></div><p>"
-            // + "<div class='card border-success'>"
-            // + "<div class='card-header'><b>คุณเคยได้รับการรักษาแผนปัจุบันก่อนมารพ.จิตเวชเลยฯหรือไม่?</b></div>"
-            // + "<div id='Question-4' class='card-body'></div></div><p>"
-            // + "<div class='card border-success'>"
-            // + "<div class='card-header'><b>สรุปผลการประเมิน</b></div>"
-            // + "<div id='Result' class='card-body'></div></div>"
-            + "<br><center><input type='submit' class='btn btn-success' value='ประเมิน'></center></div>"
-            + "<div class='col-lg-4' id='sub-contentTB'></div></div></form>"));
+             + "<br><center><input type='submit' class='btn btn-success' value='ประเมิน'></center></div>"
+            + "<div class='row col-lg-5' id='sub-contentTB'></div></div></div></form>"));
+
+            selectMash('#recorder', 'user_Data.php', 'เลือกผู้ประเมิน',$.cookie("user"));
+            selectMash('#place', 'place_Data.php', 'เลือกสถานที่','');
+            selectMash('#screen-type', 'screen_Data.php', 'เลือกประเภทการคัดกรอง','');
+            selectMash('#patient-group', 'patient_group_Data.php', 'เลือกกลุ่มผู้ป่วย','');
+            var option="<option value=''> เลือกประเภทผู้ป่วย </option><option value='1'> ผู้ป่วยนอก </option><option value='2'> ผู้ป่วยใน </option>";
+               $("select#patient-type").empty().append(option);
+               $(".select2").select2();
 
             $("#Question-1").append("<table class='table table-border table-hover' frame='below' width='100%'><thead><tr align='center'><th width='80%'>คำถาม</th><th width='10%'>มี</th><th width='11%'>ไม่มี</th></tr></thead><tbody id='A1'></tbody></table>")
 
-            $("tbody#A1").append($("<tr><td>1. ใน 2 สัปดาห์ที่ผ่านมา รวมวันนี้ ท่านรู้สึก หดหู่ เศร้า หรือท้อแท้สิ้นหวัง หรือไม่</td><td align='center'><input type='radio' name='2Q-1' value='1' required></td><td align='center'><input type='radio' name='2Q-1' value='0' checked required></td></tr>")
-                            ,$("<tr><td>2. ใน 2 สัปดาห์ที่ผ่านมา รวมวันนี้ ท่านรู้สึก เบื่อ ทำอะไรก็ไม่เพลิดเพลิน หรือไม่</td><td align='center'><input type='radio' name='2Q-2' value='1' required></td><td align='center'><input type='radio' name='2Q-2' value='0' checked required></td></tr>"));
+            $("tbody#A1").append($("<tr><td>1. ใน 2 สัปดาห์ที่ผ่านมา รวมวันนี้ ท่านรู้สึก หดหู่ เศร้า หรือท้อแท้สิ้นหวัง หรือไม่</td><td align='center'><input type='radio' name='2Q-1' value='Y' required></td><td align='center'><input type='radio' name='2Q-1' value='N' checked required></td></tr>")
+                            ,$("<tr><td>2. ใน 2 สัปดาห์ที่ผ่านมา รวมวันนี้ ท่านรู้สึก เบื่อ ทำอะไรก็ไม่เพลิดเพลิน หรือไม่</td><td align='center'><input type='radio' name='2Q-2' value='Y' required></td><td align='center'><input type='radio' name='2Q-2' value='N' checked required></td></tr>"));
 
             $("#Question-2").append("<table class='table table-border table-hover' frame='below' width='100%'><thead><tr align='center'><th width='60%'>ในช่วง 2 สัปดาห์ที่ผ่านมารวมทั้งวันนี้<p>ท่านมีอาการเหล่านี้ บ่อยแค่ไหน</th><td width='10%' valign='top'><b>ไม่มีเลย</b></td><th width='10%'>บางวัน<p>1-7วัน</th><th width='10%'>บ่อย<p> >7วัน</th><td width='10%'  valign='top'><b>ทุกวัน</b></td></tr></thead><tbody id='A2'></tbody></table>")
             
@@ -76,18 +78,11 @@ function AssDepress(content, id = null) {
                             ,$("<tr bgcolor='#dcf7ad'><td>8.</td><td>ท่านเคยพยายามฆ่าตัวตาย</td><td align='center'><input type='radio' name='8Q-8' value='0' checked required></td><td align='center'><input type='radio' name='8Q-8' value='4' required></td></tr>")
                             ,$("<tr><td colspan='3' align='right'><b id='res-8Q'></b></td><td colspan='2' align='right'><a class='btn btn-warning' id='process8Q'>ประมวลผล 8Q</a><td></tr>"));
 
-            // $("#Question-4").append("<table class='table table-border table-hover' frame='below' width='100%'><thead><tr align='center'><th width='80%'>คำถาม</th><th width='10%'>ไม่เคย</th><th width='10%'>เคย</th></tr></thead><tbody id='A4'></tbody></table>")
-                            
-            // $("tbody#A4").append($("<tr><td>แพทย์</td><td align='center'><input type='radio' name='A2-7' value='1' checked required></td><td align='center'><input type='radio' name='A2-7' value='0' required></td></tr>")
-            //                 ,$("<tr><td>จิตแพทย์</td><td align='center'><input type='radio' name='A2-8' value='1' checked required></td><td align='center'><input type='radio' name='A2-8' value='0' required></td></tr>"));               
-
-            // $("#Result").append($("<input type='radio' name='result' value='Y' required><span> ใช่ / </span><input type='radio' name='result' value='N' checked required><span> ไม่ใช่ </span>"));               
-
             $("div#panel2").hide();
             $("div#panel3").hide();
 
             $("input[type=radio][name=2Q-1],input[type=radio][name=2Q-2]").click(function(){
-                if(($("input[type=radio][name=2Q-1]:checked").val()==1) || ($("input[type=radio][name=2Q-2]:checked").val()==1)){
+                if(($("input[type=radio][name=2Q-1]:checked").val()=='Y') || ($("input[type=radio][name=2Q-2]:checked").val()=='Y')){
                     $("div#panel2").hide();
                     $("div#panel2").show();
                     $("input[type=submit]").hide();
@@ -106,9 +101,12 @@ function AssDepress(content, id = null) {
                 var Q98 = parseInt($("input[type=radio][name=9Q-8]:checked").val());
                 var Q99 = parseInt($("input[type=radio][name=9Q-9]:checked").val());
                 total_9Q = (Q91+Q92+Q93+Q94+Q95+Q96+Q97+Q98+Q99);
-                $("b#res-9Q").empty().append("ได้ "+total_9Q+" คะแนน");
-                console.log(total_9Q);
-                if(total_9Q > 7){
+                $.getJSON('../back/API/res9q_Data.php',{data:total_9Q}, function (GD) { console.log(GD);
+                    $("b#res-9Q").empty().append("ได้ "+total_9Q+" คะแนน / ผลที่ได้ "+GD[0].name);
+                    $("#cgi-post").append($("<input type='hidden' name='res_9q' value='"+GD[0].id+"'>")
+                                        ,$("<input type='hidden' name='score9Q' value='"+total_9Q+"'>"));
+                });
+                if(total_9Q >= 7){
                     $("div#panel3").hide();
                     $("div#panel3").show();
                     $("input[type=submit]").hide();
@@ -126,25 +124,24 @@ function AssDepress(content, id = null) {
                     var Q86 = parseInt($("input[type=radio][name=8Q-6]:checked").val());
                     var Q87 = parseInt($("input[type=radio][name=8Q-7]:checked").val());
                     var Q88 = parseInt($("input[type=radio][name=8Q-8]:checked").val());
-                    total_8Q = (Q81+Q82+Q83+Q831+Q84+Q85+Q86+Q87+Q88);
-                    $("b#res-8Q").empty().append("ได้ "+total_8Q+" คะแนน");
-                    console.log(total_8Q);
+                    total_8Q = (Q81+Q82+Q83+Q831+Q84+Q85+Q86+Q87+Q88);console.log(total_8Q);
+                    $.ajax({type: "GET",
+                            url: "../back/API/res8q_Data.php",
+                            data :{data:total_8Q},
+                            success: function(R8q) { console.log(R8q);
+                    $("b#res-8Q").empty().append("ได้ "+total_8Q+" คะแนน / ผลที่ได้ "+R8q[0].name);
+                    $("#cgi-post").append($("<input type='hidden' name='score8Q' value='"+total_8Q+"'>")
+                                        ,$("<input type='hidden' name='res_8q' value='"+R8q[0].id+"'>"));
+                }});
                     $("input[type=submit]").show();
                     });    
 
             $("#cgi-post").append($("<input type='hidden' name='hn' value='"+$.cookie("hn")+"'>")
                                 ,$("<input type='hidden' name='vn' value='"+$.cookie("vn")+"'>")
                                 ,$("<input type='hidden' name='vstdate' value='"+$.cookie("vstdate")+"'>")
-                                ,$("<input type='hidden' name='res9Q' value='"+total_9Q+"'>")
-                                ,$("<input type='hidden' name='res8Q' value='"+total_8Q+"'>")
-                                // ,$("<input type='hidden' name='pdx' value='"+$.cookie("pdx")+"'>")
-                                // ,$("<input type='hidden' name='dx0' value='"+$.cookie("dx0")+"'>")
-                                // ,$("<input type='hidden' name='dx1' value='"+$.cookie("dx1")+"'>")
-                                // ,$("<input type='hidden' name='dx2' value='"+$.cookie("dx2")+"'>")
-                                // ,$("<input type='hidden' name='dx3' value='"+$.cookie("dx3")+"'>")
                                 ,$("<input type='hidden' name='user' value='"+$.cookie("user")+"'>")
-                                ,$("<input type='hidden' name='method' value='add_culture'>"));                        
-        $("#frmculture").on('submit', (function (e) {
+                                ,$("<input type='hidden' name='method' value='add_depress'>"));                        
+        $("#frmdepress").on('submit', (function (e) {
             e.preventDefault();
             var dataForm = new FormData(this);
             console.log(dataForm)
@@ -153,7 +150,7 @@ function AssDepress(content, id = null) {
             // }
             var settings = {
                 type: "POST",
-                url: "../back/API/prcCultureAPI.php",
+                url: "../back/API/prc2q8q9qAPI.php",
                 async: true,
                 crossDomain: true,
                 data: dataForm,
@@ -165,7 +162,7 @@ function AssDepress(content, id = null) {
             $.ajax(settings).done(function (result) {
                 alert(result.messege);
                 $("#body_text").empty();
-                AssCulture('#index_content',$.cookie('hn'));
+                AssDepress('#index_content',$.cookie('hn'));
                 //$("#index_content").empty().load('content/add_user.html');
 
             })
@@ -174,7 +171,7 @@ function AssDepress(content, id = null) {
         }));
     //});
     //$("a#adduser").attr("onclick","AddBrandModal();").attr("data-toggle","modal").attr("data-target","#AddBrandModal");                 
-    var column1 = ["วันที่ประเมิน", "ผลการประเมิน"];
+    var column1 = ["วันที่ประเมิน","คะแนน", "ผลการประเมิน"];
     console.log($.cookie('hn'));
     console.log($.cookie('birthday'));
     console.log($.cookie('pdx'));
@@ -184,7 +181,7 @@ function AssDepress(content, id = null) {
     // GetjQueryCookie('year',nowyear)
     //CTb.FileDel('DelDrawItemAPI.php');
     //CTb.GetNewTableAjax('sub-contentTB', '../back/API/DT_Drawlotitem.php?' + id, $.cookie('Readerurl') + 'tempSendDataAPI.php', column1
-    CTb.GetNewTableAjax('sub-contentTB', '../back/API/DT_Culture.php?'+$.cookie('hn'), '../back/API/tempSendDataAPI.php', column1
+    CTb.GetNewTableAjax('sub-contentTB', '../back/API/DT_Depress.php?'+$.cookie('hn'), '../back/API/tempSendDataAPI.php', column1
         , null, null, null, null, false, false, null, false, null, false, null, null, null, null, null, null);
 
 

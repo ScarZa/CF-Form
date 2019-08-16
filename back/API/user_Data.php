@@ -21,7 +21,7 @@ $conv=new convers_encode();
     $connDB->imp_sql($sql);
     $user = $connDB->select();
     for($i=0;$i<count($user);$i++){
-        $series['loginname'] = $conv->tis620_to_utf8($user[$i]['loginname']);
+        $series['id'] = $conv->tis620_to_utf8($user[$i]['loginname']);
         $series['name'] = $conv->tis620_to_utf8($user[$i]['name']);
         $series['doctorcode'] =  $conv->tis620_to_utf8($user[$i]['doctorcode']);
     array_push($rslt, $series);    

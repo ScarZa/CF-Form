@@ -21,8 +21,8 @@ $conv=new convers_encode();
     $connDB->imp_sql($sql);
     $place = $connDB->select();
     for($i=0;$i<count($place);$i++){
-        $series['place_id'] = $conv->tis620_to_utf8($place[$i]['place_id']);
-        $series['place_name'] = $conv->tis620_to_utf8($place[$i]['place_name']);
+        $series['id'] = $conv->tis620_to_utf8($place[$i]['place_id']);
+        $series['name'] = $conv->tis620_to_utf8($place[$i]['place_name']);
     array_push($rslt, $series);    
     }
     print json_encode($rslt);

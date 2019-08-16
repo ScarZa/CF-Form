@@ -48,7 +48,7 @@ function AssAlcohol(content, id = null) {
             $.getJSON('../back/API/user_Data.php', function (GD) {
                 var option="<option value=''> เลือกผู้ประเมิน </option>";
                for (var key in GD) {
-                   if($.cookie("user")==GD[key].loginname){var selected = 'selected';}else{var selected = '';}
+                   if($.cookie("user")==GD[key].id){var selected = 'selected';}else{var selected = '';}
                          option += "$('<option value='"+GD[key].doctorcode+"' "+selected+"> "+GD[key].name+" </option>'),";
                    }
                    $("select#recorder").empty().append(option);
@@ -58,7 +58,7 @@ function AssAlcohol(content, id = null) {
             var option="<option value=''> เลือกสถานที่ </option>";
            for (var key in GD) {
                //if($.cookie("user")==GD[key].loginname){var selected = 'selected';}else{var selected = '';}
-                     option += "$('<option value='"+GD[key].place_id+"'> "+GD[key].place_name+" </option>'),";
+                     option += "$('<option value='"+GD[key].id+"'> "+GD[key].name+" </option>'),";
                }
                $("select#place").empty().append(option);
                $(".select2").select2();

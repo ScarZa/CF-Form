@@ -154,6 +154,7 @@ function AssSocial(content, id = null) {
             $.ajax(settings).done(function (result) {
                 alert(result.messege);
                 $("#body_text").empty();
+                popup('../back/API/socialPDF.php?id='+result.id, popup, 450, 500);
                 AssSocial('#index_content',$.cookie('hn'));
             })
         }));

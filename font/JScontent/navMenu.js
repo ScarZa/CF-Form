@@ -1,4 +1,4 @@
-$("nav#head-nav").empty().append($("<a class='navbar-brand' href='#'><img src='images/icon_set2/compose.ico' width='35' class='d-inline-block align-top' alt=''><b> Assessment Form.v.beta</b></a>")
+$("nav#head-nav").empty().append($("<a class='navbar-brand' href='#'><img src='images/icon_set2/compose.ico' width='35' class='d-inline-block align-top' alt=''><b> Assessment Form.v.1.0</b></a>")
                                 ,$("<button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'><span class='navbar-toggler-icon'></span></button>")
                                 ,$("<div class='collapse navbar-collapse' id='navbarNavDropdown1'><ul class='navbar-nav' id='fontDropdown'></ul></div>")
                                 ,$("<div class='collapse navbar-collapse justify-content-end' id='navbarNavDropdown'><ul class='navbar-nav' id='backDropdown'></ul></div>"));

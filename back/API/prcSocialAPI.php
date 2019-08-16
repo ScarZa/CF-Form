@@ -84,7 +84,7 @@ if ($method == 'add_social') {
     if($social===false){
         $res = array("messege"=>'ไม่สามารถประเมิน Social ได้!!!!');
     }else{
-        $res = array("messege"=>'ประเมิน Social สำเร็จ!!!!');
+        $res = array("messege"=>'ประเมิน Social สำเร็จ!!!!',"id"=>$social);
     }
         print json_encode($res);
         $connDB->close_PDO();

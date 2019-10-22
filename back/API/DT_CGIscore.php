@@ -21,12 +21,12 @@ $rslt = array();
 $series = array();
 //$data1 = isset($_POST['data1'])?$_POST['data1']:$_GET['data1'];
 $data = isset($_POST['data1'])?$_POST['data1']:(isset($_GET['data1'])?$_GET['data1']:'');
-$sql = "SELECT dupdate,cgis_score FROM cgi WHERE hn like '%".$data."' ORDER BY id desc";
+$sql = "SELECT vdate,cgis_score FROM cgi WHERE hn like '%".$data."' ORDER BY id desc";
 
 $conn_DB->imp_sql($sql);
 $num_risk = $conn_DB->select();
 for($i=0;$i<count($num_risk);$i++){
-    $series['dupdate'] = DateThai2($num_risk[$i]['dupdate']);
+    $series['vdate'] = DateThai2($num_risk[$i]['vdate']);
     $series['cgis_score'] = $num_risk[$i]['cgis_score'];
 array_push($rslt, $series);    
 }

@@ -14,13 +14,13 @@ $connDB->Read_Text();
 $connDB->conn_PDO();
 $rslt = array();
 $series = array();
-$sql = "SELECT * FROM jvl_education order by education asc";
+$sql = "SELECT * FROM jvl_classroom order by CR_id asc";
 $conv=new convers_encode();
     $connDB->imp_sql($sql);
     $user = $connDB->select();
     for($i=0;$i<count($user);$i++){
-        $series['id'] = $conv->tis620_to_utf8($user[$i]['education']);
-        $series['name'] = $conv->tis620_to_utf8($user[$i]['eduname']);
+        $series['id'] = $conv->tis620_to_utf8($user[$i]['CR_id']);
+        $series['name'] = $conv->tis620_to_utf8($user[$i]['CR_name']);
     array_push($rslt, $series);    
     }
     print json_encode($rslt);

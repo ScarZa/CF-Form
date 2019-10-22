@@ -82,7 +82,7 @@ function AssCGI(content, id = null) {
         }));
     //});
     //$("a#adduser").attr("onclick","AddBrandModal();").attr("data-toggle","modal").attr("data-target","#AddBrandModal");                 
-    var column1 = ["วันที่ประเมิน", "คะแนน CGI-S"];
+    var column1 = ["วันที่รับบริการ", "คะแนน CGI-S"];
     console.log($.cookie('hn'));
     console.log($.cookie('birthday'));
     console.log($.cookie('pdx'));

@@ -46,25 +46,19 @@ include_once ('../plugins/funcDateThai.php');
 include '../plugins/function_date.php';
     $id=$_GET['id'];
 
-    $sql=  "SELECT concat(pt.pname,pt.fname,' ',pt.lname)fullname,TIMESTAMPDIFF(year,pt.birthday,NOW())age,sc.hn
-    ,sc.contributor,sc.relevance,symptom,hurt_comm,spawn_comm,evolu_comm,twitch_comm
-    ,ed.eduname,sc.edu_comm,sc.career,sc.marry,sc.addict_comm,sc.family
-    ,CASE
-    WHEN sc.spending = 0 THEN 'ยากจน'
-    WHEN sc.spending = 1 THEN 'ปานกลาง'
-    ELSE 'ร่ำรวย'
-    END as spending
-    ,sc.spend_comm
-    ,(SELECT concat(sp.problem_detial,' (',sp.problem_code,')') FROM jvl_social01 sc inner join jvl_social_problem_list sp on sp.so_problem_id=sc.Sdiag_1 WHERE sc.social_id=".$id.")Sdiag_1
-    ,(SELECT concat(sp.problem_detial,' (',sp.problem_code,')') FROM jvl_social01 sc inner join jvl_social_problem_list sp on sp.so_problem_id=sc.Sdiag_2 WHERE sc.social_id=".$id.")Sdiag_2
-    ,(SELECT concat(sp.problem_detial,' (',sp.problem_code,')') FROM jvl_social01 sc inner join jvl_social_problem_list sp on sp.so_problem_id=sc.Sdiag_3 WHERE sc.social_id=".$id.")Sdiag_3
-    ,(SELECT concat(sp.problem_detial,' (',sp.problem_code,')') FROM jvl_social01 sc inner join jvl_social_problem_list sp on sp.so_problem_id=sc.Sdiag_4 WHERE sc.social_id=".$id.")Sdiag_4
-    ,(SELECT concat(sp.problem_detial,' (',sp.problem_code,')') FROM jvl_social01 sc inner join jvl_social_problem_list sp on sp.so_problem_id=sc.Sdiag_5 WHERE sc.social_id=".$id.")Sdiag_5
-    ,st.therapy_detial,sc.help_comm,sc.source_comm,os.name,os.entryposition,sc.vdate
+    $sql=  "SELECT concat(pt.fname,' ',pt.lname)fullname,TIMESTAMPDIFF(year,pt.birthday,NOW())age,sc.hn
+    ,sc.contributor,sc.relevance,sc.symptom,sc.psych_comm,hurt_comm,evolu_comm,twitch_comm
+    ,ed.eduname,sc.fall_comm,sc.career,sc.marry,sc.addict_comm,sc.accident,sc.sick,sc.habit
+    ,sc.family,sc.spend_comm,sc.conge_comm
+    ,(SELECT sp.problem_detial FROM jvl_social01 sc inner join jvl_social_problem_list sp on sp.so_problem_id=sc.Sdiag_1 WHERE sc.social_id=".$id.")Sdiag_1
+    ,(SELECT sp.problem_detial FROM jvl_social01 sc inner join jvl_social_problem_list sp on sp.so_problem_id=sc.Sdiag_2 WHERE sc.social_id=".$id.")Sdiag_2
+    ,(SELECT sp.problem_detial FROM jvl_social01 sc inner join jvl_social_problem_list sp on sp.so_problem_id=sc.Sdiag_3 WHERE sc.social_id=".$id.")Sdiag_3
+    ,(SELECT sp.problem_detial FROM jvl_social01 sc inner join jvl_social_problem_list sp on sp.so_problem_id=sc.Sdiag_4 WHERE sc.social_id=".$id.")Sdiag_4
+    ,(SELECT sp.problem_detial FROM jvl_social01 sc inner join jvl_social_problem_list sp on sp.so_problem_id=sc.Sdiag_5 WHERE sc.social_id=".$id.")Sdiag_5
+    ,sc.help_comm,sc.source_comm,os.name,os.entryposition,sc.vdate
     FROM jvl_social01 sc
     inner join patient pt on sc.hn=pt.hn
     inner join jvl_education ed on ed.education=sc.educate
-	inner join jvl_social_therapy st on st.Social_therapy_id=sc.help
     inner join opduser os on os.loginname=recorder
     WHERE sc.social_id=".$id;
     $connDB->imp_sql($sql);
@@ -76,24 +70,26 @@ include '../plugins/function_date.php';
     $contributor = $conv->tis620_to_utf8($detial_patient['contributor']);
     $relevance = $conv->tis620_to_utf8($detial_patient['relevance']);
     $symptom = $conv->tis620_to_utf8($detial_patient['symptom']);
+    $psych_comm = $conv->tis620_to_utf8($detial_patient['psych_comm']); 
     $hurt_comm = $conv->tis620_to_utf8($detial_patient['hurt_comm']);
-    $spawn_comm = $conv->tis620_to_utf8($detial_patient['spawn_comm']);
     $evolu_comm = $conv->tis620_to_utf8($detial_patient['evolu_comm']);
     $twitch_comm = $conv->tis620_to_utf8($detial_patient['twitch_comm']);
     $eduname = $conv->tis620_to_utf8($detial_patient['eduname']);
-    $edu_comm = $conv->tis620_to_utf8($detial_patient['edu_comm']);
+    $fall_comm = $conv->tis620_to_utf8($detial_patient['fall_comm']);
     $career = $conv->tis620_to_utf8($detial_patient['career']);
     $marry = $conv->tis620_to_utf8($detial_patient['marry']);
     $addict_comm = $conv->tis620_to_utf8($detial_patient['addict_comm']);
+    $accident = $conv->tis620_to_utf8($detial_patient['accident']);
+    $sick = $conv->tis620_to_utf8($detial_patient['sick']);
+    $habit = $conv->tis620_to_utf8($detial_patient['habit']);
     $family = $conv->tis620_to_utf8($detial_patient['family']);
-    $spending = $detial_patient['spending'];
     $spend_comm = $conv->tis620_to_utf8($detial_patient['spend_comm']);
+    $conge_comm = $conv->tis620_to_utf8($detial_patient['conge_comm']);
     $Sdiag_1 = '1.) '.$conv->tis620_to_utf8($detial_patient['Sdiag_1']);
     $Sdiag_2 = isset($detial_patient['Sdiag_2'])?'<p> &nbsp;&nbsp;2.) '.$conv->tis620_to_utf8($detial_patient['Sdiag_2']):'';
     $Sdiag_3 = isset($detial_patient['Sdiag_3'])?'<p> &nbsp;&nbsp;3.) '.$conv->tis620_to_utf8($detial_patient['Sdiag_3']):'';
     $Sdiag_4 = isset($detial_patient['Sdiag_4'])?'<p> &nbsp;&nbsp;4.) '.$conv->tis620_to_utf8($detial_patient['Sdiag_4']):'';
     $Sdiag_5 = isset($detial_patient['Sdiag_5'])?'<p> &nbsp;&nbsp;5.) '.$conv->tis620_to_utf8($detial_patient['Sdiag_5']):'';
-    $therapy_detial = $conv->tis620_to_utf8($detial_patient['therapy_detial']);
     $help_comm = $conv->tis620_to_utf8($detial_patient['help_comm']);
     $source_comm = $conv->tis620_to_utf8($detial_patient['source_comm']);
     $name = $conv->tis620_to_utf8($detial_patient['name']);
@@ -108,84 +104,71 @@ ob_start(); // ทำการเก็บค่า html นะครับ*/
     <div class="col-lg-12" align="center"><b valign="bottom">เครื่องมือสำหรับงานสังคมสงเคราะห์จิตเวช</b></div>
             <div align="left"><b>แบบวินิจฉัยทางสังคมแบบผู้ป่วยนอก (สำหรับผู้ป่วยจิตเวชทั่วไป)</b></div>
             <div class="col-lg-12">
-            <table width='100%' border='0' cellspacing='' cellpadding='' frame='below' class='divider'>
+                 
+                <table width='100%' border='0' cellspacing='' cellpadding='' frame='below' class='divider'> 
                     <tr>
-                        <td colspan='2'>
-                <table width='100%' border='1' cellspacing='' cellpadding=''>
-                    <tr>
-                        <td>
-                        <table width='100%' border='0' cellspacing='' cellpadding=''>
-                        <tr>
-                        <td height="25">ชื่อ-สกุลผู้ป่วย <u> &nbsp;&nbsp;<?= $fullname?>&nbsp;&nbsp; </u> อายุ <u> &nbsp;&nbsp;<?= $age?>&nbsp;&nbsp; </u> ปี  HN <u> &nbsp;&nbsp;<b><?= $hn?></b>&nbsp;&nbsp; </u></td>
+                        <td height="25">ชื่อ-สกุลผู้ป่วย <u> &nbsp;&nbsp;<?= $fullname?>&nbsp;&nbsp; </u> อายุ <u> &nbsp;&nbsp;<?= $age?>&nbsp;&nbsp; </u> ปี  HN <u> &nbsp;&nbsp;<?= $hn?>&nbsp;&nbsp; </u></td>
                     </tr>
                     <tr>
                         <td height="25">ผู้ให้ประวัติ <u> &nbsp;&nbsp;<?= $contributor?>&nbsp;&nbsp; </u> เกี่ยวข้องเป็น <u> &nbsp;&nbsp;<?= $relevance?>&nbsp;&nbsp; </u></td>
                     </tr>
-                        </table>
-                        </td>
-                        </tr>
-                        </table>
-                        </td>
-                    </tr>
-                    
                     <tr>
-                        <td colspan='2' height="25">1. อาการสำคัญ/สาเหตุ ปัญหาและความต้องการ <u> &nbsp;&nbsp;<?= $symptom?>&nbsp;&nbsp; </u></td>
+                        <td height="25">1. อาการสำคัญ <u> &nbsp;&nbsp;<?= $symptom?>&nbsp;&nbsp; </u></td>
                     </tr>
                     <tr>
-                        <td colspan='2' height="25">2. ประวัติการทำร้ายตนเอง <u> &nbsp;&nbsp;<?= empty($hurt_comm)?'ไม่มี':$hurt_comm;?>&nbsp;&nbsp; </u></td>
+                        <td height="25">2. ประวัติการเจ็บป่วยทางจิตเวชและการรับการรักษา <u> &nbsp;&nbsp;<?= $psych_comm?>&nbsp;&nbsp; </u></td>
                     </tr>
                     <tr>
-                        <td colspan='2' height="25"><b>ประวัติส่วนตัว</b></td>
+                        <td height="25">3. ประวัติการทำร้ายตนเอง <u> &nbsp;&nbsp;<?= $hurt_comm?>&nbsp;&nbsp; </u></td>
                     </tr>
                     <tr>
-                        <td colspan='2' height="25">3. ประวัติพัฒนาการ</td>
+                        <td height="25">ประวัติส่วนตัว</td>
                     </tr>
                     <tr>
-                        <td width='2%'>&nbsp;</td><td height="25">3.1 การตั้งครรภ์ <u> &nbsp;&nbsp;<?= empty($evolu_comm)?'ไม่มีความผิดปกติ':$evolu_comm;?>&nbsp;&nbsp; </u></td>
+                        <td height="25">4. การตั้งครรภ์/การคลอด/พัฒนาการในวัยเด็ก/ประวัติการชัก <u> &nbsp;&nbsp;<?= $evolu_comm?>&nbsp;&nbsp; </u></td>
                     </tr>
                     <tr>
-                        <td width='2%'>&nbsp;</td><td height="25">3.2 การคลอด/พัฒนาการในวัยเด็ก <u> &nbsp;&nbsp;<?= empty($spawn_comm)?'ไม่มีความผิดปกติ':$spawn_comm;?>&nbsp;&nbsp; </u></td>
+                        <td height="25">5. ด้านการศึกษา/ผลการศึกษา/ประวัติการสอบตกซ้ำชั้น <u> &nbsp;&nbsp;<?= $fall_comm?>&nbsp;&nbsp; </u></td>
                     </tr>
                     <tr>
-                        <td width='2%'>&nbsp;</td><td height="25">3.3 ประวัติการชัก <u> &nbsp;&nbsp;<?= empty($twitch_comm)?'ไม่มีความผิดปกติ':$twitch_comm;?>&nbsp;&nbsp; </u></td>
+                        <td height="25">6. ด้านการประกอบอาชีพ/ความสัมพันธ์กับเพื่อนร่วมงาน <u> &nbsp;&nbsp;<?= $career?>&nbsp;&nbsp; </u></td>
                     </tr>
                     <tr>
-                        <td colspan='2' height="25">4. ด้านการศึกษา <u> &nbsp;&nbsp;<?= empty($edu_comm)?'ไม่มี':$eduname.' '.$edu_comm?>&nbsp;&nbsp; </u></td>
+                        <td height="25">7. ด้านชีวิตสมรส/ความสัมพันธ์กับคู่สมรส และบุตร <u> &nbsp;&nbsp;<?= $marry?>&nbsp;&nbsp; </u></td>
                     </tr>
                     <tr>
-                        <td colspan='2' height="25">5. ด้านการประกอบอาชีพ/ความสัมพันธ์กับเพื่อนร่วมงาน <u> &nbsp;&nbsp;<?= $career?>&nbsp;&nbsp; </u></td>
+                        <td height="25">8. ประวัติการใช้สารเสพติด <u> &nbsp;&nbsp;<?= $addict_comm?>&nbsp;&nbsp; </u></td>
                     </tr>
                     <tr>
-                        <td colspan='2' height="25">6. ด้านชีวิตสมรส/ความสัมพันธ์กับคู่สมรส และบุตร <u> &nbsp;&nbsp;<?= $marry?>&nbsp;&nbsp; </u></td>
+                        <td height="25">9. ด้านอุบัติเหตุ/การผ่าตัด/การถูกทำร้ายร่างกาย <u> &nbsp;&nbsp;<?= $accident?>&nbsp;&nbsp; </u></td>
                     </tr>
                     <tr>
-                        <td colspan='2' height="25">7. ประวัติการใช้สารเสพติด <u> &nbsp;&nbsp;<?= empty($addict_comm)?'ไม่มี':$addict_comm?>&nbsp;&nbsp; </u></td>
+                        <td height="25">10. ประวัติการเจ็บป่วยด้วยโรคทางกาย <u> &nbsp;&nbsp;<?= $sick?>&nbsp;&nbsp; </u></td>
                     </tr>
                     <tr>
-                        <td colspan='2' height="25">8. ประวัติครอบครัว(ประวัติที่เกี่ยวข้องกับบิดา-มารดา : อุปนิสัย อาชีพ ความสัมพันธ์ในครอบครัว ความสัมพันธ์ระหว่างพี่น้อง ความคาดหวังที่ญาติมีต่อผู้ป่วย)
+                        <td height="25">11. บุคลิกภาพ/อุปนิสัย <u> &nbsp;&nbsp;<?= $habit?>&nbsp;&nbsp; </u></td>
+                    </tr>
+                    <tr>
+                        <td height="55">12. ประวัติครอบครัว(ประวัติที่เกี่ยวข้องกับบิดา-มารดา : อุปนิสัย อาชีพ ความสัมพันธ์ในครอบครัว ความสัมพันธ์ระหว่างพี่น้อง ความคาดหวังที่ญาติมีต่อผู้ป่วย)
+                        <u> &nbsp;&nbsp;<?= $family?>&nbsp;&nbsp; </u>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan='2'>
-                        &nbsp;&nbsp;<u> &nbsp;&nbsp;<?= $family?>&nbsp;&nbsp; </u>
+                        <td height="25">13. ฐานะทางครอบครัว <u> &nbsp;&nbsp;<?= $spend_comm?>&nbsp;&nbsp; </u></td>
+                    </tr>
+                    <tr>
+                        <td height="55">14. ประวัติทางกรรมพันธุ์ (หากมีคนในครอบครัวเจ็บป่วยด้วยโรคทางจิต มีผลกระทบต่อครอบครัวอย่างไร และความสัมพันธ์ระหว่างบุคคลที่ป่วยกับผู้ป่วยเป็นอย่างไร
+                        <u> &nbsp;&nbsp;<?= $conge_comm?>&nbsp;&nbsp; </u>    
                         </td>
                     </tr>
                     <tr>
-                        <td colspan='2' height="25">9. ฐานะทางครอบครัว <u> &nbsp;&nbsp;<?= $spending.' '.$spend_comm?>&nbsp;&nbsp; </u></td>
+                        <td height="75">15. การวินิจฉัยปัญหาทางสังคม <u> &nbsp;&nbsp;<?= $Sdiag_1?> <?= $Sdiag_2?> <?= $Sdiag_3?> <?= $Sdiag_4?> <?= $Sdiag_5?>&nbsp;&nbsp; </u></td>
                     </tr>
                     <tr>
-                        <td colspan='2' height="25">10. บันทึกการวินิจฉัยปัญหาทางสังคม </td>
+                        <td height="25">16. การให้ความช่วยเหลือ <u> &nbsp;&nbsp;<?= $help_comm?>&nbsp;&nbsp; </u></td>
                     </tr>
                     <tr>
-                        <td colspan='2'>
-                        <u> &nbsp;&nbsp;<b><?= $Sdiag_1?> <?= $Sdiag_2?> <?= $Sdiag_3?> <?= $Sdiag_4?> <?= $Sdiag_5?></b>&nbsp;&nbsp; </u>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan='2' height="25">11. การให้ความช่วยเหลือ <u> &nbsp;&nbsp;<?= $therapy_detial.' '.$help_comm?>&nbsp;&nbsp; </u></td>
-                    </tr>
-                    <tr>
-                        <td colspan='2' height="25">12. แหล่งสนับสนุนทางสังคม <u> &nbsp;&nbsp;<?= $source_comm?>&nbsp;&nbsp; </u></td>
+                        <td height="25">17. แหล่งสนับสนุนทางสังคม <u> &nbsp;&nbsp;<?= $source_comm?>&nbsp;&nbsp; </u></td>
                     </tr>
                 </table>
             </div><br><br>

@@ -17,15 +17,15 @@ $series = array();
 $dep= array();
 $hn = $_GET['data'];
 
-                        $sql = "SELECT vdate
-                        FROM cgi
-                        WHERE hn='$hn'
-                        ORDER BY id asc";
+                        $sql = "SELECT concat(month,' ','เดือน') month
+                        FROM jvl_snap_iv
+                        WHERE hn='$hn' and assessor = 'T'
+                       GROUP BY month ORDER BY month asc";
                         $conn_DB->imp_sql($sql);
                         $data=$conn_DB->select();
                         
     for($i=0;$i<count($data);$i++){
-    $date[$i] = DateThai1($data[$i]['vdate']);
+    $date[$i] = $data[$i]['month'];
        
     }  
     $series['date'] = $date;

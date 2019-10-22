@@ -35,29 +35,31 @@ if ($method == 'add_social') {
         $contributor = $conv->utf8_to_tis620($_POST['contributor']);
         $relevance = $conv->utf8_to_tis620($_POST['relevance']);
         $symptom = $conv->utf8_to_tis620($_POST['symptom']);
-        $psych_history = $_POST['psych_history'];
-        $psych_comm = isset($_POST['psych_comm'])?$conv->utf8_to_tis620($_POST['psych_comm']):'';
+        // $psych_history = $_POST['psych_history'];
+        // $psych_comm = isset($_POST['psych_comm'])?$conv->utf8_to_tis620($_POST['psych_comm']):'';
         $hurt_salf = $_POST['hurt_salf'];
         $hurt_comm = isset($_POST['hurt_comm'])?$conv->utf8_to_tis620($_POST['hurt_comm']):'';
+        $spawn = $_POST['spawn'];
+        $spawn_comm = isset($_POST['spawn_comm'])?$conv->utf8_to_tis620($_POST['spawn_comm']):'';
         $evolu = $_POST['evolu'];
         $evolu_comm = isset($_POST['evolu_comm'])?$conv->utf8_to_tis620($_POST['evolu_comm']):'';
         $twitch = $_POST['twitch'];
         $twitch_comm = isset($_POST['twitch_comm'])?$conv->utf8_to_tis620($_POST['twitch_comm']):'';
         $educate = $_POST['educate'];
-        $fall = $_POST['fall'];
-        $fall_comm = isset($_POST['fall_comm'])?$conv->utf8_to_tis620($_POST['fall_comm']):'';
+        // $fall = $_POST['fall'];
+        $edu_comm = isset($_POST['edu_comm'])?$conv->utf8_to_tis620($_POST['edu_comm']):'';
         $career = $conv->utf8_to_tis620($_POST['career']);
         $marry = $conv->utf8_to_tis620($_POST['marry']);
         $addictive = $_POST['addictive'];
         $addict_comm = isset($_POST['addictive_comm'])?$conv->utf8_to_tis620($_POST['addictive_comm']):'';
-        $accident = $conv->utf8_to_tis620($_POST['accident']);
-        $sick = $conv->utf8_to_tis620($_POST['sick']);
-        $habit = $conv->utf8_to_tis620($_POST['habit']);
+        // $accident = $conv->utf8_to_tis620($_POST['accident']);
+        // $sick = $conv->utf8_to_tis620($_POST['sick']);
+        // $habit = $conv->utf8_to_tis620($_POST['habit']);
         $family = $conv->utf8_to_tis620($_POST['family']);
         $spending = $_POST['spending'];
         $spend_comm = isset($_POST['spend_comm'])?$conv->utf8_to_tis620($_POST['spend_comm']):'';
-        $congenital = $_POST['congenital'];
-        $conge_comm = isset($_POST['conge_comm'])?$conv->utf8_to_tis620($_POST['conge_comm']):'';
+        // $congenital = $_POST['congenital'];
+        // $conge_comm = isset($_POST['conge_comm'])?$conv->utf8_to_tis620($_POST['conge_comm']):'';
         $Sdiag_1 = isset($_POST['Sdiag_1'])?$_POST['Sdiag_1']:'';
         $Sdiag_2 = isset($_POST['Sdiag_2'])?$_POST['Sdiag_2']:'';
         $Sdiag_3 = isset($_POST['Sdiag_3'])?$_POST['Sdiag_3']:'';
@@ -74,9 +76,9 @@ if ($method == 'add_social') {
         // $connDB->imp_sql($sql);
         // $id=$connDB->select_a();
 
-        $data = array($vdate,$hn,$vn,$contributor,$relevance,$symptom,$psych_history,$psych_comm,$hurt_salf,$hurt_comm,$evolu,$evolu_comm
-        ,$twitch,$twitch_comm,$educate,$fall,$fall_comm,$career,$marry,$addictive,$addict_comm,$accident,$sick,$habit,$family,$spending,$spend_comm
-        ,$congenital,$conge_comm,$Sdiag_1,$Sdiag_2,$Sdiag_3,$Sdiag_4,$Sdiag_5,$help,$help_comm,$source,$source_comm,$user,$dupdate);
+        $data = array($vdate,$hn,$vn,$contributor,$relevance,$symptom,$hurt_salf,$hurt_comm,$spawn,$spawn_comm,$evolu,$evolu_comm
+        ,$twitch,$twitch_comm,$educate,$edu_comm,$career,$marry,$addictive,$addict_comm,$family,$spending,$spend_comm
+        ,$Sdiag_1,$Sdiag_2,$Sdiag_3,$Sdiag_4,$Sdiag_5,$help,$help_comm,$source,$source_comm,$user,$dupdate);
         //$field = array('id','hcode','vdate','vn','hn','sex','dob','pdx','dx0','dx1','dx2','dx3','cgis_score','clinic','user','dupdate');
         $table = "jvl_social01";
         $social = $connDB->insert($table, $data);
@@ -88,6 +90,66 @@ if ($method == 'add_social') {
     }
         print json_encode($res);
         $connDB->close_PDO();
+}elseif ($method == 'add_social02') {
+    //$i=0;
+    //$hcode = $conv->utf8_to_tis620('14644');
+    $vdate = $_POST['vstdate'];
+    $vn = $_POST['vn'];
+    $hn = $_POST['hn'];
+    $contributor = $conv->utf8_to_tis620($_POST['contributor']);
+    $relevance = $conv->utf8_to_tis620($_POST['relevance']);
+    $symptom = $conv->utf8_to_tis620($_POST['symptom']);
+    $aliment = $conv->utf8_to_tis620($_POST['aliment']);
+    $relationship = $conv->utf8_to_tis620($_POST['relationship']);
+    $issue_ali = $_POST['issue_ali'];
+    $ali_comm = isset($_POST['ali_comm'])?$conv->utf8_to_tis620($_POST['ali_comm']):'';
+    $issue_edu = $_POST['issue_edu'];
+    $edu_comm = isset($_POST['edu_comm'])?$conv->utf8_to_tis620($_POST['edu_comm']):'';
+    $issue_other = $_POST['issue_other'];
+    $other_comm = isset($_POST['other_comm'])?$conv->utf8_to_tis620($_POST['other_comm']):'';
+    $assessment01 = $_POST['assessment01'];
+    $assessment02 = $_POST['assessment02'];
+    $ass02_comm = isset($_POST['ass02_comm'])?$conv->utf8_to_tis620($_POST['ass02_comm']):'';
+    $assessment03 = $_POST['assessment03'];
+    $assessment04 = $_POST['assessment04'];
+    $assessment05 = $_POST['assessment05'];
+    $assessment06 = $_POST['assessment06'];
+    $assessment07 = $_POST['assessment07'];
+    $ass07_comm = isset($_POST['ass07_comm'])?$conv->utf8_to_tis620($_POST['ass07_comm']):'';
+    $assessment08 = $_POST['assessment08'];
+    $assessment09 = $_POST['assessment09'];
+    $assessment10 = $_POST['assessment10'];
+    $assessment11 = $_POST['assessment11'];
+    $assessment12 = $_POST['assessment12'];
+    $ass12_comm = isset($_POST['ass12_comm'])?$conv->utf8_to_tis620($_POST['ass12_comm']):'';
+    $plan01 = $_POST['plan01'];
+    $plan02 = $_POST['plan02'];
+    $plan03 = $_POST['plan03'];
+    $plan04 = $_POST['plan04'];
+    $plan05 = $_POST['plan05'];
+    $p05_comm = isset($_POST['p05_comm'])?$conv->utf8_to_tis620($_POST['p05_comm']):'';
+    
+    $user = $conv->utf8_to_tis620($_POST['user']);
+    $dupdate = date('Y-m-d');
+
+    // $sql = "SELECT id+1 as id FROM cgi ORDER BY id desc limit 1 ";
+    // $connDB->imp_sql($sql);
+    // $id=$connDB->select_a();
+
+    $data = array($vdate,$hn,$vn,$contributor,$relevance,$symptom,$relationship,$aliment,$issue_ali,$ali_comm,$issue_edu,$edu_comm
+    ,$issue_other,$other_comm,$assessment01,$assessment02,$ass02_comm,$assessment03,$assessment04,$assessment05,$assessment06,$assessment07,$ass07_comm
+    ,$assessment08,$assessment09,$assessment10,$assessment11,$assessment12,$ass12_comm,$plan01,$plan02,$plan03,$plan04,$plan05,$p05_comm,$user,$dupdate);
+    //$field = array('id','hcode','vdate','vn','hn','sex','dob','pdx','dx0','dx1','dx2','dx3','cgis_score','clinic','user','dupdate');
+    $table = "jvl_social02";
+    $social = $connDB->insert($table, $data);
+    $res = array("messege"=>$social);
+if($social===false){
+    $res = array("messege"=>'ไม่สามารถประเมิน Social ได้!!!!');
+}else{
+    $res = array("messege"=>'ประเมิน Social สำเร็จ!!!!',"id"=>$social);
+}
+    print json_encode($res);
+    $connDB->close_PDO();
 }elseif ($method == 'edit_lotitem') {
     $lot_price=0;
     $li_id = $_POST['li_id'];

@@ -29,38 +29,32 @@ function AssSocial(content, id = null) {
             //+ "<div class='col-lg-6'><div class='row col-lg-12' id='sub-contentTB'></div><div class='row col-lg-12' id='sub-contentGr'></div></div>"
             +"</div></form>"));
             $("#treat").append($("<div class='col-lg-12 row'><div class='row col-lg-6'><input type='text' name='contributor' class='form-control' placeholder='ผู้ให้ประวัติ' required></div> <div class='col-lg-6'> <input type='text' name='relevance' class='form-control' placeholder='เกี่ยวข้องเป็น' required></div></div><p>")
-                                    ,$("<input type='text' name='symptom' class='form-control' placeholder='อาการสำคัญ' required><hr>")
-                                    ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'>ประวัติการเจ็บป่วยทางจิตเวชและการรับการรักษา </label><div class='col-sm-1'><input type='radio' name='psych_history' value='N'checked required> ไม่มี</div><div class='col-sm-1'><input type='radio' name='psych_history' value='Y' required> มี</div></div>")
-                                    ,$("<input type='text' name='psych_comm' id='psych_comm' class='form-control' placeholder='รายละเอียดประวัติการเจ็บป่วยทางจิตเวชและการรับการรักษา'><hr>")
+                                    ,$("<textarea name='symptom' class='form-control' placeholder='อาการสำคัญ' required></textarea><hr>")
                                     ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'>ประวัติการทำร้ายตนเอง </label><div class='col-sm-1'><input type='radio' name='hurt_salf' value='N'checked required> ไม่มี</div><div class='col-sm-1'><input type='radio' name='hurt_salf' value='Y' required> มี</div></div>")
-                                    ,$("<input type='text' name='hurt_comm' id='hurt_comm' class='form-control' placeholder='รายละเอียดประวัติการทำร้ายตนเอง'>"));
+                                    ,$("<textarea name='hurt_comm' id='hurt_comm' class='form-control' placeholder='รายละเอียดประวัติการทำร้ายตนเอง'></textarea>"));
 
-            $("#Profile").append($("<div class='form-group row'><label class='col-sm-5 col-form-label'>พัฒนาการในวัยเด็ก </label><div class='col-sm-1'><input type='radio' name='evolu' value='N'checked required> ไม่มี</div><div class='col-sm-1'><input type='radio' name='evolu' value='Y' required> มี</div></div>")
-                                    ,$("<input type='text' name='evolu_comm' id='evolu_comm' class='form-control' placeholder='รายละเอียดพัฒนาการในวัยเด็ก'><hr>")
+            $("#Profile").append($("<div class='form-group row'><label class='col-sm-5 col-form-label'>ความผิดปรกติการตั้งครรค์/การคลอด </label><div class='col-sm-1'><input type='radio' name='spawn' value='N'checked required> ไม่มี</div><div class='col-sm-1'><input type='radio' name='spawn' value='Y' required> มี</div></div>")
+                                    ,$("<textarea name='spawn_comm' id='spawn_comm' class='form-control' placeholder='รายละเอียดการตั้งครรค์/การคลอด'></textarea><hr>")
+                                    ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'>ความผิดปรกติพัฒนาการในวัยเด็ก </label><div class='col-sm-1'><input type='radio' name='evolu' value='N'checked required> ไม่มี</div><div class='col-sm-1'><input type='radio' name='evolu' value='Y' required> มี</div></div>")
+                                    ,$("<textarea name='evolu_comm' id='evolu_comm' class='form-control' placeholder='รายละเอียดพัฒนาการในวัยเด็ก'></textarea><hr>")
                                     ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'>ประวัติการชัก </label><div class='col-sm-1'><input type='radio' name='twitch' value='N'checked required> ไม่มี</div><div class='col-sm-1'><input type='radio' name='twitch' value='Y' required> มี</div></div>")
-                                    ,$("<input type='text' name='twitch_comm' id='twitch_comm' class='form-control' placeholder='รายละเอียดประวัติการชัก'><hr>")
-                                    ,$("<div class='row col-lg-5 col-md-5 col-sm-12'>ผลการศึกษา : <select name='educate' class='form-control select2' id='educate' required></select></div> &nbsp;")
-                                    ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'>ประวัติการสอบตกซ้ำชั้น </label><div class='col-sm-1'><input type='radio' name='fall' value='N'checked required> ไม่มี</div><div class='col-sm-1'><input type='radio' name='fall' value='Y' required> มี</div></div>")
-                                    ,$("<input type='text' name='fall_comm' id='fall_comm' class='form-control' placeholder='รายละเอียดประวัติการสอบตกซ้ำชั้น'><hr>")
-                                    ,$("<label class='col-sm-5 col-form-label'>ด้านการประกอบอาชีพ/ความสัมพันธ์กับเพื่อนร่วมงาน </label><input type='text' name='career' class='form-control' placeholder='ด้านการประกอบอาชีพ/ความสัมพันธ์กับเพื่อนร่วมงาน' required><hr>")
-                                    ,$("<label class='col-sm-5 col-form-label'>ด้านชีวิตสมรส/ความสัมพันธ์กับคู่สมรส และบุตร </label><input type='text' name='marry' class='form-control' placeholder='ด้านชีวิตสมรส/ความสัมพันธ์กับคู่สมรส และบุตร' required><hr>")
+                                    ,$("<textarea name='twitch_comm' id='twitch_comm' class='form-control' placeholder='รายละเอียดประวัติการชัก'></textarea><hr>")
+                                    ,$("<div class='form-group row'><div class='col-lg-5 col-md-5 col-sm-12'>ผลการศึกษา : <select name='educate' class='form-control select2' id='educate' required></select></div></div>")
+                                    ,$("<textarea name='edu_comm' id='edu_comm' class='form-control' placeholder='รายละเอียดการศึกษา'></textarea><hr>")
+                                    ,$("<label class='col-sm-5 col-form-label'>ด้านการประกอบอาชีพ/ความสัมพันธ์กับเพื่อนร่วมงาน </label><textarea name='career' class='form-control' placeholder='ด้านการประกอบอาชีพ/ความสัมพันธ์กับเพื่อนร่วมงาน' required></textarea><hr>")
+                                    ,$("<label class='col-sm-5 col-form-label'>ด้านชีวิตสมรส/ความสัมพันธ์กับคู่สมรส และบุตร </label><textarea name='marry' class='form-control' placeholder='ด้านชีวิตสมรส/ความสัมพันธ์กับคู่สมรส และบุตร' required></textarea><hr>")
                                     ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'>ประวัติการใช้สารเสพติด </label><div class='col-sm-1'><input type='radio' name='addictive' value='N'checked required> ไม่มี</div><div class='col-sm-1'><input type='radio' name='addictive' value='Y' required> มี</div></div>")
-                                    ,$("<input type='text' name='addictive_comm' id='addictive_comm' class='form-control' placeholder='รายละเอียดประวัติการใช้สารเสพติด'><hr>")
-                                    ,$("<label class='col-sm-12 col-form-label'>รายละเอียดด้านอุบัติเหตุ/การผ่าตัด/การถูกทำร้ายร่างกาย </label><input type='text' name='accident' class='form-control' placeholder='รายละเอียดด้านอุบัติเหตุ/การผ่าตัด/การถูกทำร้ายร่างกาย' required><hr>")
-                                    ,$("<label class='col-sm-5 col-form-label'>รายละเอียดประวัติการเจ็บป่วยด้วยโรคทางกาย </label><input type='text' name='sick' class='form-control' placeholder='รายละเอียดประวัติการเจ็บป่วยด้วยโรคทางกาย' required><hr>")
-                                    ,$("<label class='col-sm-5 col-form-label'>รายละเอียดบุคลิกภาพ/อุปนิสัย </label><input type='text' name='habit' class='form-control' placeholder='รายละเอียดบุคลิกภาพ/อุปนิสัย' required><hr>")
-                                    ,$("<label class='col-sm-12 col-form-label'>ประวัติครอบครัว(ประวัติที่เกี่ยวข้องกับบิดา-มารดา : อุปนิสัย อาชีพ ความสัมพันธ์ในครอบครัว ความสัมพันธ์ระหว่างพี่น้อง ความคาดหวังที่ญาติมีต่อผู้ป่วย) </label><input type='text' name='family' class='form-control' placeholder='รายละเอียดประวัติครอบครัว' required><hr>")
+                                    ,$("<textarea name='addictive_comm' id='addictive_comm' class='form-control' placeholder='รายละเอียดประวัติการใช้สารเสพติด'></textarea><hr>")
+                                    ,$("<label class='col-sm-12 col-form-label'>ประวัติครอบครัว(ประวัติที่เกี่ยวข้องกับบิดา-มารดา : อุปนิสัย อาชีพ ความสัมพันธ์ในครอบครัว ความสัมพันธ์ระหว่างพี่น้อง ความคาดหวังที่ญาติมีต่อผู้ป่วย) </label><textarea name='family' class='form-control' placeholder='รายละเอียดประวัติครอบครัว' required></textarea><hr>")
                                     ,$("<div class='row col-lg-3 col-md-3 col-sm-12'>ฐานะทางครอบครัว : <select name='spending' class='form-control select2' id='spending' required></select></div><p>")
-                                    ,$("<input type='text' name='spend_comm' id='spend_comm' class='form-control' placeholder='รายละเอียดฐานะทางครอบครัว'><hr>")
-                                    ,$("<div class='form-group row'><label class='col-sm-10 col-form-label'>ประวัติทางกรรมพันธุ์ (หากมีคนในครอบครัวเจ็บป่วยด้วยโรคทางจิต มีผลกระทบต่อครอบครัวอย่างไร และความสัมพันธ์ระหว่างบุคคลที่ป่วยกับผู้ป่วยเป็นอย่างไร </label><div class='col-sm-1'><input type='radio' name='congenital' value='N'checked required> ไม่มี</div><div class='col-sm-1'><input type='radio' name='congenital' value='Y' required> มี</div></div>")
-                                    ,$("<input type='text' name='conge_comm' id='conge_comm' class='form-control' placeholder='รายละเอียดประวัติทางกรรมพันธุ์'>"));     
+                                    ,$("<textarea name='spend_comm' id='spend_comm' class='form-control' placeholder='รายละเอียดฐานะทางครอบครัว'></textarea><hr>"));
                                     
             $("#diagnose").append($("<div class='row col-lg-12 col-md-12 col-sm-12'>การวินิจฉัยปัญหาทางสังคม :  &nbsp;<input type='button' class='btn btn-success btn-sm' id='plus-btn' value='+ เพิ่มรายการ'>  &nbsp;<input type='button' class='btn btn-danger btn-sm' id='minus-btn' value='- ลบรายการ'><p>"
                                     +"<div class='container d-inline-block row' style='background-color: #eee;' id='item-Sdiag'></div></div><hr>")
                                     ,$("<div class='row col-lg-5 col-md-5 col-sm-12'>การให้ความช่วยเหลือ : <select name='help' class='form-control select2' id='help' required></select></div><p>")
-                                    ,$("<input type='text' name='help_comm' class='form-control' placeholder='รายละเอียดการให้ความช่วยเหลือ'><hr>")
+                                    ,$("<textarea name='help_comm' class='form-control' placeholder='รายละเอียดการให้ความช่วยเหลือ'></textarea><hr>")
                                     ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'>แหล่งสนับสนุนทางสังคม </label><div class='col-sm-1'><input type='radio' name='source' value='N'checked required> ไม่มี</div><div class='col-sm-1'><input type='radio' name='source' value='Y' required> มี</div></div>")
-                                    ,$("<input type='text' name='source_comm' class='form-control' placeholder='รายละเอียด' required>"));                        
+                                    ,$("<textarea name='source_comm' class='form-control' placeholder='รายละเอียด' required></textarea>"));                        
             $("#cgi-post").append($("<input type='hidden' name='hn' value='"+$.cookie("hn")+"'>")
                                 ,$("<input type='hidden' name='vn' value='"+$.cookie("vn")+"'>")
                                 ,$("<input type='hidden' name='vstdate' value='"+$.cookie("vstdate")+"'>")
@@ -95,42 +89,39 @@ function AssSocial(content, id = null) {
                                         i--;
                                     }); 
                                     
+                                    $("#spawn_comm").hide();
                                     $("#hurt_comm").hide();
                                     $("#evolu_comm").hide();
                                     $("#psych_comm").hide();
-                                    $("#fall_comm").hide();
+                                    $("#edu_comm").hide();
                                     $("#addictive_comm").hide();
                                     $("#spend_comm").hide();
-                                    $("#conge_comm").hide();
                                     $("#twitch_comm").hide();
-                                    $("input[type=text][name=help_comm]").hide();
+                                    $("textarea[name=help_comm]").hide();
                                     
-                                    $("input[type=radio][name=psych_history]").click(function(){
-                                        if($("input[type=radio][name=psych_history]:checked").val()=='Y'){$("input#psych_comm").show();}else{$("input#psych_comm").hide();}
+                                    $("input[type=radio][name=spawn]").click(function(){
+                                        if($("input[type=radio][name=spawn]:checked").val()=='Y'){$("textarea#spawn_comm").show();}else{$("textarea#spawn_comm").hide();}
                                         });
                                     $("input[type=radio][name=hurt_salf]").click(function(){
-                                        if($("input[type=radio][name=hurt_salf]:checked").val()=='Y'){$("input#hurt_comm").show();}else{$("input#hurt_comm").hide();}
+                                        if($("input[type=radio][name=hurt_salf]:checked").val()=='Y'){$("textarea#hurt_comm").show();}else{$("textarea#hurt_comm").hide();}
                                         });    
                                     $("input[type=radio][name=evolu]").click(function(){
-                                        if($("input[type=radio][name=evolu]:checked").val()=='Y'){$("input#evolu_comm").show();}else{$("input#evolu_comm").hide();}
+                                        if($("input[type=radio][name=evolu]:checked").val()=='Y'){$("textarea#evolu_comm").show();}else{$("textarea#evolu_comm").hide();}
                                         });
-                                    $("input[type=radio][name=fall]").click(function(){
-                                        if($("input[type=radio][name=fall]:checked").val()=='Y'){$("input#fall_comm").show();}else{$("input#fall_comm").hide();}
+                                        $("select[name=spending]").change(function(){
+                                            $("textarea#spend_comm").show();
                                         });
                                     $("input[type=radio][name=addictive]").click(function(){
-                                        if($("input[type=radio][name=addictive]:checked").val()=='Y'){$("input#addictive_comm").show();}else{$("input#addictive_comm").hide();}
+                                        if($("input[type=radio][name=addictive]:checked").val()=='Y'){$("textarea#addictive_comm").show();}else{$("textarea#addictive_comm").hide();}
                                         });
-                                    $("select[name=spending]").change(function(){    
-                                        $("input#spend_comm").show();
+                                    $("select[name=educate]").change(function(){    
+                                        $("textarea#edu_comm").show();
                                         });
-                                    $("input[type=radio][name=congenital]").click(function(){
-                                        if($("input[type=radio][name=congenital]:checked").val()=='Y'){$("input#conge_comm").show();}else{$("input#conge_comm").hide();}
-                                        }); 
                                     $("input[type=radio][name=twitch]").click(function(){
-                                        if($("input[type=radio][name=twitch]:checked").val()=='Y'){$("input#twitch_comm").show();}else{$("input#twitch_comm").hide();}
+                                        if($("input[type=radio][name=twitch]:checked").val()=='Y'){$("textarea#twitch_comm").show();}else{$("textarea#twitch_comm").hide();}
                                         }); 
                                     $("select[name=help]").change(function(){
-                                        $("input[type=text][name=help_comm]").show();
+                                        $("textarea[name=help_comm]").show();
                                         });              
 
         $("#frmsocial").on('submit', (function (e) {

@@ -1,4 +1,4 @@
-var AJAXCharts = function (container, type, title, unit, categories, data, subtitle) {
+var AJAXCharts = function (container, type, title, unit, categories, data, subtitle, color=null) {
 
     this.container = container;
     this.type = type;
@@ -72,6 +72,11 @@ var AJAXCharts = function (container, type, title, unit, categories, data, subti
          for(var i=0;i<json.length;i++){
              options.series[i] = json[i];
       }
+      if(color != null){
+      Highcharts.setOptions({
+        colors: color    
+    });
+}
          chart = new Highcharts.Chart(options);
          });
         //chart = new Highcharts.Chart(options);

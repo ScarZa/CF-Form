@@ -1,0 +1,30 @@
+########## Script IPD #####################
+var an,vn : string;
+fonlineid,fvn,fcomputername,fdepartment,fuser:string;
+ cds:tclientdataset;
+
+begin
+  cds :=tclientdataset.create(nil);
+   an:=GetGlobalValue('AN');
+   fvn := getsqldata('select vn from ipt where an="'+an+'" ');
+   fonlineid:=get_onlineid;
+   fuser       := getsqldata('select kskloginname from onlineuser where onlineid="'+fonlineid+'"');
+
+   if (fvn > 0) then
+begin 
+  winexec ('cmd /c start http://10.0.0.11/CF-Form/font/index.html?vn='+fvn+'?user='+fuser+'?an='+an);
+   end;
+
+########### Script OPD #####################
+var fvn,fhn,furl,fuser,fonlineid :string;
+
+begin
+  furl := '10.0.0.49';
+  fvn  := GetGlobalValue('VN');
+  fonlineid:=get_onlineid;
+  fhn := GetSqldata ('select hn from ovst where vn="'+fvn+' " ');
+  fuser     := GetSqldata('select kskloginname from onlineuser where onlineid="'+fonlineid+'"');
+  if (fhn > 0) then
+begin 
+  winexec ('cmd /c start http://10.0.0.11/CF-Form/font/index.html?vn='+fvn+'?user='+fuser);
+   end;

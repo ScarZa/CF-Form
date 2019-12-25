@@ -182,6 +182,7 @@
     <script src="JScontent/Ass_Social02.js" type="text/javascript"></script>
     <script src="JScontent/Ass_Depress.js" type="text/javascript"></script>
     <script src="JScontent/Ass_SNAP_IV.js" type="text/javascript"></script>
+    <script src="JScontent/Ass_consoult.js" type="text/javascript"></script>
     <script src="JScontent/SmenuModel.js" type="text/javascript"></script>
     <!-- End JS content -->
     
@@ -189,7 +190,14 @@
         $(function () {
             var user = get('user');
             var an = get('an');
-            $.getJSON('../back/API/detail_patientAPI.php',{data : get('vn')},function (data) {
+            if(an == undefined){
+                var AN = '';
+            }else{
+                var AN = an;
+            }
+            console.log(an);
+            console.log(get('vn'));
+            $.getJSON('../back/API/detail_patientAPI.php',{data : get('vn'),data2 : AN},function (data) { console.log(data)
                 if(an == undefined){
                     $("#patient-detial").append("ชื่อ-สกุล "+data[0].pname+data[0].fname+" "+data[0].lname+"<p><p>HN "+data[0].hn+" VN "+data[0].vn+"<p><p>วันที่มารับบริการ  "+data[0].tvstdate);  
                         AssMENU("#index_content");     
@@ -197,7 +205,27 @@
                     $("#patient-detial").append("ชื่อ-สกุล "+data[0].pname+data[0].fname+" "+data[0].lname+"<p><p>HN "+data[0].hn+" AN "+an+"<p><p>วันที่มา Admit  "+data[0].tvstdate);
                         AssMENUIPD("#index_content"); 
                     }
-                
+                    if(data[0].Clozapine100 != null){
+                        $("#patient-detial").append("<p><b style='color: red'>High Alert Drug : </b>"+data[0].Clozapine100);
+                    }
+                    if(data[0].Clozapine25 != null){
+                        $("#patient-detial").append("<p><b style='color: red'>High Alert Drug : </b>"+data[0].Clozapine25);
+                    }
+                    if(data[0].Carbamazepine200 != null){
+                        $("#patient-detial").append("<p><b style='color: red'>High Alert Drug : </b>"+data[0].Carbamazepine200);
+                    }
+                    if(data[0].LithiumCarbonate300 != null){
+                        $("#patient-detial").append("<p><b style='color: red'>High Alert Drug : </b>"+data[0].LithiumCarbonate300);
+                    }
+                    if(data[0].SodiumValproate200 != null){
+                        $("#patient-detial").append("<p><b style='color: red'>High Alert Drug : </b>"+data[0].SodiumValproate200);
+                    }
+                    if(data[0].SodiumValproate200CHRONO != null){
+                        $("#patient-detial").append("<p><b style='color: red'>High Alert Drug : </b>"+data[0].SodiumValproate200CHRONO);
+                    }
+                    if(data[0].SodiumValproate500 != null){
+                        $("#patient-detial").append("<p><b style='color: red'>High Alert Drug : </b>"+data[0].SodiumValproate500);
+                    }
 
             
             $("div#menu").hide();
@@ -206,7 +234,7 @@
                 console.log(get('vn'));
                 console.log(user);
                 $.cookie("user", user);
-                $.cookie("an", an);
+                $.cookie("an", AN);
                 $.cookie("hn", data[0].hn);
                 $.cookie("vn", data[0].vn);
                 $.cookie("vstdate", data[0].vstdate);

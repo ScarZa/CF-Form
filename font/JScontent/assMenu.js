@@ -9,7 +9,8 @@ function AssMENU(content, id = null) {
                                 // ,$("<div class='col-md-12 col-lg-12'><a id='social02' class='btn btn-success btn-block' href='#'><img src='images/icon_set2/compose.ico' width='25'><b> สังคมสงเคราะห์(เด็ก)</b></a></div><br>")
                                 ,$("<div class='col-md-12 col-lg-12'><a id='test' class='btn btn-success btn-block' href='#' data-toggle='modal' data-target='#SoModal'><img src='images/icon_set2/compose.ico' width='25'><b> สังคมสงเคราะห์</b></a></div><br>")
                                 ,$("<div class='col-md-12 col-lg-12'><a id='depress' class='btn btn-success btn-block' href='#'><img src='images/icon_set2/compose.ico' width='25'><b> คัดกรองซึมเศร้า</b></a></div><br>")
-                                ,$("<div class='col-md-12 col-lg-12'><a id='snap4' class='btn btn-success btn-block' href='#'><img src='images/icon_set2/compose.ico' width='25'><b> บันทึกผล SNAP-IV</b></a></div>"));
+                                ,$("<div class='col-md-12 col-lg-12'><a id='snap4' class='btn btn-success btn-block' href='#'><img src='images/icon_set2/compose.ico' width='25'><b> บันทึกผล SNAP-IV</b></a></div><br>")
+                                ,$("<div class='col-md-12 col-lg-12'><a id='C-case' class='btn btn-success btn-block' href='#'><img src='images/icon_set2/compose.ico' width='25'><b> Consult case</b></a></div>"));
 
                                 $("a#alcohol").attr("onclick","AssAlcohol('#index_content')");
                                 $("a#cigarette").attr("onclick","#");
@@ -21,4 +22,5 @@ function AssMENU(content, id = null) {
                                 $("a#test").attr("onclick","SoModal()");
                                 $("a#depress").attr("onclick","AssDepress('#index_content')");
                                 $("a#snap4").attr("onclick","AssSNAP_IV('#index_content')");
+                                $("a#C-case").attr("onclick","AssC_Case('#index_content')");
 }

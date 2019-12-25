@@ -21,16 +21,51 @@ $conn_DB->Read_Text();
 $conn_DB->conn_PDO();
 $result = array();
 $series = array();
-$data = isset($_GET['data'])?$_GET['data']:$_POST['data'];
+$data = isset($_POST['data'])?$_POST['data']:(isset($_GET['data'])?$_GET['data']:'');
+//$data2 = isset($_POST['data2'])?$_POST['data2']:(isset($_GET['data2'])?$_GET['data2']:'');
+// if(empty($data2)){
+//     $sql1 = "SELECT an
+//     FROM an_stat 
+//     WHERE vn = :vn";
+//     $conn_DB->imp_sql($sql1);
+//     $execute=array(':vn' => $data);
+//     $rslt=$conn_DB->select_a($execute);
+//     $data2 = empty($rslt['an'])?'':$rslt['an'];
+// }
 $sql="select p.pname,p.fname,p.lname,p.hn,o1.vstdate,o1.vn,p.sex,p.birthday
 ,vt.pdx,vt.dx0,vt.dx1,vt.dx2,vt.dx3
-from ovst o1
-left outer join patient p on p.hn = o1.hn
-left outer join vn_stat vt on vt.vn = o1.vn
+,(SELECT concat(di.name,' ',di.strength) FROM opitemrece op inner join patient p on op.hn = p.hn inner join ovst o1 on p.hn = o1.hn inner join drugitems di on di.icode = op.icode WHERE op.icode = '1480070' and ((o1.vn = :vn and op.vn > vt.lastvisit_vn and op.rxdate < o1.vstdate and op.income in(03,19))) GROUP BY op.icode)Clozapine100
+,(SELECT concat(di.name,' ',di.strength) FROM opitemrece op inner join patient p on op.hn = p.hn inner join ovst o1 on p.hn = o1.hn inner join drugitems di on di.icode = op.icode WHERE op.icode = '1480069' and ((o1.vn = :vn and op.vn > vt.lastvisit_vn and op.rxdate < o1.vstdate and op.income in(03,19))) GROUP BY op.icode)Clozapine25
+,(SELECT concat(di.name,' ',di.strength) FROM opitemrece op inner join patient p on op.hn = p.hn inner join ovst o1 on p.hn = o1.hn inner join drugitems di on di.icode = op.icode WHERE op.icode = '1000059' and ((o1.vn = :vn and op.vn > vt.lastvisit_vn and op.rxdate < o1.vstdate and op.income in(03,19))) GROUP BY op.icode)Carbamazepine200
+,(SELECT concat(di.name,' ',di.strength) FROM opitemrece op inner join patient p on op.hn = p.hn inner join ovst o1 on p.hn = o1.hn inner join drugitems di on di.icode = op.icode WHERE op.icode = '1480107' and ((o1.vn = :vn and op.vn > vt.lastvisit_vn and op.rxdate < o1.vstdate and op.income in(03,19))) GROUP BY op.icode)LithiumCarbonate300
+,(SELECT concat(di.name,' ',di.strength) FROM opitemrece op inner join patient p on op.hn = p.hn inner join ovst o1 on p.hn = o1.hn inner join drugitems di on di.icode = op.icode WHERE op.icode = '1460332' and ((o1.vn = :vn and op.vn > vt.lastvisit_vn and op.rxdate < o1.vstdate and op.income in(03,19))) GROUP BY op.icode)SodiumValproate200
+,(SELECT concat(di.name,' ',di.strength) FROM opitemrece op inner join patient p on op.hn = p.hn inner join ovst o1 on p.hn = o1.hn inner join drugitems di on di.icode = op.icode WHERE op.icode = '1570044' and ((op.vn = :vn and op.vn > vt.lastvisit_vn and op.rxdate < o1.vstdate and op.income in(03,19))) GROUP BY op.icode)SodiumValproate200CHRONO
+,(SELECT concat(di.name,' ',di.strength) FROM opitemrece op inner join patient p on op.hn = p.hn inner join ovst o1 on p.hn = o1.hn inner join drugitems di on di.icode = op.icode WHERE op.icode = '1540021' and ((o1.vn = :vn and op.vn > vt.lastvisit_vn and op.rxdate < o1.vstdate and op.income in(03,19))) GROUP BY op.icode)SodiumValproate500
+from patient p
+inner join ovst o1 on p.hn = o1.hn
+inner join vn_stat vt on vt.vn = o1.vn
 where o1.vn = :vn";
+
+// "select p.pname,p.fname,p.lname,p.hn,o1.vstdate,o1.vn,p.sex,p.birthday
+// ,vt.pdx,vt.dx0,vt.dx1,vt.dx2,vt.dx3
+// ,(SELECT concat(di.name,' ',di.strength) FROM patient p inner join ovst o1 on p.hn = o1.hn inner join opitemrece op on op.hn = p.hn inner join drugitems di on di.icode = op.icode WHERE op.icode = '1480070' and ((o1.vn = :vn and op.vn > vt.lastvisit_vn and op.rxdate < o1.vstdate and op.income = '03') or (op.an = :an and op.income = '19')) GROUP BY op.icode)Clozapine100
+// ,(SELECT concat(di.name,' ',di.strength) FROM patient p inner join ovst o1 on p.hn = o1.hn inner join opitemrece op on op.hn = p.hn inner join drugitems di on di.icode = op.icode WHERE op.icode = '1480069' and ((o1.vn = :vn and op.vn > vt.lastvisit_vn and op.rxdate < o1.vstdate and op.income = '03') or (op.an = :an and op.income = '19')) GROUP BY op.icode)Clozapine25
+// ,(SELECT concat(di.name,' ',di.strength) FROM patient p inner join ovst o1 on p.hn = o1.hn inner join opitemrece op on op.hn = p.hn inner join drugitems di on di.icode = op.icode WHERE op.icode = '1000059' and ((o1.vn = :vn and op.vn > vt.lastvisit_vn and op.rxdate < o1.vstdate and op.income = '03') or (op.an = :an and op.income = '19')) GROUP BY op.icode)Carbamazepine200
+// ,(SELECT concat(di.name,' ',di.strength) FROM patient p inner join ovst o1 on p.hn = o1.hn inner join opitemrece op on op.hn = p.hn inner join drugitems di on di.icode = op.icode WHERE op.icode = '1480107' and ((o1.vn = :vn and op.vn > vt.lastvisit_vn and op.rxdate < o1.vstdate and op.income = '03') or (op.an = :an and op.income = '19')) GROUP BY op.icode)LithiumCarbonate300
+// ,(SELECT concat(di.name,' ',di.strength) FROM patient p inner join ovst o1 on p.hn = o1.hn inner join opitemrece op on op.hn = p.hn inner join drugitems di on di.icode = op.icode WHERE op.icode = '1460332' and ((o1.vn = :vn and op.vn > vt.lastvisit_vn and op.rxdate < o1.vstdate and op.income = '03') or (op.an = :an and op.income = '19')) GROUP BY op.icode)SodiumValproate200
+// ,(SELECT concat(di.name,' ',di.strength) FROM patient p inner join ovst o1 on p.hn = o1.hn inner join opitemrece op on op.hn = p.hn inner join drugitems di on di.icode = op.icode WHERE op.icode = '1570044' and ((op.vn = :vn and op.vn > vt.lastvisit_vn and op.rxdate < o1.vstdate and op.income = '03') or (op.an = :an and op.income = '19')) GROUP BY op.icode)SodiumValproate200CHRONO
+// ,(SELECT concat(di.name,' ',di.strength) FROM patient p inner join ovst o1 on p.hn = o1.hn inner join opitemrece op on op.hn = p.hn inner join drugitems di on di.icode = op.icode WHERE op.icode = '1540021' and ((o1.vn = :vn and op.vn > vt.lastvisit_vn and op.rxdate < o1.vstdate and op.income = '03') or (op.an = :an and op.income = '19')) GROUP BY op.icode)SodiumValproate500
+// from patient p
+// inner join ovst o1 on p.hn = o1.hn
+// inner join vn_stat vt on vt.vn = o1.vn
+// where o1.vn = :vn";
+
+//echo $sql;
 $conn_DB->imp_sql($sql);
+// $execute=array(':vn' => $data,':an'=>$data2);
 $execute=array(':vn' => $data);
 $rslt=$conn_DB->select_a($execute);
+//print_r($rslt);
 $conv=new convers_encode();
 //for($i=0;$i<count($rslt);$i++){
     $pname=$conv->tis620_to_utf8( $rslt['pname']);
@@ -50,6 +85,13 @@ $conv=new convers_encode();
     $series['dx1'] = $rslt['dx1'];
     $series['dx2'] = $rslt['dx2'];
     $series['dx3'] = $rslt['dx3'];
+    $series['Clozapine100'] = $rslt['Clozapine100'];
+    $series['Clozapine25'] = $rslt['Clozapine25'];
+    $series['Carbamazepine200'] = $rslt['Carbamazepine200'];
+    $series['LithiumCarbonate300'] = $rslt['LithiumCarbonate300'];
+    $series['SodiumValproate200'] = $rslt['SodiumValproate200'];
+    $series['SodiumValproate200CHRONO'] = $rslt['SodiumValproate200CHRONO'];
+    $series['SodiumValproate500'] = $rslt['SodiumValproate500'];
 array_push($result, $series);    
 //}
 //print_r($result);

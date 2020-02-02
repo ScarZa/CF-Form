@@ -19,23 +19,33 @@ function AssC_Case(content, id = null) {
             + "<div class='card border-success'>"
             + "<div class='card-header'><b>ข้อมูลคนไข้</b></div>"
             + "<div id='P-data' class='card-body'></div></div><p>"
-            + "<br><center><input type='submit' name='submit' class='btn btn-success' value='ส่งปรึกษา'></center></div>"
+            + "<center><input type='submit' name='submit' class='btn btn-success' value='ส่งปรึกษา'></center>"
+            +" <center><h4><b style='color: red;'>ประวัติการส่ง Consult case</b></h4></center><div id='tb_send'></div></div>"
             //+ "<div class='col-lg-6'><div class='row col-lg-12' id='sub-contentTB'></div><div class='row col-lg-12' id='sub-contentGr'></div></div>"
-            +"</div></form>"));console.log($.cookie("vn"));console.log($.cookie("an"));
-            $.getJSON('../back/API/detail_CCpatientAPI.php',{data : $.cookie("vn"),data2 : $.cookie("an")},function (data) { console.log(data);
+            +"</div></form>"));console.log($.cookie("hn"));
+            $.getJSON('../back/API/detail_CCpatientAPI.php',{data : $.cookie("vn"),data2 : $.cookie("an")},function (data) {
             $("#P-data").append($("<div class='col-lg-12 row'><div class='row col-lg-6'><span>HN : "+data[0].hn+"<br>เลขบัตรประชาชน : "+data[0].cid+"<br>ชื่อ-สกุล :"+data[0].fullname
                                     +"<br>ที่อยู่ : "+data[0].informaddr+"<br>วันเกิด "+data[0].birthday+" สถานะภาพ : "+data[0].mrname+"<br>การวินิจฉัย : "+data[0].pdx+" "+data[0].dx0
-                                    +" "+data[0].dx1+" "+data[0].dx2+" "+data[0].dx3+" "+data[0].dx4+" "+data[0].dx5+"</span></div> <div class='col-lg-6 block'> <img src='../back/API/show_image.php?hn="+$.cookie("hn")+"' width='230' /></div></div><p>")
+                                    +" "+data[0].dx1+" "+data[0].dx2+" "+data[0].dx3+" "+data[0].dx4+" "+data[0].dx5+"</span></div> "
+                                    +"<div class='col-lg-6 block'> <img src='../back/API/show_image.php?hn="+$.cookie("hn")+"' width='230' /></div></div></div><p>")
+                                    ,$("<div class='form-group row'><div class='col-lg-5 col-md-5 col-sm-12'>งานที่ส่ง : <select name='dep_send' class='form-control select2' id='dep_send' required></select></div></div>")
                                     ,$("<div class='form-group row'><div class='col-lg-5 col-md-5 col-sm-12'>ส่งให้ : <select name='dep_res' class='form-control select2' id='dep_res' required></select></div></div>")
                                     ,$("<div class='form-group row'><div class='col-lg-5 col-md-5 col-sm-12'>ส่งเพื่อ : <select name='cons_id' class='form-control select2' id='cons_id' required></select></div></div>")
                                     ,$("<textarea name='cause' class='form-control' placeholder='สาเหตุที่ส่ง/อาการ/ความจำเป็น' required></textarea>"));
-                   
+            
+                var column1 = ["วันที่ส่ง", "ส่งหน่วยงาน","ประเภท","ผู้ส่ง","สถานะ"];
+                var CTb = new createTableAjax();
+                CTb.GetNewTableAjax('tb_send', '../back/API/DT_IPDsend.php?'+$.cookie('hn'), '../back/API/tempSendDataAPI.php', column1
+                , null, null, null, null, false, false, null, false, null, false, null, null, null, null, null, null);
+
             $("#cgi-post").append($("<input type='hidden' name='hn' value='"+$.cookie("hn")+"'>")
                                 ,$("<input type='hidden' name='vn' value='"+$.cookie("vn")+"'>")
                                 //,$("<input type='hidden' name='vstdate' value='"+$.cookie("vstdate")+"'>")
                                 ,$("<input type='hidden' name='user' value='"+$.cookie("user")+"'>")
-                                ,$("<input type='hidden' name='method' value='add_cc'>"));    
-                                
+                                ,$("<input type='hidden' name='method' value='add_cc'>")); console.log($.cookie("user"))   
+                $.getJSON('../back/API/UsW_dataAPI.php',{data : $.cookie("user")},function (data) {
+                                selectMash("#dep_send","department_data.php","เลือกงาน",data.depcode);
+                                });
                                 selectMash("#dep_res","department_data.php","เลือกงาน");
                                 //selectMash("#doctor","Doctor_data.php","เลือกแพทย์");
                                 $("#dep_res").change(function(){
@@ -59,8 +69,9 @@ function AssC_Case(content, id = null) {
                 cache: false,
                 processData: false
             }
-            console.log(settings)
+            $('#index_content').empty().append("<center><img src='images/waiting.gif'></center>");
             $.ajax(settings).done(function (result) {
+                $('#index_content').empty();
                 alert(result.messege);
                 $('#index_content').empty();location.reload();
             })

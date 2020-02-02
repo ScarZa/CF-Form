@@ -30,6 +30,7 @@ if ($method == 'add_cc') {
         //$i=0;
         $vn = $conv->utf8_to_tis620($_POST['vn']);
         $hn = $conv->utf8_to_tis620($_POST['hn']);
+        $dep_send = $conv->utf8_to_tis620($_POST['dep_send']);
         $dep_res = $conv->utf8_to_tis620($_POST['dep_res']);
         $cons_id = $conv->utf8_to_tis620($_POST['cons_id']);
         $cause = $conv->utf8_to_tis620($_POST['cause']);
@@ -37,21 +38,26 @@ if ($method == 'add_cc') {
         $send_date = date('Y-m-d');
         $send_time = date('H:i');
 
-        $sql = "SELECT dm.department,dm.depcode,ou.name
-        FROM jvl_mappingDU mdu
-        inner join kskdepartment dm on dm.depcode = mdu.depcode
-        inner join opduser ou on ou.doctorcode = mdu.doctorcode
-        WHERE ou.loginname = '".$sender."'";
+        $sql = "SELECT tB_id FROM jvl_transferBox where hn ='".$hn ."' and send_date ='".$send_date."' and dep_res ='".$dep_res."'";
         $connDB->imp_sql($sql);
-        $dep_send=$connDB->select_a();
+        $chk_send=$connDB->select_a();
+        if(empty($chk_send)){
 
-        $data = array($hn,$vn,$dep_send['depcode'],$dep_res,$cons_id,$cause,$send_date,$sender);
+        $data = array($hn,$vn,$dep_send,$dep_res,$cons_id,$cause,$send_date,$sender);
         $field = array('hn','vn','dep_send','dep_res','cons_id','cause','send_date','sender');
         $table = "jvl_transferBox";
         $add_transferBox = $connDB->insert($table, $data, $field);
     if($add_transferBox===false){
         $res = array("messege"=>'ไม่สามารถส่งเคสได้!!!!');
     }else{
+        $sql = "SELECT dm.department,dm.depcode,ou.name
+        FROM jvl_transferBox tb
+        inner join kskdepartment dm on dm.depcode = tb.dep_send
+        inner join opduser ou on ou.loginname = tb.sender
+        WHERE tb.tB_id = ".$add_transferBox;
+        $connDB->imp_sql($sql);
+        $selDep_send=$connDB->select_a();
+
         $sql = "SELECT department
         FROM kskdepartment
         WHERE depcode = '".$dep_res."'";
@@ -69,7 +75,7 @@ if ($method == 'add_cc') {
     include_once '../plugins/funcDateThai.php';
     $token = "ZC643LLAoKB1iyumnNF4jMN8rxcYDnRWj1Tviec2Zp1";
     $text =  "\nถึง : ".$conv->tis620_to_utf8($depres['department'])."\nHN : ".$hn
-    ."\nเพื่อ : ".$conv->tis620_to_utf8($cons['cons_name'])."\nสาเหตุ : ".$conv->tis620_to_utf8($cause)."\nงานที่ส่ง : ".$conv->tis620_to_utf8($dep_send['department'])."\nผู้ส่ง : ".$conv->tis620_to_utf8($dep_send['name'])
+    ."\nเพื่อ : ".$conv->tis620_to_utf8($cons['cons_name'])."\nสาเหตุ : ".$conv->tis620_to_utf8($cause)."\nงานที่ส่ง : ".$conv->tis620_to_utf8($selDep_send['department'])."\nผู้ส่ง : ".$conv->tis620_to_utf8($selDep_send['name'])
     ."\nวันที่ ".DateThai1($send_date)." เวลา ".$send_time." น.";
      
     $resnoti = notify_message($text,$token);
@@ -79,6 +85,9 @@ if ($method == 'add_cc') {
     /////////////////////
         $res = array("messege"=>'ส่งเคสสำเร็จ!!!!');
     }
+}else{
+    $res = array("messege"=>'มีการบันทึกการส่งปรึกษาเคส '.$_POST['hn'].' เรียบร้อยแล้วครับ หากไม่มีการแจ้งเตือนใน Line กรุณาโทรแจ้งงานที่ส่งและงามคอมพิวเตอร์ด้วยครับ!!!!');
+}
         print json_encode($res);
         $connDB->close_PDO();
 }elseif ($method == 'edit_lotitem') {

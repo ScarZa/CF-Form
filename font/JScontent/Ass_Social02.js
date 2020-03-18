@@ -4,7 +4,9 @@ function AssSocial02(content, id = null) {
     var title = " แบบการวินิจฉัยทางสังคม (สำหรับผู้ป่วยจิตเวชเด็ก)";
     $("li#page").empty().text(title)
     $("h2").empty().prepend("<img src='images/icon_set2/compose.ico' width='40'> ").append(title);
-    $("#home").attr("onclick", "$('#index_content').empty();location.reload();");
+    if($.cookie("an")!=''){
+        $("#home").attr("onclick", "AssMENUIPD('#index_content');$('div#SW').hide();");
+    }else{$("#home").attr("onclick", "AssMENU('#index_content');$('div#SW').hide();");}
     //$("li#prev").show();
     //$("#back").empty().append(" ประเมิน CGI").attr("onclick", "$('#body_text').empty();TBDraw('index_content');");
     $("#prev").hide();

@@ -4,7 +4,9 @@ function AssClozapine(content, id = null) {
     var title = " แบบประเมินยา Clozapine";
     $("li#page").empty().text(title)
     $("h2").empty().prepend("<img src='images/Px.ico' width='40'> ").append(title);
-    $("#home").attr("onclick", "$('#index_content').empty();location.reload();");
+    if($.cookie("an")!=''){
+        $("#home").attr("onclick", "AssMENUIPD('#index_content');$('div#SW').hide();");
+    }else{$("#home").attr("onclick", "AssMENU('#index_content');$('div#SW').hide();");}
     //$("li#prev").show();
     //$("#back").empty().append(" ประเมิน CGI").attr("onclick", "$('#body_text').empty();TBDraw('index_content');");
     $("#prev").hide();
@@ -17,7 +19,7 @@ function AssClozapine(content, id = null) {
         $("#contentGr").empty().append($("<form action='' name='frmclozapine' id='frmclozapine' method='post' enctype='multipart/form-data'>"
             + "<div class='row'><div class='col-lg-12' id='cgi-post'>"
             + "<div class='card border-success'>"
-            + "<div class='card-header'><b>ประเมินยา Clozapine</b></div>"
+            + "<div class='card-header'><b id='cardHead'>ประเมินยา Clozapine</b></div>"
             + "<div id='treat' class='card-body'></div></div><p>"
             + "<br><center><input type='submit' name='submit' class='btn btn-success' value='ประเมิน'></center></div>"
             //+ "<div class='col-lg-6'><div class='row col-lg-12' id='sub-contentTB'></div><div class='row col-lg-12' id='sub-contentGr'></div></div>"
@@ -29,13 +31,16 @@ function AssClozapine(content, id = null) {
             ,$("<div class='form-group row'><label class='col-sm-6 col-form-label'>clozapine ≥400 mg/day  (EKG Baseline และทุก 1 ปี) </label><div class='col-sm-1'><input type='radio' name='mg_day' value='N' checked required> ปกติ</div><div class='col-sm-1'><input type='radio' name='mg_day' value='Y' required> ผิดปกติ</div></div>")
             ,$("<div class='col-lg-10 row'><div class='row col-lg-2'><input type='text' name='bw' class='form-control' placeholder='น้ำหนัก (ก.ก.)' required></div> <div class='col-lg-2'> <input type='text' name='height' class='form-control' placeholder='ส่วนสูง (ซ.ม.)' required></div>"
             +"<div class='col-lg-1'><input type='button' class='btn btn-success' id='BMIcal' value='คำนวณ'></div> <div class='col-lg-2'> <input type='text' name='bmi' class='form-control' placeholder='BMI' required></div><div class='col-lg-3'> <b id='BMIresult'></b></div></div><p>")
-            ,$("<div class='form-group row'><label class='col-sm-6 col-form-label'>มีไข้หนาวสั่น </label><div class='col-sm-1'><input type='radio' name='symplomo01' value='N' checked required> ปกติ</div><div class='col-sm-1'><input type='radio' name='symplomo01' value='Y' required> ผิดปกติ</div></div>")
-            ,$("<div class='form-group row'><label class='col-sm-6 col-form-label'>เจ็บคอปวดเมื่อยตามร่างกาย </label><div class='col-sm-1'><input type='radio' name='symplomo02' value='N' checked required> ปกติ</div><div class='col-sm-1'><input type='radio' name='symplomo02' value='Y' required> ผิดปกติ</div></div>")
-            ,$("<div class='form-group row'><label class='col-sm-6 col-form-label'>เฉื่อยชา เชื่องช้า / อ่อนเพลียมากกว่าปกติ  </label><div class='col-sm-1'><input type='radio' name='symplomo03' value='N' checked required> ปกติ</div><div class='col-sm-1'><input type='radio' name='symplomo03' value='Y' required> ผิดปกติ</div></div>")
-            ,$("<div class='form-group row'><label class='col-sm-6 col-form-label'>หน้ามืด วิงเวียน   </label><div class='col-sm-1'><input type='radio' name='symplomo04' value='N' checked required> ปกติ</div><div class='col-sm-1'><input type='radio' name='symplomo04' value='Y' required> ผิดปกติ</div></div>")
-            ,$("<div class='form-group row'><label class='col-sm-6 col-form-label'>ชัก </label><div class='col-sm-1'><input type='radio' name='symplomo05' value='N' checked required> ปกติ</div><div class='col-sm-1'><input type='radio' name='symplomo05' value='Y' required> ผิดปกติ</div></div>")
-            ,$("<div class='form-group row'><label class='col-sm-6 col-form-label'>U/D : DM ,HT, Dyslipidemia, Cardiovascular </label><div class='col-sm-1'><input type='radio' name='symplomo06' value='N' checked required> ปกติ</div><div class='col-sm-1'><input type='radio' name='symplomo06' value='Y' required> ผิดปกติ</div></div>"));
-
+            ,$("<div class='form-group row'><label class='col-sm-6 col-form-label'>มีไข้หนาวสั่น </label><div class='col-sm-1'><input type='radio' name='symplomo01' value='N' checked required> ไม่เป็น</div><div class='col-sm-1'><input type='radio' name='symplomo01' value='Y' required> เป็น</div></div>")
+            ,$("<div class='form-group row'><label class='col-sm-6 col-form-label'>เจ็บคอปวดเมื่อยตามร่างกาย </label><div class='col-sm-1'><input type='radio' name='symplomo02' value='N' checked required> ไม่เป็น</div><div class='col-sm-1'><input type='radio' name='symplomo02' value='Y' required> เป็น</div></div>")
+            ,$("<div class='form-group row'><label class='col-sm-6 col-form-label'>เฉื่อยชา เชื่องช้า / อ่อนเพลียมากกว่าปกติ  </label><div class='col-sm-1'><input type='radio' name='symplomo03' value='N' checked required> ไม่เป็น</div><div class='col-sm-1'><input type='radio' name='symplomo03' value='Y' required> เป็น</div></div>")
+            ,$("<div class='form-group row'><label class='col-sm-6 col-form-label'>หน้ามืด วิงเวียน   </label><div class='col-sm-1'><input type='radio' name='symplomo04' value='N' checked required> ไม่เป็น</div><div class='col-sm-1'><input type='radio' name='symplomo04' value='Y' required> เป็น</div></div>")
+            ,$("<div class='form-group row'><label class='col-sm-6 col-form-label'>ชัก </label><div class='col-sm-1'><input type='radio' name='symplomo05' value='N' checked required> ไม่เป็น</div><div class='col-sm-1'><input type='radio' name='symplomo05' value='Y' required> เป็น</div></div>")
+            ,$("<div class='form-group row'><label class='col-sm-6 col-form-label'>U/D : DM ,HT, Dyslipidemia, Cardiovascular </label><div class='col-sm-1'><input type='radio' name='symplomo06' value='N' checked required> ไม่มี</div><div class='col-sm-1'><input type='radio' name='symplomo06' value='Y' required> มี</div></div>"));
+            $.getJSON('../back/API/check_ClozapineAPI.php',{data : $.cookie("hn")})
+            .done(function( data ) { console.log(data)
+                $("#cardHead").append(" ( <b style='color: blue;'>ประเมินล่าสุดเมื่อ : "+data.regdate+"</b>)");
+            });
             $.getJSON('../back/API/detail_clozapineAPI.php',{data : $.cookie("hn")})
             .done(function( data ) {
                 $("#cgi-post").append($("<input type='hidden' name='WBC_val' value='"+data[0].WBC+"'>")
@@ -46,7 +51,7 @@ function AssClozapine(content, id = null) {
                                 $("#LWBC").append(" <b> ค่า : "+data[0].WBC +"</b>"); 
                                 $("#LANC").append(" <b> ค่า : "+data[0].ANC +"</b>");
                                 $("#LP").append(" <b> ค่า : "+data[0].Platelet +"</b>");
-                                $("#LCBC").append(" <b> เจาะครั้งสุดท้าย : "+data[0].month +" เดือน</b>");  
+                                $("#LCBC").append(" <b> เจาะครั้งสุดท้าย : "+data[0].month +" เดือน  ("+data[0].OrderDate+")</b>");  
                             
                                 if(data[0].WBC < 3000){$("#WBC2").attr("checked","checked");$("#LWBC").append(" <b style='color: red;'>  ต้องแจ้งแพทย์ทันที</b>"); }else{$("#WBC1").attr("checked","checked");}
                                 if(data[0].ANC < 1500){$("#ANC2").attr("checked","checked");$("#LANC").append(" <b style='color: red;'>   ต้องหยุดยาทันที</b>");}else{$("#ANC1").attr("checked","checked");}
@@ -106,7 +111,9 @@ function AssClozapine(content, id = null) {
             console.log(settings)
             $.ajax(settings).done(function (result) {
                 alert(result.messege);
-                $('#index_content').empty();location.reload();
+                if($.cookie("an")!=''){
+                    AssMENUIPD('#index_content');$('div#SW').hide();
+                }else{AssMENU('#index_content');$('div#SW').hide();}
             })
         }));
     

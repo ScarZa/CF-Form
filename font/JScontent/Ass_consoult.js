@@ -4,7 +4,9 @@ function AssC_Case(content, id = null) {
     var title = " ระบบส่งผู้ป่วย ";
     $("li#page").empty().text(title)
     $("h2").empty().prepend("<img src='images/icon_set2/compose.ico' width='40'> ").append(title);
-    $("#home").attr("onclick", "$('#index_content').empty();location.reload();");
+    if($.cookie("an")!=''){
+        $("#home").attr("onclick", "AssMENUIPD('#index_content');$('div#SW').hide();");
+    }else{$("#home").attr("onclick", "AssMENU('#index_content');$('div#SW').hide();");}
     //$("li#prev").show();
     //$("#back").empty().append(" ประเมิน CGI").attr("onclick", "$('#body_text').empty();TBDraw('index_content');");
     $("#prev").hide();
@@ -24,7 +26,7 @@ function AssC_Case(content, id = null) {
             //+ "<div class='col-lg-6'><div class='row col-lg-12' id='sub-contentTB'></div><div class='row col-lg-12' id='sub-contentGr'></div></div>"
             +"</div></form>"));console.log($.cookie("hn"));
             $.getJSON('../back/API/detail_CCpatientAPI.php',{data : $.cookie("vn"),data2 : $.cookie("an")},function (data) {
-            $("#P-data").append($("<div class='col-lg-12 row'><div class='row col-lg-6'><span>HN : "+data[0].hn+"<br>เลขบัตรประชาชน : "+data[0].cid+"<br>ชื่อ-สกุล :"+data[0].fullname
+            $("#P-data").append($("<div class='col-lg-12 row'><div class='row col-lg-6'><span id='DP'>HN : "+data[0].hn+"<br>เลขบัตรประชาชน : "+data[0].cid+"<br>ชื่อ-สกุล :"+data[0].fullname
                                     +"<br>ที่อยู่ : "+data[0].informaddr+"<br>วันเกิด "+data[0].birthday+" สถานะภาพ : "+data[0].mrname+"<br>การวินิจฉัย : "+data[0].pdx+" "+data[0].dx0
                                     +" "+data[0].dx1+" "+data[0].dx2+" "+data[0].dx3+" "+data[0].dx4+" "+data[0].dx5+"</span></div> "
                                     +"<div class='col-lg-6 block'> <img src='../back/API/show_image.php?hn="+$.cookie("hn")+"' width='230' /></div></div></div><p>")
@@ -32,7 +34,8 @@ function AssC_Case(content, id = null) {
                                     ,$("<div class='form-group row'><div class='col-lg-5 col-md-5 col-sm-12'>ส่งให้ : <select name='dep_res' class='form-control select2' id='dep_res' required></select></div></div>")
                                     ,$("<div class='form-group row'><div class='col-lg-5 col-md-5 col-sm-12'>ส่งเพื่อ : <select name='cons_id' class='form-control select2' id='cons_id' required></select></div></div>")
                                     ,$("<textarea name='cause' class='form-control' placeholder='สาเหตุที่ส่ง/อาการ/ความจำเป็น' required></textarea>"));
-            
+                                    if(data[0].ward){ $("span#DP").append("<br><b style='color: red'>"+data[0].ward+"</b> ");
+                                                    $("#cgi-post").append($("<input type='hidden' name='ward' value='"+data[0].ward+"'>"));}
                 var column1 = ["วันที่ส่ง", "ส่งหน่วยงาน","ประเภท","ผู้ส่ง","สถานะ"];
                 var CTb = new createTableAjax();
                 CTb.GetNewTableAjax('tb_send', '../back/API/DT_IPDsend.php?'+$.cookie('hn'), '../back/API/tempSendDataAPI.php', column1
@@ -54,6 +57,9 @@ function AssC_Case(content, id = null) {
                                
         $("#frmCC").on('submit', (function (e) {
             e.preventDefault();
+            if($("#dep_send").val() == $("#dep_res").val()){
+                alert("หน่วยงานที่ส่งและหน่วยงานที่รับซ้ำกันครับ กรุณาตรวจสอบด้วย !!!!");
+            }else{
             var dataForm = new FormData(this);
             // console.log(dataForm)
             // for (var value of dataForm.values()) {
@@ -73,8 +79,11 @@ function AssC_Case(content, id = null) {
             $.ajax(settings).done(function (result) {
                 $('#index_content').empty();
                 alert(result.messege);
-                $('#index_content').empty();location.reload();
-            })
+                if($.cookie("an")!=''){
+                    AssMENUIPD('#index_content');$('div#SW').hide();
+                }else{AssMENU('#index_content');$('div#SW').hide();}
+            });
+        }
         }));
     });
 

@@ -37,6 +37,7 @@ if ($method == 'add_cc') {
         $sender = $conv->utf8_to_tis620($_POST['user']);
         $send_date = date('Y-m-d');
         $send_time = date('H:i');
+        $ward = isset($_POST['ward'])?$_POST['ward']:'';
 
         $sql = "SELECT tB_id FROM jvl_transferBox where hn ='".$hn ."' and send_date ='".$send_date."' and dep_res ='".$dep_res."'";
         $connDB->imp_sql($sql);
@@ -74,7 +75,7 @@ if ($method == 'add_cc') {
     include_once '../function/LineNotify.php';  
     include_once '../plugins/funcDateThai.php';
     $token = "ZC643LLAoKB1iyumnNF4jMN8rxcYDnRWj1Tviec2Zp1";
-    $text =  "\nถึง : ".$conv->tis620_to_utf8($depres['department'])."\nHN : ".$hn
+    $text =  "\nถึง : ".$conv->tis620_to_utf8($depres['department'])."\nHN : ".$hn." ".$ward
     ."\nเพื่อ : ".$conv->tis620_to_utf8($cons['cons_name'])."\nสาเหตุ : ".$conv->tis620_to_utf8($cause)."\nงานที่ส่ง : ".$conv->tis620_to_utf8($selDep_send['department'])."\nผู้ส่ง : ".$conv->tis620_to_utf8($selDep_send['name'])
     ."\nวันที่ ".DateThai1($send_date)." เวลา ".$send_time." น.";
      

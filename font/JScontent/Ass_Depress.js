@@ -4,7 +4,9 @@ function AssDepress(content, id = null) {
     var title = " แบบคัดกรองโรคซึมเศร้า";
     $("li#page").empty().text(title)
     $("h2").empty().prepend("<img src='images/icon_set2/compose.ico' width='40'> ").append(title);
-    $("#home").attr("onclick", "$('#index_content').empty();location.reload();");
+    if($.cookie("an")!=''){
+        $("#home").attr("onclick", "AssMENUIPD('#index_content');$('div#SW').hide();");
+    }else{$("#home").attr("onclick", "AssMENU('#index_content');$('div#SW').hide();");}
     //$("li#prev").show();
     //$("#back").empty().append(" ประเมิน CGI").attr("onclick", "$('#body_text').empty();TBDraw('index_content');");
     $("#prev").hide();
@@ -38,10 +40,10 @@ function AssDepress(content, id = null) {
             + "<div class='row col-lg-5' id='sub-contentTB'></div></div></div></form>"));
 
             selectMash('#recorder', 'user_Data.php', 'เลือกผู้ประเมิน',$.cookie("user"));
-            selectMash('#place', 'place_Data.php', 'เลือกสถานที่','');
-            selectMash('#screen-type', 'screen_Data.php', 'เลือกประเภทการคัดกรอง','');
-            selectMash('#patient-group', 'patient_group_Data.php', 'เลือกกลุ่มผู้ป่วย','');
-            var option="<option value=''> เลือกประเภทผู้ป่วย </option><option value='1'> ผู้ป่วยนอก </option><option value='2'> ผู้ป่วยใน </option>";
+            selectMash('#place', 'place_Data.php', 'เลือกสถานที่',1);
+            selectMash('#screen-type', 'screen_Data.php', 'เลือกประเภทการคัดกรอง',1);
+            selectMash('#patient-group', 'patient_group_Data.php', 'เลือกกลุ่มผู้ป่วย',1);
+            var option="<option value=''> เลือกประเภทผู้ป่วย </option><option value='1' selected> ผู้ป่วยนอก </option><option value='2'> ผู้ป่วยใน </option>";
                $("select#patient-type").empty().append(option);
                $(".select2").select2();
 

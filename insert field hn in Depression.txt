@@ -1,0 +1,2 @@
+ALTER TABLE `depression_screen` 
+ADD COLUMN `hn` varchar(9) CHARACTER SET tis620 COLLATE tis620_thai_ci AFTER `patient_depression_id`

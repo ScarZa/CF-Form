@@ -3,11 +3,11 @@
 
 <head>
     <title>Assessment form.</title>
-    <link rel='SHORTCUT ICON' href='images/icon_set2/compose.ico'>
+    <link rel='SHORTCUT ICON' href='images/logo.png'>
     <meta charset="UTF-8">
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="template/bootstrap-4.1.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="template/bootstrap-4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
     <!-- <link rel="stylesheet" type="text/css" href="plugins/Jprint/print.min.css"> -->
     <link rel="stylesheet" href="plugins/font-awesome-4.6.3/css/font-awesome.min.css">
     <!-- Select2 -->
@@ -16,6 +16,7 @@
     <script src="MyTools/createTableAjax.js" type="text/javascript"></script>
     <script src="MyTools/AJAXCharts.js" type="text/javascript"></script>
     <script src="MyTools/reportLayout.js" type="text/javascript"></script>
+    <script src="JScontent/Ass_DocGeneral.js" type="text/javascript"></script>
     <!-- End My tools -->
     <link rel="stylesheet" href="plugins/jquery-ui-1.11.4.custom/jquery-ui-1.11.4.custom.css" />
     <link rel="stylesheet" href="plugins/jquery-ui-1.11.4.custom/SpecialDateSheet.css" />
@@ -157,7 +158,7 @@
     <!-- <input onkeyup="inputDigits(sensor)" type="number" -->
     <script src="template/jquery-3.3.1.min.js"></script>
     <script src="template/jquery.cookie.js"></script>
-    <script src="template/bootstrap-4.1.1/js/bootstrap.min.js"></script>
+    <script src="template/bootstrap-4.4.1/js/bootstrap.min.js"></script>
     <script src="plugins/select2/select2.full.min.js"></script>
     <!-- <script src="plugins/Jprint/print.min.js"></script> -->
     <script src="plugins/jquery-ui-1.11.4.custom/jquery-ui-1.11.4.custom.js"></script>
@@ -184,6 +185,7 @@
     <script src="JScontent/navMenu.js" type="text/javascript"></script>
     <script src="JScontent/assMenu.js" type="text/javascript"></script>
     <script src="JScontent/assMenuIPD.js" type="text/javascript"></script>
+    <script src="JScontent/assMenuDoctor.js" type="text/javascript"></script>
     <script src="JScontent/Ass_CGI.js" type="text/javascript"></script>
     <script src="JScontent/Ass_Culture.js" type="text/javascript"></script>
     <script src="JScontent/Ass_Alcohol.js" type="text/javascript"></script>
@@ -196,9 +198,16 @@
     <script src="JScontent/DmenuModel.js" type="text/javascript"></script>
     <script src="JScontent/AmenuModel.js" type="text/javascript"></script>
     <script src="JScontent/CmenuModel.js" type="text/javascript"></script>
+    <script src="JScontent/OmenuModel.js" type="text/javascript"></script>
     <script src="JScontent/Ass_Clozapine.js" type="text/javascript"></script>
     <script src="JScontent/Ass_Lithium.js" type="text/javascript"></script>
     <script src="JScontent/Ass_ER.js" type="text/javascript"></script>
+    <script src="JScontent/Ass_Doc01.js" type="text/javascript"></script>
+    <script src="JScontent/Ass_CDI.js" type="text/javascript"></script>
+    <script src="JScontent/Ass_MMSE.js" type="text/javascript"></script>
+    <script src="JScontent/Ass_ADL.js" type="text/javascript"></script>
+    <script src="JScontent/Ass_NPIQ.js" type="text/javascript"></script>
+    
     <!-- End JS content -->
     
     <script lang="javascript" type="text/javascript">
@@ -206,17 +215,16 @@
             var user = get('user');
             var vn = get('vn');
             var an = get('an');
+            var doctor = get('doctor');
             
             if(user!=''){
-            if(an == undefined){
-                var AN = '';
-            }else{
-                var AN = an;
-            }
+            if(an == undefined){ var AN = '';}else{ var AN = an;}
+            if(doctor == undefined){ var Doctor = '';}else{ var Doctor = doctor;}
             $.cookie("user", user);
             $.cookie("an", AN);
+            $.cookie("doctor", Doctor);
             $.cookie("vn", vn);
-        }
+        }console.log(Doctor)
     var uri = window.location.toString();
     if (uri.indexOf("?") > 0) {
         var clean_uri = uri.substring(0, uri.indexOf("?"));
@@ -224,11 +232,14 @@
     }
     console.log($.cookie("vn"));
             $.getJSON('../back/API/detail_patientAPI.php',{data : $.cookie("vn"),data2 : AN},function (data) { console.log(data)
-                if(an == undefined){
-                    $("#patient-detial").append("ชื่อ-สกุล "+data[0].pname+data[0].fname+" "+data[0].lname+"<p><p>HN "+data[0].hn+" VN "+data[0].vn+"<p><p>วันที่มารับบริการ  "+data[0].tvstdate);  
+                if(an == undefined && doctor != 'Y'){
+                    $("#patient-detial").append("ชื่อ-สกุล <b>"+data[0].pname+data[0].fname+" "+data[0].lname+"</b><p><p>HN <b>"+data[0].hn+"</b> VN <b>"+data[0].vn+"</b><p><p>วันที่มารับบริการ  <b>"+data[0].tvstdate)+"</b>";  
                         AssMENU("#index_content");     
+                }else if(doctor == 'Y'){
+                    $("#patient-detial").append("ชื่อ-สกุล <b>"+data[0].pname+data[0].fname+" "+data[0].lname+"</b><p><p>HN <b>"+data[0].hn+"</b> VN <b>"+data[0].vn+"</b><p><p>วันที่มารับบริการ  <b>"+data[0].tvstdate)+"</b>";  
+                        AssMENUDoctor("#index_content");     
                 }else{
-                    $("#patient-detial").append("ชื่อ-สกุล "+data[0].pname+data[0].fname+" "+data[0].lname+"<p><p>HN "+data[0].hn+" AN "+an+"<p><p>วันที่มา Admit  "+data[0].tvstdate);
+                    $("#patient-detial").append("ชื่อ-สกุล <b>"+data[0].pname+data[0].fname+" "+data[0].lname+"</b><p><p>HN <b>"+data[0].hn+"</b> AN <b>"+an+"</b><p><p>วันที่มา Admit  <b>"+data[0].tvstdate)+"</b>";
                         AssMENUIPD("#index_content"); 
                     }
                     if(data[0].Clozapine100 != null){

@@ -159,10 +159,10 @@ if ($method == 'add_depress') {
         $connDB->imp_sql($sql);
         $id=$connDB->select_a();
 
-        $data = array($id['id'],$pp_vn,$recorder,$pp_date,$q2_1,$q2_2,$q9score,$res_9q,$q8score,$res_8q,$pp_hn,$Q9_1,$Q9_2,$Q9_3,$Q9_4,$Q9_5,$Q9_6,$Q9_7,$Q9_8,$Q9_9
+        $data = array($id['id'],$pp_vn,$recorder,$pp_date,$q2_1,$q2_2,$q9score,$res_9q,$q8score,$res_8q,$pp_hn,$pp_hn,$Q9_1,$Q9_2,$Q9_3,$Q9_4,$Q9_5,$Q9_6,$Q9_7,$Q9_8,$Q9_9
                     ,$Q8_1,$Q8_2,$Q8_3,$Q8_31,$Q8_4,$Q8_5,$Q8_6,$Q8_7,$Q8_8,$res_2q);
         $field = array('depression_screen_id','vn','staff','screen_datetime','feel_depression_2_week','feel_boring_2_week','depression_score','depression_screen_evaluate_id'
-                    ,'suicide_score','suicide_screen_evaluate_id','patient_depression_id','score_9q_1','score_9q_2','score_9q_3','score_9q_4','score_9q_5','score_9q_6','score_9q_7','score_9q_8','score_9q_9'
+                    ,'suicide_score','suicide_screen_evaluate_id','patient_depression_id','hn','score_9q_1','score_9q_2','score_9q_3','score_9q_4','score_9q_5','score_9q_6','score_9q_7','score_9q_8','score_9q_9'
                     ,'score_8q_1','score_8q_2','score_8q_3','score_8q_4','score_8q_5','score_8q_6','score_8q_7','score_8q_8','score_8q_9','no_depression');
         $table = "depression_screen";
         $depression_screen = $connDB->insert($table, $data, $field);

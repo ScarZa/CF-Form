@@ -7,7 +7,7 @@ function AssMENU(content, id = null) {
                                         ,$("<div class='col-md-2 col-lg-2'><a id='alcohol' href='#' data-toggle='modal' data-target='#AlcoholModal'  title='ประเมินสุรา/ยาเสพติด'><center><img src='images/Drugs.jpg' width='85'><p> คลินิกสุรา/ยาเสพติด</p></center></a></div>")
                                         //,$("<div class='col-md-12 col-lg-12'><a id='cigarette' class='btn btn-success btn-block' href='#'><img src='images/icon_set2/compose.ico' width='25'><b> ประเมินบุหรี่</b></a></div><br>")
                                         ,$("<div class='col-md-2 col-lg-2'><a id='snap4' href='#' data-toggle='modal' data-target='#ChildModal'  title='ประเมินเด็ก'><center><img src='images/Son.ico' width='85'><p>คลินิกเด็ก</p></center></a></div>")
-                                        ,$("<div class='col-md-2 col-lg-2'><a id='older' href='#' title='ยังไม่มีครับ'><center><img src='images/older.png' width='85'><p>คลินิกผู้สูงอายุ</p></center></a></div>")
+                                        ,$("<div class='col-md-2 col-lg-2'><a id='older' href='#' data-toggle='modal' data-target='#OlderModal' title=''><center><img src='images/older.png' width='85'><p>คลินิกผู้สูงอายุ</p></center></a></div>")
                                         ,$("<div class='col-md-2 col-lg-2'><a id='law' href='#' title='ยังไม่มีครับ'><center><img src='images/prisoner.png' width='85'><p>นิติจิตเวช</p></center></a></div><div class='col-md-1 col-lg-1'></div>")
                                         //,$("<div class='col-md-12 col-lg-12'><a id='smi-v' class='btn btn-success btn-block' href='#'><img src='images/icon_set2/compose.ico' width='25'><b> ประเมิน SMI-V</b></a></div><br>")
                                         
@@ -37,6 +37,7 @@ function AssMENU(content, id = null) {
                                         $("a#drug").attr("onclick","DrugModal()");
                                         $("a#depress").attr("onclick","AssDepress('#index_content')");
                                         $("a#snap4").attr("onclick","ChildModal()");
+                                        $("a#older").attr("onclick","OlderModal()");
                                         $("a#C-case").attr("onclick","AssC_Case('#index_content')");
                                         $("a#ER").attr("onclick","AssER('#index_content')");
                                         

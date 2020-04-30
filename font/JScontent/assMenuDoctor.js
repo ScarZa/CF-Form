@@ -4,8 +4,10 @@ function AssMENUDoctor(content, id = null) {
                                 ,$("<div id='menu_row2' class='col-lg-12 row'></div><br>")
                                 ,$("<div id='menu_row3' class='col-lg-12 row'></div>"));
             $("div#menu_row1").empty().append($("<div class='col-md-12 col-lg-12'><center><a id='Doctor01' href='#'><img src='images/Doctor.ico' width='85'><p> Doctor</p></a></center></div>")
+                                            ,$("<div class='col-md-12 col-lg-12'><a id='EMR' href='#'><center><img src='images/EMR.png' width='85'><p> EMR</p></center></a></div>")
                                         );
 
                                         $("a#Doctor01").attr("onclick","AssDoc01('#index_content')");
+                                        $("a#EMR").attr("onclick","AssEMR('#index_content')");
                                         
 }

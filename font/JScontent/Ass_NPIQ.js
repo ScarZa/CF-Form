@@ -117,9 +117,9 @@ function AssNPIQ(content, id = null) {
                                 for(var c=1;c<=12;c++){ 
                                 $.getJSON('../back/API/Q_NPIQ_Data.php',{data : c},function (data) { 
                                     
-                                    $("div#NPIQ_group"+data[0].npiq_group).empty().append($("<div class='col-lg-12 row'><div class='col-lg-1'>&nbsp;</div><div class='col-lg-11'><input class='ace' type='radio' name='Bฺ"+data[0].npiq_group+"' value='"+data[0].npiq_id+"' ><span class='lbl'> "+data[0].npiq_result+"</div></div><br>"
-                                    +"<div class='col-lg-12 row'><div class='col-lg-1'>&nbsp;</div><div class='col-lg-11'><input class='ace' type='radio' name='Bฺ"+data[1].npiq_group+"' value='"+data[1].npiq_id+"' ><span class='lbl'> "+data[1].npiq_result+"</span></div></div><br>"
-                                    +"<div class='col-lg-12 row'><div class='col-lg-1'>&nbsp;</div><div class='col-lg-11'><input class='ace' type='radio' name='Bฺ"+data[2].npiq_group+"' value='"+data[2].npiq_id+"' ><span class='lbl'> "+data[2].npiq_result+"</span></div></div><br>"
+                                    $("div#NPIQ_group"+data[0].npiq_group).empty().append($("<div class='col-lg-12 row'><div class='col-lg-1'>&nbsp;</div><div class='col-lg-11'><input class='ace' type='radio' name='B"+data[0].npiq_group+"' value='"+data[0].npiq_id+"' ><span class='lbl'> "+data[0].npiq_result+"</div></div><br>"
+                                    +"<div class='col-lg-12 row'><div class='col-lg-1'>&nbsp;</div><div class='col-lg-11'><input class='ace' type='radio' name='B"+data[0].npiq_group+"' value='"+data[1].npiq_id+"' ><span class='lbl'> "+data[1].npiq_result+"</span></div></div><br>"
+                                    +"<div class='col-lg-12 row'><div class='col-lg-1'>&nbsp;</div><div class='col-lg-11'><input class='ace' type='radio' name='B"+data[0].npiq_group+"' value='"+data[2].npiq_id+"' ><span class='lbl'> "+data[2].npiq_result+"</span></div></div><br>"
                                     +"<div class='col-lg-12 row'><div class='col-lg-1'>&nbsp;</div><div class='col-lg-2'><b>ความทุกข์ใจของผู้ดูแล</b> </div><div class='col-lg-1'><input class='ace' type='radio' name='C"+data[0].npiq_group+"' value='0' ><span class='lbl'> 0</span></div>"
                                     +"<div class='col-lg-1'><input class='ace' type='radio' name='C"+data[0].npiq_group+"' value='1' ><span class='lbl'> 1</span></div>"
                                     +"<div class='col-lg-1'><input class='ace' type='radio' name='C"+data[0].npiq_group+"' value='2' ><span class='lbl'> 2</span></div>"
@@ -189,9 +189,12 @@ function AssNPIQ(content, id = null) {
             // }else{
             var dataForm = new FormData(this);
             console.log(dataForm)
-            for (var value of dataForm.values()) {
-                console.log(value);
-            }
+            // for (var keys of dataForm.keys()) {
+            //     console.log(keys);
+            // }
+            // for (var value of dataForm.values()) {
+            //     console.log(value);
+            // }
             var settings = {
                 type: "POST",
                 url: "../back/API/prcNPIQAPI.php",

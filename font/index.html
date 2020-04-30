@@ -16,6 +16,7 @@
     <script src="MyTools/createTableAjax.js" type="text/javascript"></script>
     <script src="MyTools/AJAXCharts.js" type="text/javascript"></script>
     <script src="MyTools/reportLayout.js" type="text/javascript"></script>
+    <script src="MyTools/tabLayout.js" type="text/javascript"></script>
     <script src="JScontent/Ass_DocGeneral.js" type="text/javascript"></script>
     <!-- End My tools -->
     <link rel="stylesheet" href="plugins/jquery-ui-1.11.4.custom/jquery-ui-1.11.4.custom.css" />
@@ -29,6 +30,17 @@
         }
     </style>
     <style type="text/css">
+        .scroll 
+        {
+        height: 600px;
+        overflow: auto;
+        }
+        /* div.scroll {
+            height: 600px;
+            width: 100%;  
+            overflow-y: auto;
+        } */
+
         .block {
             width: 115px;
             height: 135px;
@@ -146,8 +158,8 @@
         <p>
             <div class='content-wrapper'>
                 <section class='content'>
-                    <div class="col-lg-12 col-xl-12" id=""><h3 style="text-align: center">แบบประเมิน</h3></div>
-                    <div class="col-lg-12 col-xl-12"><div class="col-lg-8 offset-lg-2 alert alert-success"><h5  id="patient-detial" style="text-align: center"></h5></div></div>
+                    <div class="col-lg-12 col-xl-12" id="head-title"><h3 style="text-align: center">แบบประเมิน</h3></div>
+                    <div class="col-lg-12 col-xl-12" id="head-detial"><div class="col-lg-8 offset-lg-2 alert alert-success"><h5  id="patient-detial" style="text-align: center"></h5></div></div>
                     <div class="col-lg-12 col-xl-12" id="index_content"></div>
                     <div id='createModal'></div>
                 </section>
@@ -207,6 +219,7 @@
     <script src="JScontent/Ass_MMSE.js" type="text/javascript"></script>
     <script src="JScontent/Ass_ADL.js" type="text/javascript"></script>
     <script src="JScontent/Ass_NPIQ.js" type="text/javascript"></script>
+    .<script src="JScontent/Ass_EMR.js" type="text/javascript"></script>
     
     <!-- End JS content -->
     
@@ -224,7 +237,7 @@
             $.cookie("an", AN);
             $.cookie("doctor", Doctor);
             $.cookie("vn", vn);
-        }console.log(Doctor)
+        }console.log($.cookie("an"))
     var uri = window.location.toString();
     if (uri.indexOf("?") > 0) {
         var clean_uri = uri.substring(0, uri.indexOf("?"));

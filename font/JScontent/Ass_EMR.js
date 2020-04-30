@@ -45,7 +45,7 @@ function AssEMR(content, id = null) {
                                     +"<div class='col-lg-12 row'><div class='col-lg-2' style='text-align:right;'><b>ประวัติแพ้ยา : </b></div><div class='row col-lg-9' id='allergic'> </div></div>"
                                     +"<div class='col-lg-12 row'><div class='col-lg-2' style='text-align:right;'><b>สิทธิ์ : </b></div><div class='row col-lg-9' id='ptname1'> </div></div>"
                                     +"</span></div></div></div></div></div><p></p>")
-                                ,$("<div class='card border-success'><div class='card-header'><b id='vstdate'></b> <b id='vsttime'></b> <b id='ovstistname'></b></div><div id='' class='card-body'>"
+                                ,$("<div class='card border-success'><div class='card-header'><b id='vstdate'></b> <b id='vsttime'></b> <b id='ovstistname'></b> <b id='nextdate' style='color: red'></b></div><div id='' class='card-body'>"
                                 +"<div class='col-lg-12 row'><div class='col-lg-2' style='text-align:right;'><b>สิทธิรักษาประจำตัว : </b></div><div class='row col-lg-9' id='ptname2'> </div></div>" 
                                 +"<div class='col-lg-12 row'><div class='col-lg-2' style='text-align:right;'><b>สถานพยาบาลหลัก : </b></div><div class='row col-lg-9' id='Dhospital'> </div></div>"
                                 +"<div class='col-lg-12 row'><div class='col-lg-2' style='text-align:right;'><b>หมดอายุ : </b></div><div class='row col-lg-2' id='pttype_expire'> </div>"
@@ -128,7 +128,7 @@ function AssEMR(content, id = null) {
                                 $.getJSON('../back/API/vsdate_Data.php',{data : $.cookie("hn")},function (data) {console.log(data)
                                     $("div#vdate_list").empty();
                                     $.each(data, function(i, item) {
-                                        $("div#vdate_list").append($("<a href='#' id='li_vdate"+i+"' class='list-group-item list-group-item-action list-group-item-info'><b>"+data[i].vstdate+"</b> <b style='font-size:13px'>"+data[i].vsttime+" น.</b></a>")
+                                        $("div#vdate_list").append($("<a href='#' id='li_vdate"+i+"' class='list-group-item list-group-item-action list-group-item-secondary'><b>"+data[i].vstdate+"</b> <b style='font-size:13px'>"+data[i].vsttime+" น.</b></a>")
                                         )
                                         if(item.an){$("#li_vdate"+i).attr("style","color: red");}
                                         $("#li_vdate"+i).click(function(){
@@ -160,6 +160,7 @@ function AddData(json, id ) { console.log(id)
         $("#vstdate").empty().append('วันที่รับบริการ : '+data[0].vstdate);
         $("#vsttime").empty().append('เวลา : '+data[0].vsttime+' น.');
         $("#ovstistname").empty().append('ประเภท : '+data[0].ovstistname);
+        $("#nextdate").empty().append('นัดครั้งต่อไป : '+data[0].nextdate);
         $("#ptname2").empty().append(data[0].ptname2);
         $("#Dhospital").empty().append(data[0].Dhospital);
         $("#pttype_expire").empty().append(data[0].pttype_expire);

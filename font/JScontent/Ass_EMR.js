@@ -113,15 +113,22 @@ function AssEMR(content, id = null) {
                                     var date = data.date
                                     var CChartsP =  new AJAXCharts('ass-Depress','line',title2,unit,date,'../back/API/DC_column9Q.php?'+$.cookie('hn'),subtitle,['#3ec613', '#cc6945', '#6c94dd', 'purple', '#d92727', 'orange', 'yellow']);
                                     $(CChartsP.GetCL());
-                                    });     
+                                    }); 
+                                    
+                                var title3 = "ผลการประเมินสุรา";
+                                $.getJSON('../back/API/graph_Alc.php',{data:$.cookie('hn')},function (data) { console.log(data)
+                                    var date = data.date
+                                    var CChartsAl =  new AJAXCharts('ass-Alcohol','line',title3,unit,date,'../back/API/DC_columnAlc.php?'+$.cookie('hn'),subtitle,['#3ec613', '#cc6945', '#6c94dd', 'purple', '#d92727', 'orange', 'yellow']);
+                                    $(CChartsAl.GetCL());
+                                    });    
 
                                 AddData("detail_EMRpatientAPI.php",$.cookie("vn"));
             $("#vdate").append($("<div class='list-group' id='vdate_list'></div>"))  
 
-                                $.getJSON('../back/API/vsdate_Data.php',{data : $.cookie("hn")},function (data) {
+                                $.getJSON('../back/API/vsdate_Data.php',{data : $.cookie("hn")},function (data) {console.log(data)
                                     $("div#vdate_list").empty();
                                     $.each(data, function(i, item) {
-                                        $("div#vdate_list").append($("<a href='#' id='li_vdate"+i+"' class='list-group-item list-group-item-action list-group-item-info'>"+data[i].vstdate+"</a>")
+                                        $("div#vdate_list").append($("<a href='#' id='li_vdate"+i+"' class='list-group-item list-group-item-action list-group-item-info'><b>"+data[i].vstdate+"</b> <b style='font-size:13px'>"+data[i].vsttime+" น.</b></a>")
                                         )
                                         if(item.an){$("#li_vdate"+i).attr("style","color: red");}
                                         $("#li_vdate"+i).click(function(){

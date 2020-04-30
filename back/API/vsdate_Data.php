@@ -16,12 +16,13 @@ $connDB->conn_PDO();
 $rslt = array();
 $series = array();
 $data = isset($_POST['data'])?$_POST['data']:(isset($_GET['data'])?$_GET['data']:'');
-$sql = "SELECT vstdate,vn,an FROM ovst WHERE hn = '".$data."' ORDER BY vstdate desc";
+$sql = "SELECT vstdate,vn,an,SUBSTR(vsttime,1,5)vsttime FROM ovst WHERE hn = '".$data."' ORDER BY vstdate desc";
 $conv=new convers_encode();
     $connDB->imp_sql($sql);
     $user = $connDB->select();
     for($i=0;$i<count($user);$i++){
         $series['vstdate'] = DateThai1($user[$i]['vstdate']);
+        $series['vsttime'] = $user[$i]['vsttime'];
         $series['vn'] = $user[$i]['vn'];
         $series['an'] = $user[$i]['an'];
     array_push($rslt, $series);    

@@ -123,7 +123,7 @@ function AssEMR(content, id = null) {
                                     });    
 
                                 AddData("detail_EMRpatientAPI.php",$.cookie("vn"));
-            $("#vdate").append($("<div class='list-group' id='vdate_list'></div>"))  
+            $("#vdate").append($("<div class='row list-group' id='vdate_list'></div>"))  
 
                                 $.getJSON('../back/API/vsdate_Data.php',{data : $.cookie("hn")},function (data) {console.log(data)
                                     $("div#vdate_list").empty();

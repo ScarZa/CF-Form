@@ -22,7 +22,7 @@ function AssSNAP_IV(content, id = null) {
             + "<div class='row col-lg-3 col-md-3 col-sm-12'>ประเมินครั้งที่ : <select name='month' class='form-control select2' id='month' required></select></div> &nbsp;"
             + "<div class='row col-lg-3 col-md-3 col-sm-12'>ชั้นเรียน : <select name='class_room' class='form-control select2' id='class_room' required></select></div> &nbsp;"
             + "<div class='row col-lg-3 col-md-3 col-sm-12'>ความสัมพันธ์กับเด็กเป็น : <select name='assessor' class='form-control select2' id='assessor' required></select></div> &nbsp;"
-            + "<div class='row col-lg-3 col-md-3 col-sm-12'>วันที่ประเมิน : <input type='text' name='assdate' class='form-control form-control-sm' id='assdate' required></select></div></div>"
+            + "<div class='row col-lg-3 col-md-3 col-sm-12'>วันที่ประเมิน : <input type='text' name='assdate' class='form-control form-control-sm' id='assdate' required></div></div>"
             + "</div></div>"
             + "<div class='row'>"
             + "<div class='row col-lg-12' id='main-div'><div class='col-lg-6' id='cgi-post'>"

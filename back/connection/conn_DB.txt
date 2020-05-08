@@ -1,6 +1,6 @@
-10.0.0.253
+10.0.0.9
 admintoy
 gotoytoynoy
-hosxp2
+hosxp
 3306
 tis620

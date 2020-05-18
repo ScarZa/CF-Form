@@ -1,21 +1,22 @@
 function AssEMR(content, id = null) {
-    $("#head-title").hide();
+    //$("#head-title").hide();
     $("#head-detial").hide();
     var RL = new ReportLayout(content);
     RL.GetRL();
     var title = " Patient EMR.";
-    $("li#page").empty().text(title)
-    //$("h2").empty().prepend("<img src='images/icon_set2/compose.ico' width='40'> ").append(title);
+    $("nav#nav_bc").hide();
+    // $("li#page").empty().text(title)
+    // //$("h2").empty().prepend("<img src='images/icon_set2/compose.ico' width='40'> ").append(title);
     
-    if($.cookie("an")!=''){
-        $("#home").attr("onclick", "AssMENUIPD('#index_content');$('#head-title').show();$('#head-detial').show();$('div#SW').hide();");
-    }else if($.cookie("doctor")!=''){
-        $("#home").attr("onclick", "AssMENUDoctor('#index_content');$('#head-title').show();$('#head-detial').show();$('div#SW').hide();");
-    }else{$("#home").attr("onclick", "AssMENU('#index_content');$('#head-title').show();$('#head-detial').show();$('div#SW').hide();");}
+    // if($.cookie("an")!=''){
+    //     $("#home").attr("onclick", "AssMENUIPD('#index_content');$('#head-title').show();$('#head-detial').show();$('div#SW').hide();");
+    // }else if($.cookie("doctor")!=''){
+    //     $("#home").attr("onclick", "AssMENUDoctor('#index_content');$('#head-title').show();$('#head-detial').show();$('div#SW').hide();");
+    // }else{$("#home").attr("onclick", "AssMENU('#index_content');$('#head-title').show();$('#head-detial').show();$('div#SW').hide();");}
     
-    //$("li#prev").show();
-    //$("#back").empty().append(" ประเมิน CGI").attr("onclick", "$('#body_text').empty();TBDraw('index_content');");
-    $("#prev").hide();
+    // //$("li#prev").show();
+    // //$("#back").empty().append(" ประเมิน CGI").attr("onclick", "$('#body_text').empty();TBDraw('index_content');");
+    // $("#prev").hide();
     $("span.card-title").empty().append(title);
 
         $("#contentGr").empty().append($("<form action='' name='frmDoc01' id='frmDoc01' method='post' enctype='multipart/form-data'>"
@@ -58,8 +59,8 @@ function AssEMR(content, id = null) {
                                 +"<div class='col-lg-12 row'><div class='col-lg-2' style='text-align:right;'><b>Dx.4 : </b></div><div class='row col-lg-9' id='dxname4'> </div></div>"
                                     +"</div></div><p></p>")
                                 ,$("<div class='card text-white bg-danger mb-3'><div class='card-header'><b>ประเภทผู้ป่วย</b></div><div id='' class='card-body'>"
-                                +"<div class='col-lg-12 row'><div class='col-lg-2' style='text-align:right;'><b>คลินิคพิเศษ : </b></div><div class='row col-lg-2' id='clinic'> </div>"
-                                +"<div class='col-lg-2' style='text-align:right;'><b></b></div><div class='row col-lg-2' id='expire_date'> </div></div>"
+                                +"<div class='col-lg-12 row'><div class='col-lg-2' style='text-align:right;'><b>คลินิคพิเศษ : </b></div><div class='row col-lg-10' id='clinic'> </div>"
+                                +"<div class='col-lg-2' style='text-align:right;'><b>High Alert Drug : </b></div><div class='row col-lg-10' id='Alert_Drug'> </div></div>"
                                     +"</div></div><p></p>")
                                 ,$("<div class='card border-success'><div class='card-header'><b>Screening</b></div><div id='' class='card-body'>"
                                 +"<div class='col-lg-12 alert alert-success'><div class='col-lg-12 row'><div class='col-lg-2' style='text-align:right;'><b>น้ำหนัก : </b></div><div class='row col-lg-2' id='bw'></div>"
@@ -81,7 +82,7 @@ function AssEMR(content, id = null) {
                                 ,$("<div class='card border-success'><div class='card-header'><b>Rx Order</b></div><div id='Rx-body' class='card-body'>"
                                     +"</div></div><p></p>")
                                 ,$("<div class='card border-success'><div class='card-header'><b>ผลการประเมิน</b></div><div id='graph-body' class='card-body'>"
-                                    +"</div></div><p></p>")
+                                    +"</div></div>")
                                 );
                                 var PL = new TabLayout('#Rx-body',2,'T');
                                 PL.GetTL();
@@ -167,6 +168,28 @@ function AddData(json, id ) { console.log(id)
         $("#expire_date").empty().append(data[0].expire_date);
         $("#docName").empty().append(data[0].docName);
         $("#clinic").empty().append(data[0].clinic);
+        $("#Alert_Drug").empty();
+        if(data[0].Clozapine100 != null){
+            $("#Alert_Drug").append("<div class='col-lg-12'><b style='color: yellow'>"+data[0].Clozapine100+" ( สั่งล่าสุด "+data[0].Clozapine100Date+")</b></div><br>");
+        }
+        if(data[0].Clozapine25 != null){
+            $("#Alert_Drug").append("<div class='col-lg-12'><b style='color: yellow'>"+data[0].Clozapine25+" ( สั่งล่าสุด "+data[0].Clozapine25Date+")</b></div><br>");
+        }
+        if(data[0].Carbamazepine200 != null){
+            $("#Alert_Drug").append("<div class='col-lg-12'><b style='color: yellow'>"+data[0].Carbamazepine200+" ( สั่งล่าสุด "+data[0].Carbamazepine200Date+")</b></div><br>");
+        }
+        if(data[0].LithiumCarbonate300 != null){
+            $("#Alert_Drug").append("<div class='col-lg-12'><b style='color: yellow'>"+data[0].LithiumCarbonate300+" ( สั่งล่าสุด "+data[0].LithiumCarbonate300Date+")</b></div><br>");
+        }
+        if(data[0].SodiumValproate200 != null){
+            $("#Alert_Drug").append("<div class='col-lg-12'><b style='color: yellow'>"+data[0].SodiumValproate200+" ( สั่งล่าสุด "+data[0].SodiumValproate200Date+")</b></div><br>");
+        }
+        if(data[0].SodiumValproate200CHRONO != null){
+            $("#Alert_Drug").append("<div class='col-lg-12'><b style='color: yellow'>"+data[0].SodiumValproate200CHRONO+" ( สั่งล่าสุด "+data[0].SodiumValproate200CHRONODate+")</b></div><br>");
+        }
+        if(data[0].SodiumValproate500 != null){
+            $("#Alert_Drug").append("<div class='col-lg-12'><b style='color: yellow'>"+data[0].SodiumValproate500+" ( สั่งล่าสุด "+data[0].SodiumValproate500Date+")</b></div>");
+        }
         $("#dxname1").empty().append(data[0].dxname1);
         $("#dxname2").empty().append(data[0].dxname2);
         $("#dxname3").empty().append(data[0].dxname3);

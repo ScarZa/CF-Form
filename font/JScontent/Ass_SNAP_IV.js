@@ -1,17 +1,18 @@
 function AssSNAP_IV(content, id = null) {
     var RL = new ReportLayout(content);
     RL.GetRL();
-
-    $("li#page").empty().text(" แบบบันทึกผล SNAP-IV")
-    $("h2").empty().prepend("<img src='images/icon_set2/compose.ico' width='40'> ").append(" แบบบันทึกผล SNAP-IV");
-    if($.cookie("an")!=''){
-        $("#home").attr("onclick", "AssMENUIPD('#index_content');$('div#SW').hide();");
-    }else{$("#home").attr("onclick", "AssMENU('#index_content');$('div#SW').hide();");}
-    //$("li#prev").show();
-    //$("#back").empty().append(" ประเมิน CGI").attr("onclick", "$('#body_text').empty();TBDraw('index_content');");
-    $("#prev").hide();
-    $("span.card-title").empty().append(" บันทึกผล SNAP-IV");
-    $("#add_body").prepend("<span id='body_text'></span>")
+    var title = " แบบบันทึกผล SNAP-IV";
+    $("nav#nav_bc").hide();
+    // $("li#page").empty().text(" แบบบันทึกผล SNAP-IV")
+    // $("h2").empty().prepend("<img src='images/icon_set2/compose.ico' width='40'> ").append(" แบบบันทึกผล SNAP-IV");
+    // if($.cookie("an")!=''){
+    //     $("#home").attr("onclick", "AssMENUIPD('#index_content');$('div#SW').hide();");
+    // }else{$("#home").attr("onclick", "AssMENU('#index_content');$('div#SW').hide();");}
+    // //$("li#prev").show();
+    // //$("#back").empty().append(" ประเมิน CGI").attr("onclick", "$('#body_text').empty();TBDraw('index_content');");
+    // $("#prev").hide();
+    $("span.card-title").empty().append(title);
+    // $("#add_body").prepend("<span id='body_text'></span>")
     // $.getJSON($.cookie('Readerurl') + 'DT_Draw.php', { data: id }, function (data) {
     //     $("#body_text").empty().append("<b>เบิกครั้งที : " + data[0].ID + " เลขที่เบิก : " + data[0].bill_no + " วันที่ : " + data[0].bill_date + " หน่วยงาน : " + data[0].department_name + "</b><p>");
         //$("#item-input").empty().append();

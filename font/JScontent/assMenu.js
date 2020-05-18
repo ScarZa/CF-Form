@@ -1,5 +1,6 @@
 function AssMENU(content, id = null) {
-    $(content).empty().append("<div class='row'><div id='SW' class='col-md-2 offset-md-5'><a id='sw-menu' href='#'><center><img src='images/icon_set2/compose.ico' width='65'><p> แสดงแบบประเมิน</p></center></a></div><div id='menu' class='col-md-10 offset-md-1'></div></div>")
+    // $(content).empty().append("<div class='row'><div id='SW' class='col-md-2 offset-md-5'><a id='sw-menu' href='#'><center><img src='images/icon_set2/compose.ico' width='65'><p> แสดงแบบประเมิน</p></center></a></div><div id='menu' class='col-md-10 offset-md-1'></div></div>")
+    $(content).empty().append("<div class='row'><div id='menu' class='col-md-10 offset-md-1'></div></div>")
     $("div#menu").empty().append($("<div id='menu_row1' class='col-lg-12 row'></div><br>")
                                 ,$("<div id='menu_row2' class='col-lg-12 row'></div><br>")
                                 ,$("<div id='menu_row3' class='col-lg-12 row'></div>"));

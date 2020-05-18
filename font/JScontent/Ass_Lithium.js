@@ -2,16 +2,17 @@ function AssLithium(content, id = null) {
     var RL = new ReportLayout(content);
     RL.GetRL();
     var title = " แบบประเมินยา Lithium Carbonate";
-    $("li#page").empty().text(title)
-    $("h2").empty().prepend("<img src='images/Px.ico' width='40'> ").append(title);
-    if($.cookie("an")!=''){
-        $("#home").attr("onclick", "AssMENUIPD('#index_content');$('div#SW').hide();");
-    }else{$("#home").attr("onclick", "AssMENU('#index_content');$('div#SW').hide();");}
-    //$("li#prev").show();
-    //$("#back").empty().append(" ประเมิน CGI").attr("onclick", "$('#body_text').empty();TBDraw('index_content');");
-    $("#prev").hide();
+    $("nav#nav_bc").hide();
+    // $("li#page").empty().text(title)
+    // $("h2").empty().prepend("<img src='images/Px.ico' width='40'> ").append(title);
+    // if($.cookie("an")!=''){
+    //     $("#home").attr("onclick", "AssMENUIPD('#index_content');$('div#SW').hide();");
+    // }else{$("#home").attr("onclick", "AssMENU('#index_content');$('div#SW').hide();");}
+    // //$("li#prev").show();
+    // //$("#back").empty().append(" ประเมิน CGI").attr("onclick", "$('#body_text').empty();TBDraw('index_content');");
+    // $("#prev").hide();
     $("span.card-title").empty().append(title);
-    $("#add_body").prepend("<span id='body_text'></span>")
+    // $("#add_body").prepend("<span id='body_text'></span>")
     // $.getJSON($.cookie('Readerurl') + 'DT_Draw.php', { data: id }, function (data) {
     //     $("#body_text").empty().append("<b>เบิกครั้งที : " + data[0].ID + " เลขที่เบิก : " + data[0].bill_no + " วันที่ : " + data[0].bill_date + " หน่วยงาน : " + data[0].department_name + "</b><p>");
         //$("#item-input").empty().append();

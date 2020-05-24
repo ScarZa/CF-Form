@@ -80,9 +80,10 @@ function AssC_Case(content, id = null) {
             $.ajax(settings).done(function (result) {
                 $('#index_content').empty();
                 alert(result.messege);
-                if($.cookie("an")!=''){
-                    AssMENUIPD('#index_content');$('div#SW').hide();
-                }else{AssMENU('#index_content');$('div#SW').hide();}
+                $('#index_content').empty();
+                // if($.cookie("an")!=''){
+                //     AssMENUIPD('#index_content');$('div#SW').hide();
+                // }else{AssMENU('#index_content');$('div#SW').hide();}
             });
         }
         }));

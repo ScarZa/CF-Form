@@ -183,7 +183,7 @@ function AssCDI(content, id = null) {
             $.ajax(settings).done(function (result) {
                 alert(result.messege);
                 $("#body_text").empty();
-                AssMENU('#index_content');$('div#SW').hide();
+                //AssMENU('#index_content');$('div#SW').hide();
                 //$("#index_content").empty().load('content/add_user.html');
 
             })

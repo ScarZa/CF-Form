@@ -157,7 +157,7 @@ function AssADL(content, id = null) {
             $.ajax(settings).done(function (result) {
                 alert(result.messege);
                 $('#index_content').empty();
-                AssMENU('#index_content');$('div#SW').hide();
+                //AssMENU('#index_content');$('div#SW').hide();
             });
         //}
         }));

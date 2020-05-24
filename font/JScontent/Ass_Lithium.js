@@ -140,9 +140,10 @@ function AssLithium(content, id = null) {
             console.log(settings)
             $.ajax(settings).done(function (result) {
                 alert(result.messege);
-                if($.cookie("an")!=''){
-                    AssMENUIPD('#index_content');$('div#SW').hide();
-                }else{AssMENU('#index_content');$('div#SW').hide();}
+                $('#index_content').empty();
+                // if($.cookie("an")!=''){
+                //     AssMENUIPD('#index_content');$('div#SW').hide();
+                // }else{AssMENU('#index_content');$('div#SW').hide();}
             })
         }));
     

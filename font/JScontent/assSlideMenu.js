@@ -3,10 +3,10 @@ function AssSlideMenu(content, id = null) {
 
   $(content).empty().append($("<div class='sidebar-header'><img src='images/logo.png' width='95px' class='center'><p style='font-size:13px;text-align: center;'>โรงพยาบาลจิตเวชเลยราชนครินทร์</p></div>")
                               ,$("<ul class='list-unstyled components' id='list-menu'></ul>"));
-            $("#list-menu").empty().append($("<li id='EMR-menu'></li>")
+  $("#list-menu").empty().append($("<li id='EMR-menu'></li>")
+                                        , $("<li id='ER-menu'></li>")
                                         , $("<li id='CGI-menu'></li>")
                                         , $("<li id='SMIv-menu'></li>")
-                                        , $("<li id='ER-menu'></li>")
                                         , $("<li id='alcohol-menu'></li>")
                                         , $("<li id='child-menu'></li>")
                                         , $("<li id='older-menu'></li>")
@@ -20,7 +20,7 @@ function AssSlideMenu(content, id = null) {
                             $("li#EMR-menu").empty().append($("<a id='EMR' href='#'><img src='images/EMR.png' width='25'> EMR</center></a>"));
                             $("li#CGI-menu").empty().append($("<a id='cgi_menu' href='#'><img src='images/cgi.png' width='25'> ประเมิน CGI</center></a>"));
                             $("li#SMIv-menu").empty().append($("<a id='SMI-V' href='#'><img src='images/icon_set2/compose.ico' width='25'> SMI-V</center></a>"));
-                            $("li#ER-menu").empty().append($("<a id='ER' href='#'><img src='images/ER.ico' width='25'> ER</center></a>"));
+                            $("li#ER-menu").empty().append($("<a id='ER' href='#'><img src='images/ER.ico' width='25'> จิตเวชฉุกเฉิน</center></a>"));
                             $("li#alcohol-menu").empty().append($("<a href='#AlSubmenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'><img src='images/Drugs.jpg' width='25'> สุรา/ยาเสพติด</a>")
                                                               , $("<ul class='collapse list-unstyled' id='AlSubmenu'>"
                                                                 + "<li><a id='alcohol_menu' href='#'><img src='images/Drugs.jpg' width='25'> แบบประเมินสุรา</a></li></ul> "));

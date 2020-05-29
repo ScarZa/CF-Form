@@ -24,7 +24,7 @@ function AssMENU(content, id = null) {
                                         ,$("<div class='col-md-2 col-lg-2'><a id='C-case' href='#' title='ส่งปรึกษาเคส'><center><img src='images/consult.ico' width='85'><p> Consult case</p></center></a></div>")
                                         );
 
-            $("div#menu_row3").empty().append($("<div class='col-md-1 col-lg-1'></div><div class='col-md-2 col-lg-2'><a id='ER' href='#'><center><img src='images/ER.ico' width='85'><p> ER</p></center></a></div>")
+            $("div#menu_row3").empty().append($("<div class='col-md-1 col-lg-1'></div><div class='col-md-2 col-lg-2'><a id='ER' href='#'><center><img src='images/ER.ico' width='85'><p> จิตเวชฉุกเฉิน</p></center></a></div>")
                                         ,$("<div class='col-md-2 col-lg-2'><a id='EMR' href='#'><center><img src='images/EMR.png' width='85'><p> EMR</p></center></a></div>")
                                         ,$("<div class='col-md-2 col-lg-2'><a id='SMI-V' href='#'><center><img src='images/icon_set2/compose.ico' width='85'><p> SMI-V</p></center></a></div>")
                                         );

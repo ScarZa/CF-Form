@@ -26,7 +26,7 @@ function AssER(content, id = null) {
             + "<div id='P-data' class='card-body'></div></div><p>"
             + "<center><input type='submit' name='submit' class='btn btn-success' value='บันทึก'></center></div>"
             //+ "<div class='col-lg-6'><div class='row col-lg-12' id='sub-contentTB'></div><div class='row col-lg-12' id='sub-contentGr'></div></div>"
-            +"</div></form>"));console.log($.cookie("hn"));
+            +"</div></form>"));
             $.getJSON('../back/API/detail_CCpatientAPI.php',{data : $.cookie("vn"),data2 : $.cookie("an")},function (data) {
             $("#P-data").append($("<div class='col-lg-12 row'><div class='row col-lg-6'><span id='DP'>HN : "+data[0].hn+"<br>เลขบัตรประชาชน : "+data[0].cid+"<br>ชื่อ-สกุล :"+data[0].fullname
                                     +"<br>ที่อยู่ : "+data[0].informaddr+"<br>วันเกิด "+data[0].birthday+" สถานะภาพ : "+data[0].mrname+"<br>การวินิจฉัย : "+data[0].pdx+" "+data[0].dx0
@@ -130,7 +130,8 @@ function AssER(content, id = null) {
                                 ,$("<div class='form-group row'><label class='col-sm-4 col-form-label'><b>การคัดกรอง SMI-V </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='smi4_chk' value='N'checked required><span class='lbl'> ไม่มี</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='smi4_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
                                 ,$("<div class='form-group row' id='smi4_group'><div class='col-sm-2'></div><div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_1' value='1'><span class='lbl'> 1</span></label></div><div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_2' value='2'><span class='lbl'> 2</span></label></div>"
                                     +"<div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_3' value='3'><span class='lbl'> 3</span></label></div><div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_4' value='4'><span class='lbl'> 4</span></label></div></div>")
-                                    );
+                                
+                                        );
 
                                     // if(data[0].ward){ $("span#DP").append("<br><b style='color: red'>"+data[0].ward+"</b> ");
                                     //                 $("#cgi-post").append($("<input type='hidden' name='ward' value='"+data[0].ward+"'>"));}
@@ -167,7 +168,8 @@ function AssER(content, id = null) {
                                 $("#cigarette").hide();  
                                 $("#alcohol").hide();
                                 $("#dope").hide();
-                                $("#marihuana").hide(); 
+                                $("#marihuana").hide();
+                                
                                 
                                 $("input[type=checkbox][name=relative_chk]").click(function(){
                                     if($("input[type=checkbox][name=relative_chk]:checked").prop("checked") == true){$("input#relative").show();}else{$("input#relative").hide();}
@@ -216,8 +218,8 @@ function AssER(content, id = null) {
                                     });
                                 $("input[type=radio][name=marihuana_chk]").click(function(){
                                     if($("input[type=radio][name=marihuana_chk]:checked").val()=='Y'){$("div#marihuana").show();}else{$("div#marihuana").hide();}
-                                    });           
-
+                                    });    
+                                
             $("#cgi-post").append($("<input type='hidden' name='hn' value='"+$.cookie("hn")+"'>")
                                 ,$("<input type='hidden' name='vn' value='"+$.cookie("vn")+"'>")
                                 //,$("<input type='hidden' name='vstdate' value='"+$.cookie("vstdate")+"'>")

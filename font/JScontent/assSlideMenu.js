@@ -17,10 +17,14 @@ function AssSlideMenu(content, id = null) {
                                         , $("<li id='culture-menu'></li>")
                                         , $("<li id='consult-menu'></li>"));                    
                                 
-                            $("li#EMR-menu").empty().append($("<a id='EMR' href='#'><img src='images/EMR.png' width='25'> EMR</center></a>"));
-                            $("li#CGI-menu").empty().append($("<a id='cgi_menu' href='#'><img src='images/cgi.png' width='25'> ประเมิน CGI</center></a>"));
-                            $("li#SMIv-menu").empty().append($("<a id='SMI-V' href='#'><img src='images/icon_set2/compose.ico' width='25'> SMI-V</center></a>"));
-                            $("li#ER-menu").empty().append($("<a id='ER' href='#'><img src='images/ER.ico' width='25'> จิตเวชฉุกเฉิน</center></a>"));
+                            $("li#EMR-menu").empty().append($("<a id='EMR' href='#'><img src='images/EMR.png' width='25'> EMR</a>"));
+                            $("li#CGI-menu").empty().append($("<a id='cgi_menu' href='#'><img src='images/cgi.png' width='25'> ประเมิน CGI</a>"));
+                            $("li#SMIv-menu").empty().append($("<a id='SMI-V' href='#'><img src='images/icon_set2/compose.ico' width='25'> SMI-V</a>"));
+                            $("li#ER-menu").empty().append($("<a href='#ERSubmenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'><img src='images/ER.ico' width='25'> จิตเวชฉุกเฉิน</a>")
+                                                          , $("<ul class='collapse list-unstyled' id='ERSubmenu'>"
+                                                            + "<li><a id='ER' href='#'><img src='images/ER.ico' width='25'> แบบบันทึกจิตเวชฉุกเฉิน</a></li>"
+                                                            + "<li><a id='Admit' href='#'><img src='images/ER.ico' width='25'> Admit</a></li>"
+                                                            +"</ul >"));
                             $("li#alcohol-menu").empty().append($("<a href='#AlSubmenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'><img src='images/Drugs.jpg' width='25'> สุรา/ยาเสพติด</a>")
                                                               , $("<ul class='collapse list-unstyled' id='AlSubmenu'>"
                                                                 + "<li><a id='alcohol_menu' href='#'><img src='images/Drugs.jpg' width='25'> แบบประเมินสุรา</a></li></ul> "));
@@ -73,5 +77,7 @@ function AssSlideMenu(content, id = null) {
                                         $("a#MMSE").attr("onclick", "$('#head-detial').show();AssMMSE('#index_content');");
                                         $("a#ADL").attr("onclick", "$('#head-detial').show();AssADL('#index_content');");
                                         $("a#NPI-Q").attr("onclick", "$('#head-detial').show();AssNPIQ('#index_content');");
+                                        $("a#Admit").attr("onclick","$('#head-detial').show();AssAdmit('#index_content');");
+  
                                         
 }

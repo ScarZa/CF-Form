@@ -47,9 +47,9 @@ function AssSlideMenu(content, id = null) {
                                                               , $("<ul class='collapse list-unstyled' id='drugSubmenu'>"
                                                                 + "<li><a id='drug01' href='#'><img src='images/Px.ico' width='20'> ยา Clozapine</a></li>"
                                                                 + "<li><a id='drug02' href='#'><img src='images/Px.ico' width='20'> ยา Lithium Carbonate</a></li>"
-                                                                + "<li></li>"
-                                                                + "<li></li>"
-                                                                + "</ul > "));
+                                                                + "<li><a id='drug03' href='#'><img src='images/Px.ico' width='20'> ยา Carbamazepine</a></li>"
+                                                                + "<li><a id='drug04' href='#'><img src='images/Px.ico' width='20'> ยา Sodium Valproate</a></li>"
+                                                                + "</ul> "));
                             $("li#social-menu").empty().append($("<a href='#socialSubmenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'><img src='images/social.jpg' width='25'> สังคมสงเคราะห์</a>")
                                                               , $("<ul class='collapse list-unstyled' id='socialSubmenu'>"
                                                                 + "<li><a id='social' href='#'><img src='images/social.jpg' width='20'> สังคมสงเคราะห์</a></li>"
@@ -62,6 +62,8 @@ function AssSlideMenu(content, id = null) {
                                         $("a#social02").attr("onclick", "$('#head-detial').show();AssSocial02('#index_content');");
                                         $("a#drug01").attr("onclick", "$('#head-detial').show();AssClozapine('#index_content');"); 
                                         $("a#drug02").attr("onclick", "$('#head-detial').show();AssLithium('#index_content');");
+                                        $("a#drug03").attr("onclick", "$('#head-detial').show();AssCarbamazepine('#index_content');");
+                                        $("a#drug04").attr("onclick", "$('#head-detial').show();AssSodium('#index_content');");
                                         $("a#child").attr("onclick", "$('#head-detial').show();AssSNAP_IV('#index_content');");
                                         $("a#CDI").attr("onclick","$('#head-detial').show();AssCDI('#index_content');");
                                         $("a#alcohol_menu").attr("onclick","$('#head-detial').show();AssAlcohol('#index_content');");

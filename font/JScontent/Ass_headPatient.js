@@ -1,6 +1,6 @@
-function AssHeadPatient(content, id = null) {
+function AssHeadPatient(content, id = null,url = '../back/API/') {
     
-  $.getJSON('../back/API/detail_headpatientAPI.php', { data: $.cookie("vn"), data2: $.cookie("an") }, function (data) {
+  $.getJSON(url+"detail_headpatientAPI.php", { data: $.cookie("vn"), data2: $.cookie("an") }, function (data) { console.log(data)
                 $.cookie("hn", data[0].hn);
                 $.cookie("vstdate", data[0].vstdate);
                 $.cookie("sex", data[0].sex);
@@ -12,7 +12,7 @@ function AssHeadPatient(content, id = null) {
                 $.cookie("dx3", data[0].dx3);
     $(content).empty().append($("<div class='card border-warning'><div id='' class='card-body head-color'>"
       +"<div class='row'><div class='row col-lg-12 col-md-12 col-sm-12'>"
-      +"<div class='col-lg-1 col-md-12 col-sm-12'> <img src='../back/API/show_image.php?hn="+$.cookie("hn")+"' width='80' /></div>"
+      +"<div class='col-lg-1 col-md-12 col-sm-12'> <img src='"+url+"show_image.php?hn="+$.cookie("hn")+"' width='80' /></div>"
       +"<div class='row col-lg-11 col-md-12 col-sm-12'>"
       + "<span  class='row col-lg-12 col-md-12 col-sm-12' id=''>"
       + "<div class='col-lg-12 col-md-12 col-sm-12 row'><div class='col-lg-2 col-md-4 col-sm-4' style='text-align:right;'><b>ชื่อ-สกุล : </b></div><div class='row col-lg-3 col-md-8 col-sm-8'> <b>" + data[0].fullname + "</b></div>"

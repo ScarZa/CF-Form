@@ -1,4 +1,4 @@
-function AssSMIV(content, id = null) {
+function AssSMIV(content, id = null,url = '../back/API/') {
     var RL = new ReportLayout(content);
     RL.GetRL();
     var title = " แบบประเมิน SMI-V";
@@ -28,7 +28,7 @@ function AssSMIV(content, id = null) {
             + "<center><input type='submit' name='submit' class='btn btn-success' value='บันทึก'></center></div>"
             //+ "<div class='col-lg-6'><div class='row col-lg-12' id='sub-contentTB'></div><div class='row col-lg-12' id='sub-contentGr'></div></div>"
             +"</div></form>"));
-            $.getJSON('../back/API/detail_DoctorpatientAPI.php',{data : $.cookie("vn"),data2 : $.cookie("an")},function (data) {
+            $.getJSON(url+'detail_DoctorpatientAPI.php',{data : $.cookie("vn"),data2 : $.cookie("an")},function (data) {
             $("#P-data").append($("<div class='row'><div class='col-lg-4 col-md-4 col-sm-12'><label><b>ผู้ประเมิน : </b></lable><select name='recorder' class='form-control select2' id='recorder' required></select></div>"
                                     +"<div class='col-lg-8 col-md-8 col-sm-12'><label class='col-lg-12'><b>วันที่ประเมิน : </b></lable><input type='text' name='assdate' class='' id='assdate' required></div></div>") 
                                 ,$("<div class='row'><div class='col-lg-12' id='ass-SMIV'></div></div>"))
@@ -61,7 +61,7 @@ function AssSMIV(content, id = null) {
                                 DP.GetDatepicker("#assdate");
 
                                 for (var c = 1; c <= 5; c++){ 
-                                  $.getJSON('../back/API/Q_SMIV_Data.php', { data: c }, function (data) {
+                                  $.getJSON(url+'Q_SMIV_Data.php', { data: c }, function (data) {
                                     var ii = 0; 
                                     for (var i = 1; i <= data.length;i++){
                                     $("div#SMIV_group"+data[ii].smiv_group).append($("<div class='col-lg-1'>&nbsp;&nbsp;</div><div class='col-lg-11'><input class='ace' type='checkbox' name='smiv"+data[ii].smiv_group+"_"+i+"' value='"+data[ii].Rsmiv_id+"' disabled><span id='Re"+data[ii].smiv_group+"_"+i+"'> "+data[ii].smiv_result+" &nbsp;&nbsp;</span></div></div><br>"))
@@ -129,7 +129,7 @@ function AssSMIV(content, id = null) {
             // }
             var settings = {
                 type: "POST",
-                url: "../back/API/prcSMIVAPI.php",
+                url: url+"prcSMIVAPI.php",
                 async: true,
                 crossDomain: true,
                 data: dataForm,

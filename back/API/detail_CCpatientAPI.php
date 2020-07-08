@@ -48,7 +48,10 @@ if(!empty($data2)){
     $execute=array(':vn'=>$data);
     $rslt=$conn_DB->select_a($execute);
 }
-
+    $sql2="SELECT count(ER_id)count FROM jvlER_regis WHERE vn= :vn";
+    $conn_DB->imp_sql($sql2);
+    $execute2=array(':vn'=>$data);
+    $rslt2=$conn_DB->select_a($execute2);
 //print_r($rslt);
 
 //for($i=0;$i<count($rslt);$i++){
@@ -70,6 +73,7 @@ if(!empty($data2)){
     $series['dx4'] = $rslt['dx4'];
     $series['dx5'] = $rslt['dx5'];
     $series['ptname'] = $conv->tis620_to_utf8( $rslt['ptname']);
+    $series['check'] = $rslt2['count'];
 array_push($result, $series);    
 //}
 //print_r($result);

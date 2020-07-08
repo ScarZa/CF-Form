@@ -125,17 +125,18 @@ function AssEMR(content, id = null) {
                                 AddData("detail_EMRpatientAPI.php",$.cookie("vn"));
             $("#vdate").append($("<div class='row list-group' id='vdate_list'></div>"))  
 
-                                $.getJSON('../back/API/vsdate_Data.php',{data : $.cookie("hn")},function (data) {
-                                    $("div#vdate_list").empty();
-                                    $.each(data, function(i, item) {
-                                        $("div#vdate_list").append($("<a href='#' id='li_vdate"+i+"' class='list-group-item list-group-item-action list-group-item-secondary'><b>"+data[i].vstdate+"</b> <b style='font-size:13px'>"+data[i].vsttime+" น.</b></a>")
-                                        )
-                                        if(item.an){$("#li_vdate"+i).attr("style","color: red");}
-                                        $("#li_vdate"+i).click(function(){
-                                            AddData("detail_EMRpatientAPI.php",item.vn);
-                                        })
-                                }); 
-                                })
+    $.getJSON('../back/API/vsdate_Data.php', { data: $.cookie("hn") }, function (data) {
+        $("div#vdate_list").empty();
+        $.each(data, function (i, item) {
+            $("div#vdate_list").append($("<a href='#' id='li_vdate" + i + "' class='list-group-item list-group-item-action list-group-item-secondary'><b>" + data[i].vstdate + "</b> <b style='font-size:13px'>" + data[i].vsttime + " น.</b></a>")
+            )
+            if (item.an) { $("#li_vdate" + i).attr("style", "color: red"); }
+            $("#li_vdate" + i).click(function () {
+                AddData("detail_EMRpatientAPI.php", item.vn);
+            })
+        });
+    });
+    
                                 
 }
 function AddData(json, id ) {
@@ -156,7 +157,7 @@ function AddData(json, id ) {
         $("#religion").empty().append(data[0].religion_name);
         $("#blood").empty().append(data[0].bloodgrp);
         $("#disease").empty().append(data[0].disease);
-        $("#allergic").empty().append(data[0].drugallergy);
+        //$("#allergic").empty().append(data[0].drugallergy);
         $("#vstdate").empty().append('วันที่รับบริการ : '+data[0].vstdate);
         $("#vsttime").empty().append('เวลา : '+data[0].vsttime+' น.');
         $("#ovstistname").empty().append('ประเภท : '+data[0].ovstistname);
@@ -207,6 +208,12 @@ function AddData(json, id ) {
         $("#hpi").empty().append("HPI : "+data[0].hpi);
         $("#pmh").empty().append("PMH : "+data[0].pmh);
 
+    });
+    $.getJSON('../back/API/allergy_Data.php', { data: $.cookie("hn") }, function (data) {
+        $("#allergic").empty();
+        $.each( data, function( key, value ) {
+            $("#allergic").append("<div class='col-lg-12' style='color :yellow'>"+value.drugallergy+"</div><br>");
+          });
     });
     $("#OPDMed").empty();
     $("#IPDMed").empty();

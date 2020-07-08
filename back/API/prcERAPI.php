@@ -33,6 +33,8 @@ if ($method == 'add_ER') {
     $police_name = isset($_POST['police_name'])?$conv->utf8_to_tis620($_POST['police_name']):'';
     $weapon_chk = $conv->utf8_to_tis620($_POST['weapon_chk']);
     $weapon = isset($_POST['weapon'])?$conv->utf8_to_tis620($_POST['weapon']):'';
+    $weaponer_chk = $conv->utf8_to_tis620($_POST['weaponER_chk']);
+    $weaponer = isset($_POST['weaponER'])?$conv->utf8_to_tis620($_POST['weaponER']):'';
     $detain_chk = $conv->utf8_to_tis620($_POST['detain_chk']);
     $detain = isset($_POST['detain'])?$conv->utf8_to_tis620($_POST['detain']):'';
     $typeP_1 = isset($_POST['typeP_1'])?$_POST['typeP_1']:'';
@@ -61,6 +63,8 @@ if ($method == 'add_ER') {
     $wound = isset($_POST['wound'])?$conv->utf8_to_tis620($_POST['wound']):'';
     $surgery_chk = $conv->utf8_to_tis620($_POST['surgery_chk']);
     $surgery = isset($_POST['surgery'])?$conv->utf8_to_tis620($_POST['surgery']):'';
+    $complicate_chk = $conv->utf8_to_tis620($_POST['complicate_chk']);
+    $complicate = isset($_POST['complicate'])?$conv->utf8_to_tis620($_POST['complicate']):'';
     $cigarette_chk = $conv->utf8_to_tis620($_POST['cigarette_chk']);
     $D_cigarette = isset($_POST['D_cigarette'])?$conv->utf8_to_tis620($_POST['D_cigarette']):'';
     $last_useC = isset($_POST['last_useC'])?$_POST['last_useC']:'';
@@ -85,9 +89,9 @@ if ($method == 'add_ER') {
     $recdate = date('Y-m-d H:i:s');
 
 
-    $data = array($hn,$vn,$relative,$police_name,$weapon_chk,$weapon,$detain_chk,$detain,$typeP_1,$typeP_2,$typeP_3,$typeP_4
+    $data = array($hn,$vn,$relative,$police_name,$weapon_chk,$weapon,$weaponer_chk,$weaponer,$detain_chk,$detain,$typeP_1,$typeP_2,$typeP_3,$typeP_4
     ,$typeP_5,$typeP_6,$typeP_7,$smi4_chk,$smi4_1,$smi4_2,$smi4_3,$smi4_4,$lawpsych_chk,$lawpsych,$sleep_chk,$sleep,$IC_chk,$IC,$med_chk,$med
-    ,$accident_chk,$accident,$wound_chk,$wound,$surgery_chk,$surgery,$cigarette_chk,$D_cigarette,$last_useC,$alcohol_chk,$alcohol_type,$alcohol_vol,$last_useA
+    ,$accident_chk,$accident,$wound_chk,$wound,$surgery_chk,$surgery,$complicate_chk,$complicate,$cigarette_chk,$D_cigarette,$last_useC,$alcohol_chk,$alcohol_type,$alcohol_vol,$last_useA
     ,$dope_chk,$dope_type,$last_useD,$marihuana_chk,$D_marihuana,$last_useM,$ADL,$work,$menses_chk,$menses,$admit_chk,'','',$recdate,$recorder);
     //$field = array('id','hcode','vdate','vn','hn','sex','dob','pdx','dx0','dx1','dx2','dx3','cgis_score','clinic','user','dupdate');
     $table = "jvlER_regis";

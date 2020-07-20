@@ -75,7 +75,7 @@ if ($method == 'add_SMIV') {
         $smiv5_3 = isset($_POST['smiv5_3'])?$_POST['smiv5_3']:'';
         $smiv5_4 = isset($_POST['smiv5_4'])?$_POST['smiv5_4']:'';
         $smiv_class = isset($_POST['smiv_class'])?$_POST['smiv_class']:'';
-        $comment = isset($_POST['comment'])?$_POST['comment']:'';
+        $comment = isset($_POST['comment'])?$conv->utf8_to_tis620($_POST['comment']):'';
         $regdate = date('Y-m-d H:i:s');
         $recorder = $conv->utf8_to_tis620($_POST['recorder']);
         $user = $conv->utf8_to_tis620($_POST['user']);

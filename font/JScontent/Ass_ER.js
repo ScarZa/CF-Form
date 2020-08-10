@@ -129,8 +129,8 @@ function AssER(content, id = null) {
         +"<div class='col-sm-2'><label><input class='ace' type='checkbox' name='typeP_3' value='3'><span class='lbl'> เฝ้าระวังฆ่าตัวตาย</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='typeP_4' value='4'><span class='lbl'> เฝ้าระวังอุบัติเหตุ</span></label></div><div class='col-sm-3'><label><input class='ace' type='checkbox' name='typeP_5' value='5'><span class='lbl'> เฝ้าระวังพฤติกรรมรุนแรง</span></label></div>"
         +"<div class='col-sm-2'></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='typeP_6' value='6'><span class='lbl'> พรบ. 120 ยาเสพติด</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='typeP_7' value='7'><span class='lbl'> พรบ.สุรา</span></label></div></div>")
     ,$("<div class='form-group row'><label class='col-sm-4 col-form-label'><b>การคัดกรอง SMI-V </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='smi4_chk' value='N'checked required><span class='lbl'> ไม่มี</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='smi4_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
-    ,$("<div class='form-group row' id='smi4_group'><div class='col-sm-2'></div><div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_1' value='1'><span class='lbl'> 1</span></label></div><div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_2' value='2'><span class='lbl'> 2</span></label></div>"
-        +"<div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_3' value='3'><span class='lbl'> 3</span></label></div><div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_4' value='4'><span class='lbl'> 4</span></label></div></div>")
+    // ,$("<div class='form-group row' id='smi4_group'><div class='col-sm-2'></div><div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_1' value='1'><span class='lbl'> 1</span></label></div><div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_2' value='2'><span class='lbl'> 2</span></label></div>"
+    //     +"<div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_3' value='3'><span class='lbl'> 3</span></label></div><div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_4' value='4'><span class='lbl'> 4</span></label></div></div>")
     );
             $.getJSON('../back/API/detail_CCpatientAPI.php',{data : $.cookie("vn"),data2 : $.cookie("an")},function (data) {
             $("#P-data").append($("<div class='row col-lg-6'><span id='DP'>HN : "+data[0].hn+"<br>เลขบัตรประชาชน : "+data[0].cid+"<br>ชื่อ-สกุล :"+data[0].fullname
@@ -218,7 +218,12 @@ function AssER(content, id = null) {
                                     if($("input[type=radio][name=med_chk]:checked").val()=='Y'){$("textarea#med").show();}else{$("textarea#med").hide();}
                                     });   
                                 $("input[type=radio][name=smi4_chk]").click(function(){
-                                    if($("input[type=radio][name=smi4_chk]:checked").val()=='Y'){$("div#smi4_group").show();}else{$("div#smi4_group").hide();}
+                                    //if($("input[type=radio][name=smi4_chk]:checked").val()=='Y'){$("div#smi4_group").show();}else{$("div#smi4_group").hide();}
+                                    if ($("input[type=radio][name=smi4_chk]:checked").val() == 'Y') { console.log($.cookie("username"))
+                                        popup('content/Ass_SMIV.html?vn='+$.cookie('vn')+'?user='+$.cookie("user"), popup, 1440, 900);
+                                       // $("div#smi4_group").show();
+                                    }
+                                    //else { $("div#smi4_group").hide(); }
                                     });
                                 $("input[type=radio][name=accident_chk]").click(function(){
                                     if($("input[type=radio][name=accident_chk]:checked").val()=='Y'){$("#accident").show();}else{$("#accident").hide();}

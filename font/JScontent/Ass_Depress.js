@@ -1,4 +1,4 @@
-function AssDepress(content, id = null) {
+function AssDepress(content, id = null,url = '../back/API/') {
     var RL = new ReportLayout(content);
     RL.GetRL();
     var title = " แบบคัดกรองโรคซึมเศร้า";
@@ -55,15 +55,15 @@ function AssDepress(content, id = null) {
 
             $("#Question-2").append("<table class='table table-border table-hover' frame='below' width='100%'><thead><tr align='center'><th width='60%'>ในช่วง 2 สัปดาห์ที่ผ่านมารวมทั้งวันนี้<p>ท่านมีอาการเหล่านี้ บ่อยแค่ไหน</th><td width='10%' valign='top'><b>ไม่มีเลย</b></td><th width='10%'>บางวัน<p>1-7วัน</th><th width='10%'>บ่อย<p> >7วัน</th><td width='10%'  valign='top'><b>ทุกวัน</b></td></tr></thead><tbody id='A2'></tbody></table>")
             
-            $("tbody#A2").append($("<tr><td>1. เบื่อ ไม่สนใจอยากทำอะไร</td><td align='center'><input type='radio' name='9Q-1' value='0' checked required></td><td align='center'><input type='radio' name='9Q-1' value='1' required></td><td align='center'><input type='radio' name='9Q-1' value='2' required></td><td align='center'><input type='radio' name='9Q-1' value='3' required></td></tr>")
-                                ,$("<tr><td>2. ไม่สบายใจ ซึมเศร้า ท้อแท้</td><td align='center'><input type='radio' name='9Q-2' value='0' checked required></td><td align='center'><input type='radio' name='9Q-2' value='1' required></td><td align='center'><input type='radio' name='9Q-2' value='2' required></td><td align='center'><input type='radio' name='9Q-2' value='3' required></td></tr>")
-                                ,$("<tr><td>3. หลับยากหรือหลับๆตื่นๆหรือหลับมากไป</td><td align='center'><input type='radio' name='9Q-3' value='0' checked required></td><td align='center'><input type='radio' name='9Q-3' value='1' required></td><td align='center'><input type='radio' name='9Q-3' value='2' required></td><td align='center'><input type='radio' name='9Q-3' value='3' required></td></tr>")
-                                ,$("<tr><td>4. เหนื่อยง่ายหรือไม่ค่อยมีแรง</td><td align='center'><input type='radio' name='9Q-4' value='0' checked required></td><td align='center'><input type='radio' name='9Q-4' value='1' required></td><td align='center'><input type='radio' name='9Q-4' value='2' required></td><td align='center'><input type='radio' name='9Q-4' value='3' required></td></tr>")
-                                ,$("<tr><td>5. เบื่ออาหารหรือกินมากเกินไป</td><td align='center'><input type='radio' name='9Q-5' value='0' checked required></td><td align='center'><input type='radio' name='9Q-5' value='1' required></td><td align='center'><input type='radio' name='9Q-5' value='2' required></td><td align='center'><input type='radio' name='9Q-5' value='3' required></td></tr>")
+    $("tbody#A2").append($("<tr><td>1. คิดทำร้ายตัวเอง หรือคิดว่าถ้าตายไปคงจะดี</td><td align='center'><input type='radio' name='9Q-9' value='0' checked required></td><td align='center'><input type='radio' name='9Q-9' value='1' required></td><td align='center'><input type='radio' name='9Q-9' value='2' required></td><td align='center'><input type='radio' name='9Q-9' value='3' required></td></tr>")
+                                ,$("<tr><td>2. เบื่อ ไม่สนใจอยากทำอะไร</td><td align='center'><input type='radio' name='9Q-1' value='0' checked required></td><td align='center'><input type='radio' name='9Q-1' value='1' required></td><td align='center'><input type='radio' name='9Q-1' value='2' required></td><td align='center'><input type='radio' name='9Q-1' value='3' required></td></tr>")
+                                ,$("<tr><td>3. เบื่ออาหารหรือกินมากเกินไป</td><td align='center'><input type='radio' name='9Q-5' value='0' checked required></td><td align='center'><input type='radio' name='9Q-5' value='1' required></td><td align='center'><input type='radio' name='9Q-5' value='2' required></td><td align='center'><input type='radio' name='9Q-5' value='3' required></td></tr>")
+                                ,$("<tr><td>4. พูดช้า ทำอะไรช้าลงจนคนอื่นสังเกตุเห็นได้ หรือกระสับกระส่ายไม่สามารถอยู่นิ่งได้เหมือนที่เคยเป็น</td><td align='center'><input type='radio' name='9Q-8' value='0' checked required></td><td align='center'><input type='radio' name='9Q-8' value='1' required></td><td align='center'><input type='radio' name='9Q-8' value='2' required></td><td align='center'><input type='radio' name='9Q-8' value='3' required></td></tr>")
+                                ,$("<tr><td>5. ไม่สบายใจ ซึมเศร้า ท้อแท้</td><td align='center'><input type='radio' name='9Q-2' value='0' checked required></td><td align='center'><input type='radio' name='9Q-2' value='1' required></td><td align='center'><input type='radio' name='9Q-2' value='2' required></td><td align='center'><input type='radio' name='9Q-2' value='3' required></td></tr>")
                                 ,$("<tr><td>6. รู้สึกไม่ดีกับตัวเอง คิดว่าตัวเองล้มเหลวหรือครอบครัวผิดหวัง</td><td align='center'><input type='radio' name='9Q-6' value='0' checked required></td><td align='center'><input type='radio' name='9Q-6' value='1' required></td><td align='center'><input type='radio' name='9Q-6' value='2' required></td><td align='center'><input type='radio' name='9Q-6' value='3' required></td></tr>")
                                 ,$("<tr><td>7. สมาธิไม่ดี เวลาทำอะไร เช่น ดูโทรทัศน์ ฟังวิทยุ หรือทำงานที่ต้องใช้ความตั้งใจ</td><td align='center'><input type='radio' name='9Q-7' value='0' checked required></td><td align='center'><input type='radio' name='9Q-7' value='1' required></td><td align='center'><input type='radio' name='9Q-7' value='2' required></td><td align='center'><input type='radio' name='9Q-7' value='3' required></td></tr>")
-                                ,$("<tr><td>8. พูดช้า ทำอะไรช้าลงจนคนอื่นสังเกตุเห็นได้ หรือกระสับกระส่ายไม่สามารถอยู่นิ่งได้เหมือนที่เคยเป็น</td><td align='center'><input type='radio' name='9Q-8' value='0' checked required></td><td align='center'><input type='radio' name='9Q-8' value='1' required></td><td align='center'><input type='radio' name='9Q-8' value='2' required></td><td align='center'><input type='radio' name='9Q-8' value='3' required></td></tr>")
-                                ,$("<tr><td>9. คิดทำร้ายตัวเอง หรือคิดว่าถ้าตายไปคงจะดี</td><td align='center'><input type='radio' name='9Q-9' value='0' checked required></td><td align='center'><input type='radio' name='9Q-9' value='1' required></td><td align='center'><input type='radio' name='9Q-9' value='2' required></td><td align='center'><input type='radio' name='9Q-9' value='3' required></td></tr>")
+                                ,$("<tr><td>8. หลับยากหรือหลับๆตื่นๆหรือหลับมากไป</td><td align='center'><input type='radio' name='9Q-3' value='0' checked required></td><td align='center'><input type='radio' name='9Q-3' value='1' required></td><td align='center'><input type='radio' name='9Q-3' value='2' required></td><td align='center'><input type='radio' name='9Q-3' value='3' required></td></tr>")
+                                ,$("<tr><td>9. เหนื่อยง่ายหรือไม่ค่อยมีแรง</td><td align='center'><input type='radio' name='9Q-4' value='0' checked required></td><td align='center'><input type='radio' name='9Q-4' value='1' required></td><td align='center'><input type='radio' name='9Q-4' value='2' required></td><td align='center'><input type='radio' name='9Q-4' value='3' required></td></tr>")
                                 ,$("<tr><td colspan='3' align='right'><b id='res-9Q'></b></td><td colspan='2' align='right'><a class='btn btn-success' id='process9Q'>ประมวลผล 9Q</a><td></tr>"));
 
             $("#Question-3").append("<table class='table table-border table-hover' frame='below' width='100%'><thead><tr align='center'><th width='10%'>ลำดับ</th><th width='70%'>คำถาม</th><th width='10%'>ไม่มี</th><th width='10%'>มี</th></tr></thead><tbody id='A3'></tbody></table>");
@@ -104,7 +104,7 @@ function AssDepress(content, id = null) {
                 var Q98 = parseInt($("input[type=radio][name=9Q-8]:checked").val());
                 var Q99 = parseInt($("input[type=radio][name=9Q-9]:checked").val());
                 total_9Q = (Q91+Q92+Q93+Q94+Q95+Q96+Q97+Q98+Q99);
-                $.getJSON('../back/API/res9q_Data.php',{data:total_9Q}, function (GD) { console.log(GD);
+                $.getJSON(url+'res9q_Data.php',{data:total_9Q}, function (GD) { console.log(GD);
                     $("b#res-9Q").empty().append("ได้ "+total_9Q+" คะแนน / ผลที่ได้ "+GD[0].name);
                     $("#cgi-post").append($("<input type='hidden' name='res_9q' value='"+GD[0].id+"'>")
                                         ,$("<input type='hidden' name='score9Q' value='"+total_9Q+"'>"));
@@ -129,7 +129,7 @@ function AssDepress(content, id = null) {
                     var Q88 = parseInt($("input[type=radio][name=8Q-8]:checked").val());
                     total_8Q = (Q81+Q82+Q83+Q831+Q84+Q85+Q86+Q87+Q88);console.log(total_8Q);
                     $.ajax({type: "GET",
-                            url: "../back/API/res8q_Data.php",
+                            url: url+"res8q_Data.php",
                             data :{data:total_8Q},
                             success: function(R8q) { console.log(R8q);
                     $("b#res-8Q").empty().append("ได้ "+total_8Q+" คะแนน / ผลที่ได้ "+R8q[0].name);
@@ -153,7 +153,7 @@ function AssDepress(content, id = null) {
             // }
             var settings = {
                 type: "POST",
-                url: "../back/API/prc2q8q9qAPI.php",
+                url: url+"prc2q8q9qAPI.php",
                 async: true,
                 crossDomain: true,
                 data: dataForm,
@@ -165,7 +165,7 @@ function AssDepress(content, id = null) {
             $.ajax(settings).done(function (result) {
                 alert(result.messege);
                 $("#body_text").empty();
-                AssDepress('#index_content',$.cookie('hn'));
+                AssDepress('#index_content',$.cookie('hn'),url);
                 //$("#index_content").empty().load('content/add_user.html');
 
             })
@@ -184,7 +184,7 @@ function AssDepress(content, id = null) {
     // GetjQueryCookie('year',nowyear)
     //CTb.FileDel('DelDrawItemAPI.php');
     //CTb.GetNewTableAjax('sub-contentTB', '../back/API/DT_Drawlotitem.php?' + id, $.cookie('Readerurl') + 'tempSendDataAPI.php', column1
-    CTb.GetNewTableAjax('sub-contentTB', '../back/API/DT_Depress.php?'+$.cookie('hn'), '../back/API/tempSendDataAPI.php', column1
+    CTb.GetNewTableAjax('sub-contentTB', url+'DT_Depress.php?'+$.cookie('hn'), url+'tempSendDataAPI.php', column1
         , null, null, null, null, false, false, null, false, null, false, null, null, null, null, null, null);
 
 

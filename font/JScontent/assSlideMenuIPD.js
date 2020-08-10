@@ -5,7 +5,7 @@ function AssSlideMenuIPD(content, id = null) {
                               ,$("<ul class='list-unstyled components' id='list-menu'></ul>"));
             $("#list-menu").empty().append($("<li id='EMR-menu'></li>")
                                         , $("<li id='CGI-menu'></li>")
-                                        //, $("<li id='SMIv-menu'></li>")
+                                        , $("<li id='SMIv-menu'></li>")
                                         //, $("<li id='ER-menu'></li>")
                                         , $("<li id='alcohol-menu'></li>")
                                         //, $("<li id='child-menu'></li>")
@@ -66,7 +66,7 @@ function AssSlideMenuIPD(content, id = null) {
                                         $("a#cigarette").attr("onclick","#");
                                         $("a#cgi_menu").attr("onclick","$('#head-detial').show();AssCGI('#index_content');");
                                         $("a#culture").attr("onclick","$('#head-detial').show();AssCulture('#index_content');");
-                                        $("a#smi-v").attr("onclick","#");
+                                        //$("a#smi-v").attr("onclick","#");
                                         $("a#depress").attr("onclick","$('#head-detial').show();AssDepress('#index_content');");
                                         $("a#C-case").attr("onclick","$('#head-detial').show();AssC_Case('#index_content');");
                                         $("a#ER").attr("onclick","$('#head-detial').show();AssER('#index_content');");

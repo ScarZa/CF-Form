@@ -26,9 +26,10 @@ function AssSMIV(content, id = null,url = '../back/API/') {
             //+ "<div id='P-data' class='card-body'></div></div><p>"
             + "<div id='P-data'></div><p>"
             + "<center><input type='submit' name='submit' class='btn btn-success' value='บันทึก'></center></div>"
+            +" <center class='col-lg-12' ><h4 style='text-align: center;color: red;'>ประวัติการประเมิน SMI-V</h4><div id='tb_send'></div></center></div>"
             //+ "<div class='col-lg-6'><div class='row col-lg-12' id='sub-contentTB'></div><div class='row col-lg-12' id='sub-contentGr'></div></div>"
             +"</div></form>"));
-            $.getJSON(url+'detail_DoctorpatientAPI.php',{data : $.cookie("vn"),data2 : $.cookie("an")},function (data) {
+            //$.getJSON(url+'detail_DoctorpatientAPI.php',{data : $.cookie("vn"),data2 : $.cookie("an")},function (data) {
             $("#P-data").append($("<div class='row'><div class='col-lg-4 col-md-4 col-sm-12'><label><b>ผู้ประเมิน : </b></lable><select name='recorder' class='form-control select2' id='recorder' required></select></div>"
                                     +"<div class='col-lg-8 col-md-8 col-sm-12'><label class='col-lg-12'><b>วันที่ประเมิน : </b></lable><input type='text' name='assdate' class='' id='assdate' required></div></div>") 
                                 ,$("<div class='row'><div class='col-lg-12' id='ass-SMIV'></div></div>"))
@@ -52,8 +53,8 @@ function AssSMIV(content, id = null,url = '../back/API/') {
                                     +"<div class='row col-lg-12'><div class='col-lg-1'><input class='ace' type='radio' name='chk5' value='0'checked required><span class='lbl'> ไม่มี</span></div><div class='col-lg-1'><input class='ace' type='radio' name='chk5' value='1' required><span class='lbl'> มี</span></div></div></div>"
                                     +"<div class='form-group row'><div class='col-lg-12 row' id='SMIV_group5'></div>"
                                     +"</div></div><p></p>")
-                                , $("<div class='form-group row'><label class='col-sm-3 col-form-label'><b>กลุ่มผู้ป่วย SMI-V</b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='smiv_class' value='1'checked required><span class='lbl'> เฝ้าระวัง</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='smiv_class' value='2' required><span class='lbl'> ติดตามในระบบ</span></label></div>"
-                                    +"<div class='col-sm-2'><label><input class='ace' type='radio' name='smiv_class' value='3' required><span class='lbl'> ไม่เป็นผู้ป่วย SMI-V</span></label></div></div > ")
+                                , $("<div class='form-group row'><label class='col-sm-3 col-form-label'><b>กลุ่มผู้ป่วย SMI-V</b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='smiv_class' value='3' checked required><span class='lbl'> ไม่เป็นผู้ป่วย SMI-V</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='smiv_class' value='2' required><span class='lbl'> เป็นผู้ป่วย SMI-V</span></label></div></div > ")
+                                    
                                 ,$("<div class='form-group row'><label class='col-sm-1 col-form-label'><b>หมายเหตุ </b></label><div class='col-sm-11'><input class='form-control' type='text' name='comment' value=''></div></div>")
                                 );
                                 selectMash('#recorder', 'user_Data.php', 'เลือกผู้ประเมิน', $.cookie("user"));
@@ -108,7 +109,10 @@ function AssSMIV(content, id = null,url = '../back/API/') {
                                 ,$("<input type='hidden' name='user' value='"+$.cookie("user")+"'>")
                                 ,$("<input type='hidden' name='method' value='add_SMIV'>"));
 
-
+                                var column1 = ["วันที่ประเมิน", "AN","เหตุผล","ผู้ส่ง","สถานะ"];
+                                var CTb = new createTableAjax();
+                                CTb.GetNewTableAjax('tb_send', url+'DT_SMIVsend.php?'+$.cookie('hn'), '../back/API/tempSendDataAPI.php', column1
+                                , null, null, null, null, false, false, null, false, null, false, null, null, null, null, null, null);
             //$("#nav-general-tab").on('onclick', (function (e) { e.preventDefault();  
                 //AssDocGeneral("#nav-general");
                 
@@ -145,7 +149,7 @@ function AssSMIV(content, id = null,url = '../back/API/') {
             });
         //}
         }));
-    });
+    //});
 
 //         $("input[type=submit][name=submit]").click(function (e) { console.log('1234');
 // $.ajax({

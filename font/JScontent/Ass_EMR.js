@@ -25,7 +25,7 @@ function AssEMR(content, id = null) {
             $("#P-data").append($("<div class='row'><div class='' id='ass-EMR'></div></div>"))
             $("#ass-EMR").append($("<div class='card text-white bg-info mb-3'><div class='card-header'><b>ข้อมูลทั่วไป</b></div><div id='' class='card-body'>"
                                     +"<div class='row'>"
-                                    +"<div class='col-lg-2 col-md-12 col-sm-12'> <img src='../back/API/show_image.php?hn="+$.cookie("hn")+"' width='150' /></div>"
+                                    +"<div class='col-lg-2 col-md-12 col-sm-12'> <img id='pics-panel' width='150' /></div>"
                                     +"<div class='col-lg-10 col-md-12 col-sm-12'>"
                                     +"<span  class='row' id='DP'>"
                                     +"<div class='col-lg-12 col-md-12 col-sm-12 row'><div class='col-lg-2 col-md-6 col-sm-6' style='text-align:right;'><b>ชื่อ-สกุล : </b></div><div class='row col-lg-3 col-md-6 col-sm-6'> <b id='fullname'></b></div>"
@@ -140,7 +140,11 @@ function AssEMR(content, id = null) {
                                 
 }
 function AddData(json, id ) {
-    $.getJSON('../back/API/'+json,{data : id},function (data) {
+    $.getJSON('../back/API/' + json, { data: id }, function (data) {
+        $.getJSON('../back/API/check_image.php', { data1: data[0].hn }, function (datai) { console.log(datai)
+            if (datai.cc == '') { var img = '../images/person.png' } else { var img = '../back/API/show_image.php?hn=' + data[0].hn }
+            $("#pics-panel").attr("src", img)
+        });
         $("#fullname").empty().append(data[0].fullname);
         $("#hn").empty().append(data[0].hn);
         $("#vn").empty().append(data[0].vn);

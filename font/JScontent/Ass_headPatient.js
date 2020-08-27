@@ -12,7 +12,7 @@ function AssHeadPatient(content, id = null,url = '../back/API/') {
                 $.cookie("dx3", data[0].dx3);
     $(content).empty().append($("<div class='card border-warning'><div id='' class='card-body head-color'>"
       +"<div class='row'><div class='row col-lg-12 col-md-12 col-sm-12'>"
-      +"<div class='col-lg-1 col-md-12 col-sm-12'> <img src='"+url+"show_image.php?hn="+$.cookie("hn")+"' width='80' /></div>"
+      +"<div class='col-lg-1 col-md-12 col-sm-12'> <img id='pics-panel' width='80' /></div>"
       +"<div class='row col-lg-11 col-md-12 col-sm-12'>"
       + "<span  class='row col-lg-12 col-md-12 col-sm-12' id=''>"
       + "<div class='col-lg-12 col-md-12 col-sm-12 row'><div class='col-lg-2 col-md-4 col-sm-4' style='text-align:right;'><b>ชื่อ-สกุล : </b></div><div class='row col-lg-3 col-md-8 col-sm-8'> <b>" + data[0].fullname + "</b></div>"
@@ -33,7 +33,11 @@ function AssHeadPatient(content, id = null,url = '../back/API/') {
       + "<div class='col-lg-12 alert alert-danger' id='alert_aear'>"
       //+ "<p class='alert alert-danger' id='alert_aear'></p>"
       +"</div></div> "
-      + "</div></div></div>"));
+        + "</div></div></div>"));
+        $.getJSON(url+'check_image.php', { data1: data[0].hn }, function (datai) { console.log(datai)
+            if (datai.cc == '') { var img = '../images/person.png' } else { var img = url+'show_image.php?hn=' + data[0].hn }
+            $("#pics-panel").attr("src", img)
+        });
     
       $("#alert_aear").append("<div class='row'><div class='col-lg-1 col-md-3 col-sm-3' style='text-align:right;'><b>CGI-S : </b></div><div class='row col-lg-1 col-md-1 col-sm-1'>"+data[0].cgi+"</div>"
       +"<div class='col-lg-1 col-md-3 col-sm-3' style='text-align:right;'><b>9Q : </b></div><div class='row col-lg-1 col-md-1 col-sm-1'> "+data[0].Q9+"</div>"

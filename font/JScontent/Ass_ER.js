@@ -71,7 +71,7 @@ function AssER(content, id = null) {
     ,$("<div class='form-group row'><label class='col-sm-4 col-form-label'><b>ภาวะแทรกซ้อน (ER) </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='complicate_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='complicate_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>"
     +"<textarea name='complicate' id='complicate' class='form-control' placeholder='รายละเอียดภาวะแทรกซ้อน'></textarea>")
     ,$("<hr>")
-    ,$("<dir class='col-lg-12 row' id='menses-div'></dir>")
+    ,$("<span class='' id='menses-div'></span>")
     ,$("<div class='form-group row'><label class='col-sm-4 col-form-label'><b>การสูบบุรี่ </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='cigarette_chk' value='N'checked required><span class='lbl'> ไม่สูบ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='cigarette_chk' value='Y' required><span class='lbl'> สูบ</span></label></div></div>")
     ,$("<div class='row' id='cigarette'>"
         +"<div class='col-lg-12 row'>"
@@ -152,8 +152,9 @@ function AssER(content, id = null) {
                                     $("#last_useD").attr("onkeyup","inputDigits(last_useD)");
 
                                     if(data[0].sex == '2'){
-                                        $("#menses-div").append($("<div class='col-lg-12 form-group row'><label class='col-sm-5 col-form-label row'><b>ประจำเดือน </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='menses_chk' value='N'checked required><span class='lbl'> ปกติ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='menses_chk' value='Y' required><span class='lbl'> ไม่ปกติ</span></label></div></div>")
-                                                                ,$("<textarea name='menses' id='menses' class='form-control' placeholder='รายละเอียดประจำเดือน'></textarea>")
+                                        $("#menses-div").append($("<div class='form-group row'><label class='col-sm-4 col-form-label'><b>ประจำเดือน </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='menses_chk' value='N'checked required><span class='lbl'> ปกติ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='menses_chk' value='Y' required><span class='lbl'> ไม่ปกติ</span></label></div></div>")
+                                            , $("<textarea name='menses' id='menses' class='form-control' placeholder='รายละเอียดประจำเดือน'></textarea>")
+                                            ,$("<hr>")
                                                                 );
                                                 $("#menses").hide();   
                                                 $("input[type=radio][name=menses_chk]").click(function(){

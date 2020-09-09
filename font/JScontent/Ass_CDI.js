@@ -81,8 +81,8 @@ function AssCDI(content, id = null) {
                                 +"<td align='left' width='33%'><input type='radio' name='Q12' value='1' required> ฉันไม่ค่อยชอบอยู่กับคนอื่น</td>"
                                 +"<td align='left' width='33%'><input type='radio' name='Q12' value='2' required> ฉันไม่ต้องการอยู่กับใครเลย</td></tr>")
                                 ,$("<tr><td width='1%'>13.</td><td align='left' width='33%'><input type='radio' name='Q13' value='2' required> ฉันไม่สามารถตัดสินใจอะไรต่างๆด้วยตัวเอง</td>"
-                                +"<td align='left' width='33%'><input type='radio' name='Q13' value='1' required> ฉันรู้สึกหงุดหงิดใจบ่อยครั้ง</td>"
-                                +"<td align='left' width='33%'><input type='radio' name='Q13' value='0' required> ฉันรู้สึกหงุดหงิดใจนานๆที</td></tr>")
+                                +"<td align='left' width='33%'><input type='radio' name='Q13' value='1' required> ฉันตัดสินใจเรื่องต่างๆได้ลำบาก</td>"
+                                +"<td align='left' width='33%'><input type='radio' name='Q13' value='0' required> ฉันตัดสินใจเรื่องต่างๆได้ง่าย</td></tr>")
                                 ,$("<tr><td width='1%'>14.</td><td align='left' width='33%'><input type='radio' name='Q14' value='0' required> ฉันเป็นคนหน้าตาดี</td>"
                                 +"<td align='left' width='33%'><input type='radio' name='Q14' value='1' required> ฉันเป็นคนหน้าตาไม่ค่อยดี</td>"
                                 +"<td align='left' width='33%'><input type='radio' name='Q14' value='2' required> ฉันเป็นคนหน้าตาน่าเกลียด</td></tr>")

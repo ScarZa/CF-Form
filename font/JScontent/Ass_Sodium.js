@@ -81,7 +81,7 @@ function AssSodium(content, id = null) {
                                 $("#LDB").append(" <b> ค่า : "+data[0].direct +"</b>");
                                 if (data[0].albumin_date != '') {
                                     $("#LLFT").append(" <b> เจาะครั้งสุดท้าย : " + data[0].albumin_month + " เดือน (" + data[0].albumin_date + ")</b>");
-                                        if(data[0].albumin_month >=12){$("#month2").attr("checked","checked");}}
+                                        if(data[0].albumin_month >=12){$("#month2").attr("checked","checked");}else{$("#month1").attr("checked","checked");}}
                                 else{$("#LLFT").append(" <b style='color: red;'> ไม่เคยเจาะ LFT กรุณาสั่งเจาะตรวจ LFT</b>");  $("#month2").attr("checked","checked");}
                             
                                 if(data[0].LithiumLevel > 1.5 && data[0].LithiumLevel !=''){$("#Lithium2").attr("checked","checked");$("#LLithium").append(" <b style='color: red;'>  ต้องแจ้งแพทย์ทันที</b>"); }else{$("#Lithium1").attr("checked","checked");}

@@ -3,7 +3,8 @@ function AssSlideMenuIPD(content, id = null) {
 
   $(content).empty().append($("<div class='sidebar-header'><img src='images/logo.png' width='95px' class='center'><p style='font-size:13px;text-align: center;'>โรงพยาบาลจิตเวชเลยราชนครินทร์</p></div>")
                               ,$("<ul class='list-unstyled components' id='list-menu'></ul>"));
-            $("#list-menu").empty().append($("<li id='EMR-menu'></li>")
+          $("#list-menu").empty().append($("<li id='EMR-menu'></li>")
+                                        , $("<li id='FR-menu'></li>")
                                         , $("<li id='CGI-menu'></li>")
                                         , $("<li id='SMIv-menu'></li>")
                                         //, $("<li id='ER-menu'></li>")
@@ -20,6 +21,7 @@ function AssSlideMenuIPD(content, id = null) {
                             $("li#EMR-menu").empty().append($("<a id='EMR' href='#'><img src='images/EMR.png' width='25'> EMR</center></a>"));
                             $("li#CGI-menu").empty().append($("<a id='cgi_menu' href='#'><img src='images/cgi.png' width='25'> ประเมิน CGI</center></a>"));
                             $("li#SMIv-menu").empty().append($("<a id='SMI-V' href='#'><img src='images/icon_set2/compose.ico' width='25'> SMI-V</center></a>"));
+                            $("li#FR-menu").empty().append($("<a id='FR' href='#'><img src='images/icon_set2/compose.ico' width='25'> แบบแรกรับ (หอผู้ป่วย)</center></a>"));
                             $("li#ER-menu").empty().append($("<a id='ER' href='#'><img src='images/ER.ico' width='25'> ER</center></a>"));
                             $("li#alcohol-menu").empty().append($("<a href='#AlSubmenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'><img src='images/Drugs.jpg' width='25'> สุรา/ยาเสพติด</a>")
                                                               , $("<ul class='collapse list-unstyled' id='AlSubmenu'>"
@@ -65,7 +67,8 @@ function AssSlideMenuIPD(content, id = null) {
                                         $("a#alcohol_menu").attr("onclick","$('#head-detial').show();AssAlcohol('#index_content');");
                                         $("a#cigarette").attr("onclick","#");
                                         $("a#cgi_menu").attr("onclick","$('#head-detial').show();AssCGI('#index_content');");
-                                        $("a#culture").attr("onclick","$('#head-detial').show();AssCulture('#index_content');");
+                                        $("a#culture").attr("onclick", "$('#head-detial').show();AssCulture('#index_content');");
+                                        $("a#FR").attr("onclick", "popup('../../PCT/front/content/first_ipd.html?id="+$.cookie('an')+"', popup, 1440, 900);");
                                         //$("a#smi-v").attr("onclick","#");
                                         $("a#depress").attr("onclick","$('#head-detial').show();AssDepress('#index_content');");
                                         $("a#C-case").attr("onclick","$('#head-detial').show();AssC_Case('#index_content');");

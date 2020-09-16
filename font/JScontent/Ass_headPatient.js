@@ -34,7 +34,7 @@ function AssHeadPatient(content, id = null,url = '../back/API/') {
       //+ "<p class='alert alert-danger' id='alert_aear'></p>"
       +"</div></div> "
         + "</div></div></div>"));
-        $.getJSON(url+'check_image.php', { data1: data[0].hn }, function (datai) { console.log(datai)
+        $.getJSON(url+'check_image.php', { data1: data[0].hn }, function (datai) { 
             if (datai.cc == '') { var img = '../images/person.png' } else { var img = url+'show_image.php?hn=' + data[0].hn }
             $("#pics-panel").attr("src", img)
         });

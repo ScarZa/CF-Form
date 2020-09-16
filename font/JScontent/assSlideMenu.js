@@ -31,7 +31,8 @@ function AssSlideMenu(content, id = null) {
                             $("li#child-menu").empty().append($("<a href='#childSubmenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'><img src='images/Son.ico' width='25'> คลินิคเด็ก</a>")
                                                               , $("<ul class='collapse list-unstyled' id='childSubmenu'>"
                                                                 + "<li><a id='child' href='#'><img src='images/Son.ico' width='20'> บันทึก SNAP-IV</a></li>"
-                                                                +"<li><a id='CDI' href='#'><img src='images/Son.ico' width='20'> แบบประเมิน CDI</a></li>"
+                                                                + "<li><a id='CDI' href='#'><img src='images/Son.ico' width='20'> แบบประเมิน CDI</a></li>"
+                                                                +"<li><a id='DSI' href='#'><img src='images/Son.ico' width='20'> แบบประเมิน DSI 300</a></li>"
                                                                 +"</ul >"));
                             $("li#older-menu").empty().append($("<a href='#olderSubmenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'><img src='images/older.png' width='25'> คลินิคผู้สูงอายุ</a>")
                                                               , $("<ul class='collapse list-unstyled' id='olderSubmenu'>"
@@ -65,7 +66,8 @@ function AssSlideMenu(content, id = null) {
                                         $("a#drug03").attr("onclick", "$('#head-detial').show();AssCarbamazepine('#index_content');");
                                         $("a#drug04").attr("onclick", "$('#head-detial').show();AssSodium('#index_content');");
                                         $("a#child").attr("onclick", "$('#head-detial').show();AssSNAP_IV('#index_content');");
-                                        $("a#CDI").attr("onclick","$('#head-detial').show();AssCDI('#index_content');");
+                                        $("a#CDI").attr("onclick", "$('#head-detial').show();AssCDI('#index_content');");
+                                        $("a#DSI").attr("onclick","$('#head-detial').show();AssDSI300('#index_content');");
                                         $("a#alcohol_menu").attr("onclick","$('#head-detial').show();AssAlcohol('#index_content');");
                                         $("a#cigarette").attr("onclick","#");
                                         $("a#cgi_menu").attr("onclick","$('#head-detial').show();AssCGI('#index_content');");

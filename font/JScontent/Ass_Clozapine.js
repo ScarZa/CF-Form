@@ -1,4 +1,4 @@
-function AssClozapine(content, id = null) {
+function AssClozapine(content, id = null,url = '../back/API/') {
     var RL = new ReportLayout(content);
     RL.GetRL();
     var title = " แบบประเมินยา Clozapine";
@@ -38,11 +38,11 @@ function AssClozapine(content, id = null) {
             ,$("<div class='form-group row'><label class='col-sm-6 col-form-label'>หน้ามืด วิงเวียน   </label><div class='col-sm-1'><input type='radio' name='symplomo04' value='N' checked required> ไม่เป็น</div><div class='col-sm-1'><input type='radio' name='symplomo04' value='Y' required> เป็น</div></div>")
             ,$("<div class='form-group row'><label class='col-sm-6 col-form-label'>ชัก </label><div class='col-sm-1'><input type='radio' name='symplomo05' value='N' checked required> ไม่เป็น</div><div class='col-sm-1'><input type='radio' name='symplomo05' value='Y' required> เป็น</div></div>")
             ,$("<div class='form-group row'><label class='col-sm-6 col-form-label'>U/D : DM ,HT, Dyslipidemia, Cardiovascular </label><div class='col-sm-1'><input type='radio' name='symplomo06' value='N' checked required> ไม่มี</div><div class='col-sm-1'><input type='radio' name='symplomo06' value='Y' required> มี</div></div>"));
-            $.getJSON('../back/API/check_ClozapineAPI.php',{data : $.cookie("hn")})
+            $.getJSON(url+'check_ClozapineAPI.php',{data : $.cookie("hn")})
             .done(function( data ) { console.log(data)
                 $("#cardHead").append(" ( <b style='color: blue;'>ประเมินล่าสุดเมื่อ : "+data.regdate+"</b>)");
             });
-            $.getJSON('../back/API/detail_clozapineAPI.php',{data : $.cookie("hn")})
+            $.getJSON(url+'detail_clozapineAPI.php',{data : $.cookie("hn")})
             .done(function( data ) {
                 $("#cgi-post").append($("<input type='hidden' name='WBC_val' value='"+data[0].WBC+"'>")
                                 ,$("<input type='hidden' name='ANC_val' value='"+data[0].ANC+"'>")
@@ -101,7 +101,7 @@ function AssClozapine(content, id = null) {
             // }
             var settings = {
                 type: "POST",
-                url: "../back/API/prcClozapineAPI.php",
+                url: url+"prcClozapineAPI.php",
                 async: true,
                 crossDomain: true,
                 data: dataForm,

@@ -1,4 +1,4 @@
-function AssSodium(content, id = null) {
+function AssSodium(content, id = null,url = '../back/API/') {
     var RL = new ReportLayout(content);
     RL.GetRL();
     var title = " แบบประเมินยา Sodium Valproate";
@@ -38,7 +38,7 @@ function AssSodium(content, id = null) {
                             ,$("<div class='form-group row' id='DTB'><label class='col-sm-8 col-form-label' id='LTB'>total bilirubin (0.1-1.2) </label><div class='col-sm-1'><input type='radio' name='TB' id='TB1' value='N'> ปกติ</div><div class='col-sm-1'><input type='radio' name='TB' id='TB2' value='Y'> ผิดปกติ</div></div>")
                             ,$("<div class='form-group row' id='DDB'><label class='col-sm-8 col-form-label' id='LDB'>direct bilirubin (0-0.3) </label><div class='col-sm-1'><input type='radio' name='DB' id='DB1' value='N'> ปกติ</div><div class='col-sm-1'><input type='radio' name='DB' id='DB2' value='Y'> ผิดปกติ</div></div>")
                             );
-            $.getJSON('../back/API/check_SodiumAPI.php',{data : $.cookie("hn")})
+            $.getJSON(url+'check_SodiumAPI.php',{data : $.cookie("hn")})
             .done(function( data ) {
                 $("#cardHead").append(" ( <b style='color: blue;'> ประเมินล่าสุดเมื่อ : "+data.regdate+"</b>)");
             });
@@ -62,7 +62,7 @@ function AssSodium(content, id = null) {
                         }
             });
     
-            $.getJSON('../back/API/detail_SodiumAPI.php',{data : $.cookie("hn")})
+            $.getJSON(url+'detail_SodiumAPI.php',{data : $.cookie("hn")})
             .done(function( data ) { console.log(data);
                 $("#cgi-post").append($("<input type='hidden' name='last_lft_val' value='"+data[0].albumin_month+"'>")
                                 , $("<input type='hidden' name='albumin_val' value='" + data[0].albumin + "'>")
@@ -124,7 +124,7 @@ function AssSodium(content, id = null) {
             // }
             var settings = {
                 type: "POST",
-                url: "../back/API/prcSodiumAPI.php",
+                url: url+"prcSodiumAPI.php",
                 async: true,
                 crossDomain: true,
                 data: dataForm,

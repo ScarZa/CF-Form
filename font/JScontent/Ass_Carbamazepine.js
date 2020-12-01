@@ -1,4 +1,4 @@
-function AssCarbamazepine(content, id = null) {
+function AssCarbamazepine(content, id = null,url = '../back/API/') {
     var RL = new ReportLayout(content);
     RL.GetRL();
     var title = " แบบประเมินยา Carbamazepine";
@@ -36,11 +36,11 @@ function AssCarbamazepine(content, id = null) {
                             ,$("<div class='form-group row'><label class='col-sm-6 col-form-label'>ปวดท้อง </label><div class='col-sm-1'><input type='radio' name='symplomo07' value='N' checked required> ไม่มี</div><div class='col-sm-1'><input type='radio' name='symplomo07' value='Y' required> มี</div></div>")
                             ,$("<div class='form-group row'><label class='col-sm-6 col-form-label'>เดินเซ กล้ามเนื้ออ่อนแรงมาก / พูดไม่ชัด </label><div class='col-sm-1'><input type='radio' name='symplomo08' value='N' checked required> ไม่มี</div><div class='col-sm-1'><input type='radio' name='symplomo08' value='Y' required> มี</div></div>")
                             );
-            $.getJSON('../back/API/check_CarbamazepineAPI.php',{data : $.cookie("hn")})
+            $.getJSON(url+'check_CarbamazepineAPI.php',{data : $.cookie("hn")})
             .done(function( data ) { console.log(data)
                 $("#cardHead").append(" ( <b style='color: blue;'> ประเมินล่าสุดเมื่อ : "+data.regdate+"</b>)");
             });
-            $.getJSON('../back/API/detail_clozapineAPI.php',{data : $.cookie("hn")})
+            $.getJSON(url+'detail_clozapineAPI.php',{data : $.cookie("hn")})
             .done(function( data ) { console.log(data);
                 $("#cgi-post").append($("<input type='hidden' name='WBC_val' value='" + data[0].WBC + "'>")
                                     ,$("<input type='hidden' name='last_CBC_val' value='"+data[0].month+"'>")); 
@@ -70,7 +70,7 @@ function AssCarbamazepine(content, id = null) {
             // }
             var settings = {
                 type: "POST",
-                url: "../back/API/prcCarbamazepineAPI.php",
+                url: url+"prcCarbamazepineAPI.php",
                 async: true,
                 crossDomain: true,
                 data: dataForm,

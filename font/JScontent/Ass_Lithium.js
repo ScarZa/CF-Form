@@ -1,4 +1,4 @@
-function AssLithium(content, id = null) {
+function AssLithium(content, id = null,url = '../back/API/') {
     var RL = new ReportLayout(content);
     RL.GetRL();
     var title = " แบบประเมินยา Lithium Carbonate";
@@ -46,11 +46,11 @@ function AssLithium(content, id = null) {
                             ,$("<div class='form-group row'><label class='col-sm-8 col-form-label'>ยาลดความดัน    ACEIs : Enalapril, captopril, lisinopril ฯลฯ </label><div class='col-sm-1'><input type='radio' name='symplomo08' value='N' checked required> ไม่มี</div><div class='col-sm-1'><input type='radio' name='symplomo08' value='Y' required> มี</div></div>")
                             ,$("<div class='form-group row'><label class='col-sm-8 col-form-label'>ยาลดความดัน    ARBs :  losartan, valsartan, irbesartan ฯลฯ </label><div class='col-sm-1'><input type='radio' name='symplomo09' value='N' checked required> ไม่มี</div><div class='col-sm-1'><input type='radio' name='symplomo09' value='Y' required> มี</div></div>")
                             ,$("<div class='form-group row'><label class='col-sm-8 col-form-label'>ชา กาแฟ เครื่องดื่มที่มีคาเฟอีน (อาจลด/เพิ่มระดับ Li) </label><div class='col-sm-1'><input type='radio' name='symplomo10' value='N' checked required> ไม่มี</div><div class='col-sm-1'><input type='radio' name='symplomo10' value='Y' required> มี</div></div>"));
-            $.getJSON('../back/API/check_LithiumAPI.php',{data : $.cookie("hn")})
+            $.getJSON(url+'check_LithiumAPI.php',{data : $.cookie("hn")})
             .done(function( data ) {
                 $("#cardHead").append(" ( <b style='color: blue;'> ประเมินล่าสุดเมื่อ : "+data.regdate+"</b>)");
             });
-            $.getJSON('../back/API/detail_LithiumAPI.php',{data : $.cookie("hn")})
+            $.getJSON(url+'detail_LithiumAPI.php',{data : $.cookie("hn")})
             .done(function( data ) { console.log(data);
                 $("#cgi-post").append($("<input type='hidden' name='Lithium_val' value='"+data[0].LithiumLevel+"'>")
                                 ,$("<input type='hidden' name='BUN_val' value='"+data[0].BUN+"'>")
@@ -129,7 +129,7 @@ function AssLithium(content, id = null) {
             // }
             var settings = {
                 type: "POST",
-                url: "../back/API/prcLithiumAPI.php",
+                url: url+"prcLithiumAPI.php",
                 async: true,
                 crossDomain: true,
                 data: dataForm,

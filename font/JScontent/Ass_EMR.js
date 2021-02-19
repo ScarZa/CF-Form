@@ -25,7 +25,7 @@ function AssEMR(content, id = null) {
             $("#P-data").append($("<div class='row'><div class='' id='ass-EMR'></div></div>"))
             $("#ass-EMR").append($("<div class='card text-white bg-info mb-3'><div class='card-header'><b>ข้อมูลทั่วไป</b></div><div id='' class='card-body'>"
                                     +"<div class='row'>"
-                                    +"<div class='col-lg-2 col-md-12 col-sm-12'> <img id='pics-panel' width='150' /></div>"
+                                    +"<div class='col-lg-2 col-md-12 col-sm-12'> <img id='picsEMR-panel' width='150' /></div>"
                                     +"<div class='col-lg-10 col-md-12 col-sm-12'>"
                                     +"<span  class='row' id='DP'>"
                                     +"<div class='col-lg-12 col-md-12 col-sm-12 row'><div class='col-lg-2 col-md-6 col-sm-6' style='text-align:right;'><b>ชื่อ-สกุล : </b></div><div class='row col-lg-3 col-md-6 col-sm-6'> <b id='fullname'></b></div>"
@@ -79,6 +79,8 @@ function AssEMR(content, id = null) {
                                     +"<p class='row alert alert-warning' id='pmh'><b>PMH : </b></p></div>"
                                     +"</div></div><p></p>")
                                 ,$("<div class='card border-success'><div class='card-header'><b>Rx Order</b></div><div id='Rx-body' class='card-body'>"
+                                    + "</div></div><p></p>")
+                                ,$("<div class='card border-success'><div class='card-header'><b>Lab Order</b></div><div id='Lab-body' class='card-body'>"
                                     +"</div></div><p></p>")
                                 ,$("<div class='card border-success'><div class='card-header'><b>ผลการประเมิน</b></div><div id='graph-body' class='card-body'>"
                                     +"</div></div>")
@@ -90,6 +92,13 @@ function AssEMR(content, id = null) {
                                 $("#Tc0").empty().append($("<div id='OPDMed'></div>"));
                                 $("#Tc1").empty().append($("<div id='IPDMed'></div>"));
 
+                                var LL = new TabLayout('#Lab-body',2,'L');
+                                LL.GetTL();
+                                $("#Ll0").empty().append("OPD Lab");
+                                $("#Ll1").empty().append("IPD Lab");
+                                $("#Lc0").empty().append($("<div id='OPDLab'></div>"));
+                                $("#Lc1").empty().append($("<div id='IPDLab'></div>"));
+    
                                 var GL = new TabLayout('#graph-body',3,'Gt');
                                 GL.GetTL();
                                 $("#Gtl0").empty().append("ประเมิน CGI");
@@ -141,9 +150,9 @@ function AssEMR(content, id = null) {
 }
 function AddData(json, id ) {
     $.getJSON('../back/API/' + json, { data: id }, function (data) {
-        $.getJSON('../back/API/check_image.php', { data1: data[0].hn }, function (datai) { console.log(datai)
-            if (datai.cc == '') { var img = '../images/person.png' } else { var img = '../back/API/show_image.php?hn=' + data[0].hn }
-            $("#pics-panel").attr("src", img)
+        $.getJSON('../back/API/check_image.php', { data1: data[0].hn }, function (datai) {
+            if (datai.cc == '') { var img = '../images/person.png' } else { var img = '../back/API/show_image.php?hn=' + data[0].hn; }
+            $("#picsEMR-panel").attr("src", img);
         });
         $("#fullname").empty().append(data[0].fullname);
         $("#hn").empty().append(data[0].hn);
@@ -230,4 +239,14 @@ function AddData(json, id ) {
     CTbIPD.GetNewTableAjax('IPDMed', '../back/API/DT_DrugIPD.php?'+id, '../back/API/tempSendDataAPI.php', column1
         , null, null, null, null, false, false, null, false, null, false, null, null, null, null, null, null);
 
+        $("#OPDLab").empty();
+        $("#IPDLab").empty();
+        var column1 = ["วันที่รายงาน","Profile", "ชื่อรายการ","ผล","หน่วย","ค่าปกติ"];
+        var CTbOPD = new createTableAjax();
+        CTbOPD.GetNewTableAjax('OPDLab', '../back/API/DT_LabOPD.php?'+id, '../back/API/tempSendDataAPI.php', column1
+            , null, null, null, null, false, false, null, false, null, false, null, null, null, null, null, null);
+    
+        var CTbIPD = new createTableAjax();
+        CTbIPD.GetNewTableAjax('IPDLab', '../back/API/DT_LabIPD.php?'+id, '../back/API/tempSendDataAPI.php', column1
+            , null, null, null, null, false, false, null, false, null, false, null, null, null, null, null, null);
 }

@@ -39,6 +39,7 @@ function AssSlideMenu(content, id = null) {
                                                                 + "<li><a id='MMSE' href='#'><img src='images/older.png' width='20'> MMSE - Thai 2002</a></li>"
                                                                 +"<li><a id='ADL' href='#'><img src='images/older.png' width='20'> ADL</a></li>"
                                                                 +"<li><a id='NPI-Q' href='#'><img src='images/older.png' width='20'> NPI-Q thai</a></li>"
+                                                                +"<li><a id='TGDS15' href='#'><img src='images/older.png' width='20'> TGDS-15</a></li>"
                                                                 +"</ul> "));
                             $("li#law-menu").empty().append($("<a href='#LawSubmenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'  title='ยังไม่มีครับ'><img src='images/prisoner.png' width='25'> นิติจิตเวช</a>")
                                                               , $("<ul class='collapse list-unstyled' id='LawSubmenu'>"
@@ -82,6 +83,6 @@ function AssSlideMenu(content, id = null) {
                                         $("a#ADL").attr("onclick", "$('#head-detial').show();AssADL('#index_content');");
                                         $("a#NPI-Q").attr("onclick", "$('#head-detial').show();AssNPIQ('#index_content');");
                                         $("a#Admit").attr("onclick","$('#head-detial').show();AssAdmit('#index_content');");
-  
+                                        $("a#TGDS15").attr("onclick", "$('#head-detial').show();AssTGDS15('#index_content');");
                                         
 }

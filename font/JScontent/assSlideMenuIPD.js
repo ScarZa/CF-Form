@@ -40,7 +40,11 @@ function AssSlideMenuIPD(content, id = null) {
                             $("li#law-menu").empty().append($("<a href='#LawSubmenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'  title='ยังไม่มีครับ'><img src='images/prisoner.png' width='25'> นิติจิตเวช</a>")
                                                               , $("<ul class='collapse list-unstyled' id='LawSubmenu'>"
                                                                 + "<li><a id='' href='#'><img src='images/Px.ico' width='20'> แบบประเมิน</a></li></ul > "));
-                            $("li#depress-menu").empty().append($("<a id='depress' href='#'><img src='images/sad.ico' width='25'> คัดกรองซึมเศร้า</a>"));
+                            $("li#depress-menu").empty().append($("<a href='#depressSubmenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'  title='แบบคัดกรองซึมเศร้า'><img src='images/sad.ico' width='25'> คัดกรองซึมเศร้า</a>")
+                                                                , $("<ul class='collapse list-unstyled' id='depressSubmenu'>"
+                                                                  + "<li><a id='depress' href='#'><img src='images/sad.ico' width='20'> แบบคัดกรองซึมเศร้า</a></li>"
+                                                                  + "<li><a id='suicide' href='#'><img src='images/sad.ico' width='20'> แบบคัดกรองฆ่าตัวตาย</a></li>"
+                                                                + "</ul > "));
                             $("li#drug-menu").empty().append($("<a href='#drugSubmenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle' title='ประเมินยา High alert drug.'><img src='images/Medical.jpg' width='35'> ประเมินยา</a>")
                                                               , $("<ul class='collapse list-unstyled' id='drugSubmenu'>"
                                                                 + "<li><a id='drug01' href='#'><img src='images/Px.ico' width='20'> ยา Clozapine</a></li>"
@@ -70,7 +74,8 @@ function AssSlideMenuIPD(content, id = null) {
                                         $("a#culture").attr("onclick", "$('#head-detial').show();AssCulture('#index_content');");
                                         $("a#FR").attr("onclick", "popup('../../PCT/front/content/first_ipd.html?id="+$.cookie('an')+"?recorder="+$.cookie('user')+"', popup, 1440, 900);");
                                         //$("a#smi-v").attr("onclick","#");
-                                        $("a#depress").attr("onclick","$('#head-detial').show();AssDepress('#index_content');");
+                                        $("a#depress").attr("onclick", "$('#head-detial').show();AssDS('#index_content','D');");
+                                        $("a#suicide").attr("onclick","$('#head-detial').show();AssDS('#index_content','S');");
                                         $("a#C-case").attr("onclick","$('#head-detial').show();AssC_Case('#index_content');");
                                         $("a#ER").attr("onclick","$('#head-detial').show();AssER('#index_content');");
                                         $("a#EMR").attr("onclick", "AssEMR('#index_content');");

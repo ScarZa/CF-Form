@@ -41,7 +41,7 @@ function AssAdmit(content, id = null) {
                                     + "<div class='form-group row'><label class='col-sm-5 col-form-label'><u><b> ประเภทการมา Admit </b></u></label></div>"
                                     +"<div class='form-group row'><div class='col-sm-3'><label><input class='ace' type='radio' name='income' value='1'><span> มารับบริการเอง</span></label></div><div class='col-sm-3'><label><input class='ace' type='radio' name='income' value='2'><span> รพ.ในเครือข่ายนำส่ง</span></label></div>"
                                     +"<div class='col-sm-3'><label><input class='ace' type='radio' name='income' value='3'><span> รพ.นอกเครือข่ายนำส่ง</span></label></div><div class='col-sm-3'><label><input class='ace' type='radio' name='income' value='4'><span> มูลนิธินำส่ง</span></label></div>"
-                                    +"<div class='col-sm-3'><label><input class='ace' type='radio' name='income' value='5'><span> ตำรวจ/หรือฝ่ายปกครองนำส่ง</span></label></div>"   
+                                    +"<div class='col-sm-3'><label><input class='ace' type='radio' name='income' value='5'><span> ตำรวจ/หรือฝ่ายปกครองนำส่ง</span></label></div><div class='col-sm-3'><label><input class='ace' type='radio' name='income' value='6'><span> ศุนย์คุ้มครองคนไร้ที่พึ่ง</span></label></div>"   
                                     + "</div></div>"
                                     +"</div> ")
                                         );

@@ -9,24 +9,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <link rel="stylesheet" href="plugins/Slidebar/slidebars.css"> -->
-    <link rel="stylesheet" href="template/bootstrap-4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="../template/bootstrap-4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
     <!-- <link rel="stylesheet" type="text/css" href="plugins/Jprint/print.min.css"> -->
-    <link rel="stylesheet" href="plugins/font-awesome-4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../plugins/font-awesome-4.6.3/css/font-awesome.min.css">
     <!-- Select2 -->
-    <link rel="stylesheet" href="plugins/select2/select2.min.css">
+    <link rel="stylesheet" href="../plugins/select2/select2.min.css">
 
-    <link rel="stylesheet" href="plugins/slidebar/style2.css">
+    <!-- <link rel="stylesheet" href="../plugins/slidebar/style2.css"> -->
     <!-- My tools -->
-    <script src="MyTools/createTableAjax.js" type="text/javascript"></script>
-    <script src="MyTools/AJAXCharts.js" type="text/javascript"></script>
-    <script src="MyTools/reportLayout.js" type="text/javascript"></script>
-    <script src="MyTools/tabLayout.js" type="text/javascript"></script>
+    <script src="../MyTools/createTableAjax.js" type="text/javascript"></script>
+    <script src="../MyTools/AJAXCharts.js" type="text/javascript"></script>
+    <script src="../MyTools/reportLayout.js" type="text/javascript"></script>
+    <script src="../MyTools/tabLayout.js" type="text/javascript"></script>
     <script src="JScontent/Ass_DocGeneral.js" type="text/javascript"></script>
     <!-- End My tools -->
-    <link rel="stylesheet" href="plugins/jquery-ui-1.11.4.custom/jquery-ui-1.11.4.custom.css" />
-    <link rel="stylesheet" href="plugins/jquery-ui-1.11.4.custom/SpecialDateSheet.css" />
+    <link rel="stylesheet" href="../plugins/jquery-ui-1.11.4.custom/jquery-ui-1.11.4.custom.css" />
+    <link rel="stylesheet" href="../plugins/jquery-ui-1.11.4.custom/SpecialDateSheet.css" />
     <!-- <link rel="stylesheet" type="text/css" href="plugins/DataTables/datatables.min.css"/> -->
-    <link rel="stylesheet" type="text/css" href="plugins/DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css" href="../plugins/DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css" />
     <!-- <link href='https://fonts.googleapis.com/css?family=Kanit:400,300&subset=thai,latin' rel='stylesheet' type='text/css'> -->
     <style>
         @import url('https://fonts.googleapis.com/css?family=Kanit&display=swap');
@@ -168,7 +168,7 @@
         }
 
         function selectMash(content, data, title, check = null) {
-            $.getJSON("../back/API/" + data, function (CmD) {
+            $.getJSON("../../back/API/" + data, function (CmD) {
                 var option="<option value=''> " + title + " </option>";
                 for (var key in CmD) {
                     if (CmD[key].id == check) { var select = 'selected'; } else { var select = ''; }
@@ -191,7 +191,7 @@
 </head>
 <body>
     <div class="wrapper">
-        <nav id="sidebar" class="scroll"></nav>
+        <!-- <nav id="sidebar" class="scroll"></nav> -->
         <div id="content">
         <nav class="navbar sticky-top navbar-expand-sm bg-success"><div class="container-fluid" id="head-nav"></div></nav>
         
@@ -212,83 +212,57 @@
             
         <!-- </div> -->
             <!-- content-wrapper -->
+                
                 </div>
     </div><!-- TODO: wrapper -->
     <!-- <input onkeyup="inputDigits(sensor)" type="number" -->
-    <script src="template/jquery-3.3.1.min.js"></script>
-    <script src="template/jquery.cookie.js"></script>
-    <script src="template/bootstrap-4.4.1/js/bootstrap.min.js"></script>
-    <script src="plugins/select2/select2.full.min.js"></script>
+    <script src="../template/jquery-3.3.1.min.js"></script>
+    <script src="../template/jquery.cookie.js"></script>
+    <script src="../template/bootstrap-4.4.1/js/bootstrap.min.js"></script>
+    <script src="../plugins/select2/select2.full.min.js"></script>
     <!-- <script src="plugins/Jprint/print.min.js"></script> -->
-    <script src="plugins/jquery-ui-1.11.4.custom/jquery-ui-1.11.4.custom.js"></script>
-    <script src="plugins/excellentexport.js"></script>
+    <script src="../plugins/jquery-ui-1.11.4.custom/jquery-ui-1.11.4.custom.js"></script>
+    <script src="../plugins/excellentexport.js"></script>
     <!-- My script -->
-    <script src="MyTools/DatepickerThai.js" type="text/javascript"></script>
+    <script src="../MyTools/DatepickerThai.js" type="text/javascript"></script>
     <!-- <script src="MyJS/loading.js"></script>
     <script src="MyJS/spin.js"></script> -->
     <!-- End My script -->
     <!-- <script src="plugins/DataTables/jquery.dataTables.min.js"></script>
         <script src="plugins/DataTables/dataTables.bootstrap.min.js"></script> -->
-    <script src="plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
-    <script src="plugins/DataTables/DataTables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="../plugins/DataTables/DataTables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
     <!-- <script type="text/javascript" src="DataTables/datatables.min.js"></script> -->
     <!--HighChart-->
-    <script src="plugins/Highcharts/code/highcharts.js"></script>
-    <script src="plugins/Highcharts/code/modules/exporting.js"></script>
-    <script src="plugins/Highcharts/code/modules/data.js"></script>
-    <script src="plugins/Highcharts/code/modules/drilldown.js"></script>
-    <script src="plugins/Highcharts/code/highcharts-3d.js"></script>
+    <script src="../plugins/Highcharts/code/highcharts.js"></script>
+    <script src="../plugins/Highcharts/code/modules/exporting.js"></script>
+    <script src="../plugins/Highcharts/code/modules/data.js"></script>
+    <script src="../plugins/Highcharts/code/modules/drilldown.js"></script>
+    <script src="../plugins/Highcharts/code/highcharts-3d.js"></script>
     <!-- <script src="plugins/jquery-ui-1.11.4.custom/jquery-ui-1.11.4.custom.js"></script> -->
 
     <!-- JS content -->
-    <script src="JScontent/navMenu.js" type="text/javascript"></script>
-    <script src="JScontent/assMenu.js" type="text/javascript"></script>
-    <script src="JScontent/assMenuIPD.js" type="text/javascript"></script>
-    <script src="JScontent/assMenuDoctor.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_CGI.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_Culture.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_Alcohol.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_Social.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_Social02.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_Depress.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_SNAP_IV.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_consoult.js" type="text/javascript"></script>
-    <script src="JScontent/SmenuModel.js" type="text/javascript"></script>
-    <script src="JScontent/DmenuModel.js" type="text/javascript"></script>
-    <script src="JScontent/AmenuModel.js" type="text/javascript"></script>
-    <script src="JScontent/CmenuModel.js" type="text/javascript"></script>
-    <script src="JScontent/OmenuModel.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_Clozapine.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_Lithium.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_Carbamazepine.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_Sodium.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_ER.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_Doc01.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_CDI.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_MMSE.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_ADL.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_NPIQ.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_EMR.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_SMIV.js" type="text/javascript"></script>
-    <script src="JScontent/assSlideMenu.js" type="text/javascript"></script>
-    <script src="JScontent/assSlideMenuIPD.js" type="text/javascript"></script>
-    <script src="JScontent/assSlideMenuDoc.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_headPatient.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_Admit.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_DSI300.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_TGDS15.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_DS.js" type="text/javascript"></script>
-    <script src="masked/mask_Depress.js" type="text/javascript"></script>
-    <script src="masked/mask_Suicide.js" type="text/javascript"></script>
-    <script src="JScontent/Ass_SAVE.js" type="text/javascript"></script>
+    <script src="../JScontent/navMenu.js" type="text/javascript"></script>
+    <script src="../JScontent/assMenu.js" type="text/javascript"></script>
+    <script src="../JScontent/assMenuIPD.js" type="text/javascript"></script>
+    <script src="../JScontent/assMenuDoctor.js" type="text/javascript"></script>
+    
+    <script src="../JScontent/Ass_SAVE.js" type="text/javascript"></script>
+    <script src="../JScontent/assSlideMenu.js" type="text/javascript"></script>
+    
+    <script src="../JScontent/Ass_headPatient.js" type="text/javascript"></script>
+    
+    
     <!-- End JS content -->
     
     <script lang="javascript" type="text/javascript">
         $(function () {
             var user = get('user');
+            var id = get('id');
             var vn = get('vn');
             var an = get('an');
             var doctor = get('doctor');
+            var process = get('process');
             
             if(user!=''){
             if(an == undefined){ var AN = '';}else{ var AN = an;}
@@ -296,83 +270,31 @@
             $.cookie("user", user);
             $.cookie("an", AN);
             $.cookie("doctor", Doctor);
-            $.cookie("vn", vn);
+            if(vn){
+                $.cookie("vn", vn);
+            }else{
+                $.cookie("vn", id);
+            }
+            
+            $.cookie("process", process);
+            
         }
     var uri = window.location.toString();
     if (uri.indexOf("?") > 0) {
         var clean_uri = uri.substring(0, uri.indexOf("?"));
         window.history.replaceState({}, document.title, clean_uri);
     }
-    if (an == undefined && doctor != 'Y') {
-      AssSlideMenu("nav#sidebar");
-    } else if (doctor == 'Y') {
-      AssSlideMenuDoc("nav#sidebar");
-    } else {
-      AssSlideMenuIPD("nav#sidebar");
-    }
-        AssHeadPatient("#head-detial");
-        
     
-    
-        //     $.getJSON('../back/API/detail_patientAPI.php',{data : $.cookie("vn"),data2 : AN},function (data) { console.log(data)
-        //         $.cookie("hn", data[0].hn);
-        //         $.cookie("vstdate", data[0].vstdate);
-        //         $.cookie("sex", data[0].sex);
-        //         $.cookie("birthday", data[0].birthday);
-        //         $.cookie("pdx", data[0].pdx);
-        //         $.cookie("dx0", data[0].dx0);
-        //         $.cookie("dx1", data[0].dx1);
-        //         $.cookie("dx2", data[0].dx2);
-        //         $.cookie("dx3", data[0].dx3);
-        //         AssSlideMenu("nav#sidebar");
-        //         if(an == undefined && doctor != 'Y'){
-        //             $("#patient-detial").append("ชื่อ-สกุล <b>"+data[0].pname+data[0].fname+" "+data[0].lname+"</b><p><p>HN <b>"+data[0].hn+"</b> VN <b>"+data[0].vn+"</b><p><p>วันที่มารับบริการ  <b>"+data[0].tvstdate)+"</b>";  
-        //                 //AssMENU("#index_content");     
-        //         }else if(doctor == 'Y'){
-        //             $("#patient-detial").append("ชื่อ-สกุล <b>"+data[0].pname+data[0].fname+" "+data[0].lname+"</b><p><p>HN <b>"+data[0].hn+"</b> VN <b>"+data[0].vn+"</b><p><p>วันที่มารับบริการ  <b>"+data[0].tvstdate)+"</b>";  
-        //                 AssMENUDoctor("#index_content");     
-        //         }else{
-        //             $("#patient-detial").append("ชื่อ-สกุล <b>"+data[0].pname+data[0].fname+" "+data[0].lname+"</b><p><p>HN <b>"+data[0].hn+"</b> AN <b>"+an+"</b><p><p>วันที่มา Admit  <b>"+data[0].tvstdate)+"</b>";
-        //                 AssMENUIPD("#index_content"); 
-        //             }
-        //             if(data[0].Clozapine100 != null){
-        //                 $("#patient-detial").append("<p><b style='color: red'>High Alert Drug : </b>"+data[0].Clozapine100+" (สั่งล่าสุด "+data[0].Clozapine100Date+")");
-        //             }
-        //             if(data[0].Clozapine25 != null){
-        //                 $("#patient-detial").append("<p><b style='color: red'>High Alert Drug : </b>"+data[0].Clozapine25+" (สั่งล่าสุด "+data[0].Clozapine25Date+")");
-        //             }
-        //             if(data[0].Carbamazepine200 != null){
-        //                 $("#patient-detial").append("<p><b style='color: red'>High Alert Drug : </b>"+data[0].Carbamazepine200+" (สั่งล่าสุด "+data[0].Carbamazepine200Date+")");
-        //             }
-        //             if(data[0].LithiumCarbonate300 != null){
-        //                 $("#patient-detial").append("<p><b style='color: red'>High Alert Drug : </b>"+data[0].LithiumCarbonate300+" (สั่งล่าสุด "+data[0].LithiumCarbonate300Date+")");
-        //             }
-        //             if(data[0].SodiumValproate200 != null){
-        //                 $("#patient-detial").append("<p><b style='color: red'>High Alert Drug : </b>"+data[0].SodiumValproate200+" (สั่งล่าสุด "+data[0].SodiumValproate200Date+")");
-        //             }
-        //             if(data[0].SodiumValproate200CHRONO != null){
-        //                 $("#patient-detial").append("<p><b style='color: red'>High Alert Drug : </b>"+data[0].SodiumValproate200CHRONO+" (สั่งล่าสุด "+data[0].SodiumValproate200CHRONODate+")");
-        //             }
-        //             if(data[0].SodiumValproate500 != null){
-        //                 $("#patient-detial").append("<p><b style='color: red'>High Alert Drug : </b>"+data[0].SodiumValproate500+" (สั่งล่าสุด "+data[0].SodiumValproate500Date+")");
-        //             }
-                          
-        //     // if($.cookie("hn") == data[0].hn){
-        //     //     console.log($.cookie("hn"));console.log(data[0].hn);  
-        //     //     $("div#menu").show();
-        //     //     $("div#SW").hide();
-        //     // }else{
-        //     // $("div#menu").hide();
-        //     // $('#sw-menu').click(function () {
-                
-               
-                
-                
-        //     //     $("div#menu").show();
-        //     //     $("div#SW").hide();
-        //     // });
-        // //}
-        // });
+    // if (an == undefined && doctor != 'Y') {
+    //     AssMENU("#index_content");  
+    // } else if (doctor == 'Y') {
+    //   AssSlideMenuDoc("nav#sidebar");
+    // } else {
+    //     AssMENUIPD("#index_content"); 
+    // }
+    console.log(user)
+        AssHeadPatient("#head-detial",null,'../../back/API/');
+        AssSAVE('#index_content',null,'../../back/API/');
         })
     </script>
     <script type="text/javascript">

@@ -5,6 +5,7 @@ function AssSlideMenuIPD(content, id = null) {
                               ,$("<ul class='list-unstyled components' id='list-menu'></ul>"));
           $("#list-menu").empty().append($("<li id='EMR-menu'></li>")
                                         , $("<li id='FR-menu'></li>")
+                                        , $("<li id='SAVE-menu'></li>")
                                         , $("<li id='CGI-menu'></li>")
                                         , $("<li id='SMIv-menu'></li>")
                                         //, $("<li id='ER-menu'></li>")
@@ -22,6 +23,7 @@ function AssSlideMenuIPD(content, id = null) {
                             $("li#CGI-menu").empty().append($("<a id='cgi_menu' href='#'><img src='images/cgi.png' width='25'> ประเมิน CGI</center></a>"));
                             $("li#SMIv-menu").empty().append($("<a id='SMI-V' href='#'><img src='images/icon_set2/compose.ico' width='25'> SMI-V</center></a>"));
                             $("li#FR-menu").empty().append($("<a id='FR' href='#'><img src='images/icon_set2/compose.ico' width='25'> แบบแรกรับ (หอผู้ป่วย)</center></a>"));
+                            $("li#SAVE-menu").empty().append($("<a id='SAVE' href='#'><img src='images/icon_set2/compose.ico' width='25'> แบบประเมิน SAVE</a>"));
                             $("li#ER-menu").empty().append($("<a id='ER' href='#'><img src='images/ER.ico' width='25'> ER</center></a>"));
                             $("li#alcohol-menu").empty().append($("<a href='#AlSubmenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'><img src='images/Drugs.jpg' width='25'> สุรา/ยาเสพติด</a>")
                                                               , $("<ul class='collapse list-unstyled' id='AlSubmenu'>"
@@ -83,5 +85,6 @@ function AssSlideMenuIPD(content, id = null) {
                                         $("a#MMSE").attr("onclick", "$('#head-detial').show();AssMMSE('#index_content');");
                                         $("a#ADL").attr("onclick", "$('#head-detial').show();AssADL('#index_content');");
                                         $("a#NPI-Q").attr("onclick", "$('#head-detial').show();AssNPIQ('#index_content');");
+                                        $("a#SAVE").attr("onclick","$('#head-detial').show();AssSAVE('#index_content');");
                                         
 }

@@ -6,6 +6,7 @@ function AssSlideMenu(content, id = null) {
   $("#list-menu").empty().append($("<li id='EMR-menu'></li>")
                                         , $("<li id='ER-menu'></li>")
                                         , $("<li id='CGI-menu'></li>")
+                                        , $("<li id='SAVE-menu'></li>")
                                         , $("<li id='SMIv-menu'></li>")
                                         , $("<li id='alcohol-menu'></li>")
                                         , $("<li id='child-menu'></li>")
@@ -24,7 +25,9 @@ function AssSlideMenu(content, id = null) {
                                                           , $("<ul class='collapse list-unstyled' id='ERSubmenu'>"
                                                             + "<li><a id='ER' href='#'><img src='images/ER.ico' width='25'> แบบบันทึกจิตเวชฉุกเฉิน</a></li>"
                                                             + "<li><a id='Admit' href='#'><img src='images/ER.ico' width='25'> Admit</a></li>"
-                                                            +"</ul >"));
+                                                            //+ "<li><a id='SAVE' href='#'><img src='images/ER.ico' width='25'> แบบประเมิน SAVE</a></li>"
+                                                            + "</ul >"));
+                            $("li#SAVE-menu").empty().append($("<a id='SAVE' href='#'><img src='images/ER.ico' width='25'> แบบประเมิน SAVE</a>"));
                             $("li#alcohol-menu").empty().append($("<a href='#AlSubmenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'><img src='images/Drugs.jpg' width='25'> สุรา/ยาเสพติด</a>")
                                                               , $("<ul class='collapse list-unstyled' id='AlSubmenu'>"
                                                                 + "<li><a id='alcohol_menu' href='#'><img src='images/Drugs.jpg' width='25'> แบบประเมินสุรา</a></li></ul> "));
@@ -84,5 +87,6 @@ function AssSlideMenu(content, id = null) {
                                         $("a#NPI-Q").attr("onclick", "$('#head-detial').show();AssNPIQ('#index_content');");
                                         $("a#Admit").attr("onclick","$('#head-detial').show();AssAdmit('#index_content');");
                                         $("a#TGDS15").attr("onclick", "$('#head-detial').show();AssTGDS15('#index_content');");
+                                        $("a#SAVE").attr("onclick","$('#head-detial').show();AssSAVE('#index_content');");
                                         
 }

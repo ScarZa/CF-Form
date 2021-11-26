@@ -8,7 +8,7 @@ function AssSAVE(content, id = null,url = '../back/API/') {
     $("#contentGr").empty().append($("<form action='' name='frmSAVE' id='frmSAVE' method='post' enctype='multipart/form-data'>"
         + "<div class='row'><div class='col-lg-12' id='cgi-post'>"
         + "<div id='P-data'></div><p>"
-        + "<center><input type='submit' name='submit' class='btn btn-success' value='บันทึก (ยังใช้งานไม่ได้)'></center></div>"
+        + "<center><input type='submit' name='submit' class='btn btn-success' value='บันทึก'></center></div>"
         + "</div></form>"));
     $("#P-data").append($("<div class='row col-lg-4 col-md-4 col-sm-12'><label><b>กระบวนการ : </b></lable><select name='place' class='form-control select2' id='place' required></select></div><div id='Q-save'></div>")
     );

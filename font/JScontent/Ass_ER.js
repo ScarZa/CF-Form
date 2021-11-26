@@ -275,6 +275,7 @@ function AssER(content, id = null) {
                 $('#index_content').empty();
                 alert(result.messege);
                 AssCGI('#index_content');
+                popup('content/Ass_SAVE.html?vn=' + $.cookie("vn") + '?user=' + $.cookie("user")+'?process=ER', popup, 1440, 900); 
             });
         //}
         }));

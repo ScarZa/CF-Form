@@ -1,6 +1,6 @@
 10.0.0.9
 admintoy  
 gotoytoynoy
-hosxp
+hosxp2
 3306
 tis620

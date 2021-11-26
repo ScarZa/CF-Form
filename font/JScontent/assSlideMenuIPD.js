@@ -74,7 +74,7 @@ function AssSlideMenuIPD(content, id = null) {
                                         $("a#cigarette").attr("onclick","#");
                                         $("a#cgi_menu").attr("onclick","$('#head-detial').show();AssCGI('#index_content');");
                                         $("a#culture").attr("onclick", "$('#head-detial').show();AssCulture('#index_content');");
-                                        $("a#FR").attr("onclick", "popup('../../PCT/front/content/first_ipd.html?id="+$.cookie('an')+"?recorder="+$.cookie('user')+"', popup, 1440, 900);");
+                                        $("a#FR").attr("onclick", "popup('../../PCT/front/content/first_ipd.html?id="+$.cookie('an')+"?recorder="+$.cookie('user')+"?process=CF', popup, 1440, 900);");
                                         //$("a#smi-v").attr("onclick","#");
                                         $("a#depress").attr("onclick", "$('#head-detial').show();AssDS('#index_content','D');");
                                         $("a#suicide").attr("onclick","$('#head-detial').show();AssDS('#index_content','S');");

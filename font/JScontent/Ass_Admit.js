@@ -27,7 +27,7 @@ function AssAdmit(content, id = null) {
             + "<center><input type='submit' name='submit' class='btn btn-success' value='บันทึก'></center></div>"
             //+ "<div class='col-lg-6'><div class='row col-lg-12' id='sub-contentTB'></div><div class='row col-lg-12' id='sub-contentGr'></div></div>"
             + "</div></form>")); console.log($.cookie("hn"));
-            $("input[type=submit]").hide();
+            //$("input[type=submit]").hide();
             $.getJSON('../back/API/detail_CCpatientAPI.php',{data : $.cookie("vn"),data2 : $.cookie("an")},function (data) {
             $("#P-data").append($("<div class='col-lg-12 row'><div class='row col-lg-6'><span id='DP'>HN : "+data[0].hn+"<br>เลขบัตรประชาชน : "+data[0].cid+"<br>ชื่อ-สกุล :"+data[0].fullname
                                     +"<br>ที่อยู่ : "+data[0].informaddr+"<br>วันเกิด "+data[0].birthday+" สถานะภาพ : "+data[0].mrname+"<br>การวินิจฉัย : "+data[0].pdx+" "+data[0].dx0
@@ -44,14 +44,14 @@ function AssAdmit(content, id = null) {
                                     +"<div class='col-sm-3'><label><input class='ace' type='radio' name='income' value='3'><span> รพ.นอกเครือข่ายนำส่ง</span></label></div><div class='col-sm-3'><label><input class='ace' type='radio' name='income' value='4'><span> มูลนิธินำส่ง</span></label></div>"
                                     +"<div class='col-sm-3'><label><input class='ace' type='radio' name='income' value='5'><span> ตำรวจ/หรือฝ่ายปกครองนำส่ง</span></label></div><div class='col-sm-3'><label><input class='ace' type='radio' name='income' value='6'><span> ศุนย์คุ้มครองคนไร้ที่พึ่ง</span></label></div>"   
                                     + "</div></div>"
-                                    + "<a class='btn btn-warning' href='#' id='opSAVE'>ประเมิน SAVE</a>"
+                                    //+ "<a class='btn btn-warning' href='#' id='opSAVE'>ประเมิน SAVE</a>"
                                     +"</div> ")
                                         );
 
-                $("a#opSAVE").click(function () {
-                    popup('content/Ass_SAVE.html?vn=' + $.cookie("vn") + '?user=' + $.cookie("user")+'?process=ER', popup, 1440, 900);            
-                    $("input[type=submit]").show();
-                });
+                // $("a#opSAVE").click(function () {
+                //     popup('content/Ass_SAVE.html?vn=' + $.cookie("vn") + '?user=' + $.cookie("user")+'?process=ER', popup, 1440, 900);            
+                //     $("input[type=submit]").show();
+                // });
             $("#cgi-post").append($("<input type='hidden' name='hn' value='"+$.cookie("hn")+"'>")
                                 ,$("<input type='hidden' name='vn' value='"+$.cookie("vn")+"'>")
                                 //,$("<input type='hidden' name='vstdate' value='"+$.cookie("vstdate")+"'>")

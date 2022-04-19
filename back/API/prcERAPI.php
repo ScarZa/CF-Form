@@ -30,6 +30,7 @@ if ($method == 'add_ER') {
     $vn = $_POST['vn'];
     $hn = $_POST['hn'];
     $relative = isset($_POST['relative'])?$conv->utf8_to_tis620($_POST['relative']):'';
+    $agency = isset($_POST['agency'])?$_POST['agency']:'';
     $police_name = isset($_POST['police_name'])?$conv->utf8_to_tis620($_POST['police_name']):'';
     $weapon_chk = $conv->utf8_to_tis620($_POST['weapon_chk']);
     $weapon = isset($_POST['weapon'])?$conv->utf8_to_tis620($_POST['weapon']):'';
@@ -89,7 +90,7 @@ if ($method == 'add_ER') {
     $recdate = date('Y-m-d H:i:s');
 
 
-    $data = array($hn,$vn,$relative,$police_name,$weapon_chk,$weapon,$weaponer_chk,$weaponer,$detain_chk,$detain,$typeP_1,$typeP_2,$typeP_3,$typeP_4
+    $data = array($hn,$vn,$relative,$agency,$police_name,$weapon_chk,$weapon,$weaponer_chk,$weaponer,$detain_chk,$detain,$typeP_1,$typeP_2,$typeP_3,$typeP_4
     ,$typeP_5,$typeP_6,$typeP_7,$smi4_chk,$smi4_1,$smi4_2,$smi4_3,$smi4_4,$lawpsych_chk,$lawpsych,$sleep_chk,$sleep,$IC_chk,$IC,$med_chk,$med
     ,$accident_chk,$accident,$wound_chk,$wound,$surgery_chk,$surgery,$complicate_chk,$complicate,$cigarette_chk,$D_cigarette,$last_useC,$alcohol_chk,$alcohol_type,$alcohol_vol,$last_useA
     ,$dope_chk,$dope_type,$last_useD,$marihuana_chk,$D_marihuana,$last_useM,$ADL,$work,$menses_chk,$menses,$admit_chk,'','',$recdate,$recorder);

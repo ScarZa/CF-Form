@@ -32,8 +32,14 @@ function AssER(content, id = null) {
         +"<div class='form-group col-lg-4 row'><div class='form-group form-check col-sm-4'><label><input name='relative_chk' class='form-check-input' type='checkbox'> ญาตินำส่ง</label></div>"
         +"<div class='col-sm-8 row'><input class='form-control form-control-sm' type='text' id='relative' name='relative' placeholder='ชื่อ/นามสกุลญาติ' /></div> "
         +"</div>"
-        +"<div class='form-group col-lg-6 row'><div class='form-group form-check col-sm-5'><label><input name='police_chk' class='form-check-input' type='checkbox'> หน่วยงาน/องค์กรที่นำส่ง </label></div>"
-        +"<div class='col-sm-7 row'><input class='form-control form-control-sm' type='text' id='police_name' name='police_name' placeholder='ชื่อหน่วยงาน' /></div> "
+        +"<div class='form-group col-lg-8 row'><div class='form-group form-check col-sm-4'><label><input name='police_chk' class='form-check-input' type='checkbox'> หน่วยงาน/องค์กรที่นำส่ง </label></div>"
+        + "<div class='col-sm-4 row' id='agency_name'><label><input name='agency' class='form-check-input' type='radio' value='2'> รพ.ในเครือข่ายนำส่ง </label>"
+        + "<br><label><input name='agency' class='form-check-input' type='radio' value='3'> รพ.นอกเครือข่ายนำส่ง </label>"
+        + "<br><label><input name='agency' class='form-check-input' type='radio' value='4'> มูลนิธินำส่ง&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>"
+        + "<br><label><input name='agency' class='form-check-input' type='radio' value='5'> ตำรวจนำส่ง&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>"
+        + "<br><label><input name='agency' class='form-check-input' type='radio' value='6'> ศุนย์คุ้มครองคนไร้ที่พึ่ง </label>"
+        + "<br><label><input name='agency' class='form-check-input' type='radio' value='7'> ฝ่ายปกครองนำส่ง&nbsp;&nbsp;&nbsp;&nbsp; </label></div>"
+        + "<div class='col-sm-4 row'><input class='form-control form-control-sm' type='text' id='police_name' name='police_name' placeholder='ชื่อหน่วยงาน' /></div> "
         +"</div>"
     +"</div>")
     ,$("<hr>")
@@ -166,6 +172,7 @@ function AssER(content, id = null) {
 
                                 $("input#relative").hide();
                                 $("input#police_name").hide(); 
+                                $("#agency_name").hide();
                                 $("#weapon").hide();
                                 $("#weaponER").hide();
                                 $("#detain").hide();
@@ -188,7 +195,7 @@ function AssER(content, id = null) {
                                     if($("input[type=checkbox][name=relative_chk]:checked").prop("checked") == true){$("input#relative").show();}else{$("input#relative").hide();}
                                 });
                                 $("input[type=checkbox][name=police_chk]").click(function(){
-                                    if($("input[type=checkbox][name=police_chk]:checked").prop("checked") == true){$("input#police_name").show();}else{$("input#police_name").hide();}
+                                    if ($("input[type=checkbox][name=police_chk]:checked").prop("checked") == true) { $("input#police_name").show(); $("#agency_name").show(); } else { $("input#police_name").hide();$("#agency_name").hide();}
                                 });
                                 $("input[type=radio][name=surgery_chk]").click(function(){
                                     if($("input[type=radio][name=surgery_chk]:checked").val()=='Y'){$("textarea#surgery").show();}else{$("textarea#surgery").hide();}

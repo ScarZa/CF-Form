@@ -20,7 +20,9 @@ $data = isset($_POST['data1'])?$_POST['data1']:(isset($_GET['data1'])?$_GET['dat
 $sql="SELECT smiv.recdate,a.an,smiv.comment,ou.name
 ,CASE
     WHEN smiv.confirm = '1' THEN 'ดูแลต่อเนื่อง'
-    ELSE 'ติดตามในระบบ( HDC)' END as confirm
+    WHEN smiv.confirm = '2' THEN 'ติดตามในระบบ(HDC) / ก่อความรุนแรงซ้ำ'
+    WHEN smiv.confirm = '3' THEN 'ไม่เป็นผู้ป่วย/ติดตามปกติ'
+    ELSE 'กำลังพิจารณา' END as confirm
 FROM an_stat a
 inner join jvl_smiv smiv on a.vn = smiv.vn
 inner join opduser ou on ou.loginname = smiv.recorder

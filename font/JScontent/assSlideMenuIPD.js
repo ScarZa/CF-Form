@@ -32,7 +32,7 @@ function AssSlideMenuIPD(content, id = null) {
                                                               , $("<ul class='collapse list-unstyled' id='childSubmenu'>"
                                                                 + "<li><a id='child' href='#'><img src='images/Son.ico' width='20'> บันทึก SNAP-IV</a></li>"
                                                                 +"<li><a id='CDI' href='#'><img src='images/Son.ico' width='20'> แบบประเมิน CDI</a></li>"
-                                                                +"</ul >"));
+                                                                +"</ul>"));
                             $("li#older-menu").empty().append($("<a href='#olderSubmenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'><img src='images/older.png' width='25'> คลินิคผู้สูงอายุ</a>")
                                                               , $("<ul class='collapse list-unstyled' id='olderSubmenu'>"
                                                                 + "<li><a id='MMSE' href='#'><img src='images/older.png' width='20'> MMSE - Thai 2002</a></li>"
@@ -53,12 +53,13 @@ function AssSlideMenuIPD(content, id = null) {
                                                                 + "<li><a id='drug02' href='#'><img src='images/Px.ico' width='20'> ยา Lithium Carbonate</a></li>"
                                                                 + "<li><a id='drug03' href='#'><img src='images/Px.ico' width='20'> ยา Carbamazepine</a></li>"
                                                                 + "<li><a id='drug04' href='#'><img src='images/Px.ico' width='20'> ยา Sodium Valproate</a></li>"
-                                                                + "</ul > "));
+                                                                + "<li><a id='drug05' href='#'><img src='images/Px.ico' width='20'> บันทึก ADR </a></li>"
+                                                                + "</ul> "));
                             $("li#social-menu").empty().append($("<a href='#socialSubmenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'><img src='images/social.jpg' width='25'> สังคมสงเคราะห์</a>")
                                                               , $("<ul class='collapse list-unstyled' id='socialSubmenu'>"
                                                                 + "<li><a id='social' href='#'><img src='images/social.jpg' width='20'> สังคมสงเคราะห์</a></li>"
                                                                 +"<li><a id='social02' href='#'><img src='images/social.jpg' width='20'> สังคมสงเคราะห์(เด็ก)</a></li>"
-                                                                +"</ul > "));
+                                                                +"</ul> "));
                             $("li#culture-menu").empty().append($("<a id='culture' href='#'><img src='images/holyinvestor.png' width='25'> ประเมิน culture</a>"));
                             $("li#consult-menu").empty().append($("<a id='C-case' href='#' title='ส่งปรึกษาเคส'><img src='images/consult.ico' width='25'> Consult case</a>"));
                                 
@@ -68,6 +69,7 @@ function AssSlideMenuIPD(content, id = null) {
                                         $("a#drug02").attr("onclick", "$('#head-detial').show();AssLithium('#index_content');");
                                         $("a#drug03").attr("onclick", "$('#head-detial').show();AssCarbamazepine('#index_content');");
                                         $("a#drug04").attr("onclick", "$('#head-detial').show();AssSodium('#index_content');");
+                                        $("a#drug05").attr("onclick", "$('#head-detial').show();AssADR('#index_content');");
                                         $("a#child").attr("onclick", "$('#head-detial').show();AssSNAP_IV('#index_content');");
                                         $("a#CDI").attr("onclick","$('#head-detial').show();AssCDI('#index_content');");
                                         $("a#alcohol_menu").attr("onclick","$('#head-detial').show();AssAlcohol('#index_content');");

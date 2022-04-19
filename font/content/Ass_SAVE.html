@@ -257,6 +257,14 @@
     
     <script lang="javascript" type="text/javascript">
         $(function () {
+
+            $.cookie("user", '' );
+            $.cookie("id", '' );
+            $.cookie("an", '');
+            $.cookie("doctor", '');
+            $.cookie("vn", '');
+            $.cookie('process','');
+
             var user = get('user');
             var id = get('id');
             var vn = get('vn');
@@ -264,7 +272,14 @@
             var doctor = get('doctor');
             var process = get('process');
             
-            if(user!=''){
+            if((user=='' || user==undefined) && (vn=='' || vn==undefined)){
+            $.cookie("user", '' );
+            $.cookie("id", '' );
+            $.cookie("an", '');
+            $.cookie("doctor", '');
+            $.cookie("vn", '');
+            $.cookie('process','');
+        }else{
             if(an == undefined){ var AN = '';}else{ var AN = an;}
             if(doctor == undefined){ var Doctor = '';}else{ var Doctor = doctor;}
             $.cookie("user", user);
@@ -277,8 +292,11 @@
             }
             
             $.cookie("process", process);
-            
+            console.log(user);console.log($.cookie("vn"));console.log($.cookie("an"))
+        AssHeadPatient("#head-detial",null,'../../back/API/');
+        AssSAVE('#index_content',null,'../../back/API/');
         }
+
     var uri = window.location.toString();
     if (uri.indexOf("?") > 0) {
         var clean_uri = uri.substring(0, uri.indexOf("?"));
@@ -292,11 +310,16 @@
     // } else {
     //     AssMENUIPD("#index_content"); 
     // }
-    console.log(user)
-        AssHeadPatient("#head-detial",null,'../../back/API/');
-        AssSAVE('#index_content',null,'../../back/API/');
+    
         })
     </script>
+    <script language="JavaScript" type="text/javascript">
+        var StayAlive = 4; // เวลาเป็นวินาทีที่ต้องการให้ WIndows เปิดออก 
+        function KillMe()
+        {
+            setTimeout("self.close()", StayAlive * 1000);
+        }
+    </script> 
     <script type="text/javascript">
         function popup(url, name, windowWidth, windowHeight) {
             myleft = (screen.width) ? (screen.width - windowWidth) / 2 : 100;

@@ -10,9 +10,14 @@ function AssSAVE(content, id = null,url = '../back/API/') {
         + "<div id='P-data'></div><p>"
         + "<center><input type='submit' name='submit' class='btn btn-success' value='บันทึก'></center></div>"
         + "</div></form>"));
-    $("#P-data").append($("<div class='row col-lg-4 col-md-4 col-sm-12'><label><b>กระบวนการ : </b></lable><select name='place' class='form-control select2' id='place' required></select></div><div id='Q-save'></div>")
+    $("#P-data").append($("<div class='row'><div class='col-lg-12 col-md-12 col-sm-12'><b id='latest' style='color:red'></b></div></div>")
+        ,$("<div class='row col-lg-4 col-md-4 col-sm-12'><label><b>กระบวนการ : </b></lable><select name='place' class='form-control select2' id='place' required></select></div><div id='Q-save'></div>")
     );
-    
+    if ($.cookie("process") != 'ER'){
+    $.getJSON(url + 'last_SAVE.php', { data: $.cookie("vn") }, function (data) { 
+        $("#latest").append("ประเมินล่าสุดวันที่ "+data.recdate+" เวลา "+data.rectime+"<br>โดย "+data.name+" กระบวนการ <u>"+data.ps_name+"</u>")
+    });
+}
     var process='';
     if ($.cookie("process") == 'ER') { process = 1; }
     else if ($.cookie("process") == 'FR') { process = 2; }

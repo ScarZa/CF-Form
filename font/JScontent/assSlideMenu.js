@@ -54,6 +54,7 @@ function AssSlideMenu(content, id = null) {
                                                                 + "<li><a id='drug02' href='#'><img src='images/Px.ico' width='20'> ยา Lithium Carbonate</a></li>"
                                                                 + "<li><a id='drug03' href='#'><img src='images/Px.ico' width='20'> ยา Carbamazepine</a></li>"
                                                                 + "<li><a id='drug04' href='#'><img src='images/Px.ico' width='20'> ยา Sodium Valproate</a></li>"
+                                                                + "<li><a id='drug05' href='#'><img src='images/Px.ico' width='20'> บันทึก ADR </a></li>"
                                                                 + "</ul> "));
                             $("li#social-menu").empty().append($("<a href='#socialSubmenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'><img src='images/social.jpg' width='25'> สังคมสงเคราะห์</a>")
                                                               , $("<ul class='collapse list-unstyled' id='socialSubmenu'>"
@@ -69,6 +70,7 @@ function AssSlideMenu(content, id = null) {
                                         $("a#drug02").attr("onclick", "$('#head-detial').show();AssLithium('#index_content');");
                                         $("a#drug03").attr("onclick", "$('#head-detial').show();AssCarbamazepine('#index_content');");
                                         $("a#drug04").attr("onclick", "$('#head-detial').show();AssSodium('#index_content');");
+                                        $("a#drug05").attr("onclick", "$('#head-detial').show();AssADR('#index_content');");
                                         $("a#child").attr("onclick", "$('#head-detial').show();AssSNAP_IV('#index_content');");
                                         $("a#CDI").attr("onclick", "$('#head-detial').show();AssCDI('#index_content');");
                                         $("a#DSI").attr("onclick","$('#head-detial').show();AssDSI300('#index_content');");

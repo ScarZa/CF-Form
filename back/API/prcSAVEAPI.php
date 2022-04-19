@@ -29,7 +29,7 @@ $method = isset($_POST['method']) ? $_POST['method'] : $_GET['method'];
 if ($method == 'add_SAVE') {
         $process = isset($_POST['process'])?$_POST['process']:'';
         $vn = $_POST['vn'];
-        $hn = $_POST['hn'];
+        
         $place = $_POST['place'];
         $s1_1 = isset($_POST['s1_1'])?$_POST['s1_1']:0;
         $s1_2 = isset($_POST['s1_2'])?$_POST['s1_2']:0;
@@ -85,6 +85,13 @@ if ($method == 'add_SAVE') {
         $eresult = isset($_POST['eresult'])?$_POST['eresult']:0;
         $recdate = date('Y-m-d H:i:s');
         $recorder = $conv->utf8_to_tis620($_POST['user']);
+
+        $sql = "select hn from vn_stat where vn= :vn";
+        $connDB->imp_sql($sql);
+        $execute=array(':vn' => $vn);
+        $sel_hn=$connDB->select_a($execute);
+        $hn = $sel_hn['hn'];
+
         if($place==3){
         $data = array($hn,$vn,$place
                     ,$s1_1,$s1_2,$s1_3,$s1_4,$s5_1,$s5_2,$s5_3

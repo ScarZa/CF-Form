@@ -33,6 +33,14 @@ if ($method == 'add_depress') {
         $vn = $_POST['vn'];
         $hn = $_POST['hn'];
         
+        $place = $_POST['place'];
+        $patient_type = $_POST['patient-type'];
+        $screen_type = $_POST['screen-type'];
+        $patient_group = $_POST['patient-group'];
+        $vdate = $_POST['vstdate'];
+        $user = $conv->utf8_to_tis620($_POST['user']);
+        $dupdate = date('Y-m-d');
+
         $pp_vn = $conv->utf8_to_tis620($vn);
         $recorder = $conv->utf8_to_tis620($_POST['recorder']);
         
@@ -69,8 +77,12 @@ if ($method == 'add_depress') {
         $recorder_id=$connDB->select_a();
         if($q2_1=='N' and $q2_2=='N'){
             $res_2q = 'N';
+            if($patient_group == 3){
+                $pp_code = $conv->utf8_to_tis620('37');
+            } else{
+                $pp_code = $conv->utf8_to_tis620('151');
+            }
             
-            $pp_code = $conv->utf8_to_tis620('151');
             $sql = "SELECT pp_special_id+1 as id FROM pp_special ORDER BY id desc limit 1 ";
             $connDB->imp_sql($sql);
             $id=$connDB->select_a();
@@ -81,8 +93,12 @@ if ($method == 'add_depress') {
             $pp_special= $connDB->insert($table, $data, $field);
         }else{
             $res_2q = 'Y';
-
-            $pp_code = $conv->utf8_to_tis620('152');
+            if($patient_group == 3){
+                $pp_code = $conv->utf8_to_tis620('38');
+            } else{
+                $pp_code = $conv->utf8_to_tis620('152');
+            }
+            
             $sql = "SELECT pp_special_id+1 as id FROM pp_special ORDER BY id desc limit 1 ";
             $connDB->imp_sql($sql);
             $id=$connDB->select_a();
@@ -94,19 +110,35 @@ if ($method == 'add_depress') {
 
             switch ($res_9q){
                 case 9:
+                    if($patient_group == 3){
+                        $pp_code = $conv->utf8_to_tis620('39');
+                    } else{
                 $pp_code = $conv->utf8_to_tis620('238');
+                    }
                 break;
 
                 case 1:
+                    if($patient_group == 3){
+                        $pp_code = $conv->utf8_to_tis620('40');
+                    } else{
                 $pp_code = $conv->utf8_to_tis620('26');
+                    }
                 break;
 
                 case 2:
+                    if($patient_group == 3){
+                        $pp_code = $conv->utf8_to_tis620('41');
+                    } else{
                 $pp_code = $conv->utf8_to_tis620('27');
+                    }
                 break;
 
                 case 3:
+                    if($patient_group == 3){
+                        $pp_code = $conv->utf8_to_tis620('42');
+                    } else{
                 $pp_code = $conv->utf8_to_tis620('24');
+                    }
                 break;
             }
             $sql = "SELECT pp_special_id+1 as id FROM pp_special ORDER BY id desc limit 1 ";
@@ -147,13 +179,6 @@ if ($method == 'add_depress') {
         }
         
        
-        $place = $_POST['place'];
-        $patient_type = $_POST['patient-type'];
-        $screen_type = $_POST['screen-type'];
-        $patient_group = $_POST['patient-group'];
-        $vdate = $_POST['vstdate'];
-        $user = $conv->utf8_to_tis620($_POST['user']);
-        $dupdate = date('Y-m-d');
 
         $sql = "SELECT depression_screen_id+1 as id FROM depression_screen ORDER BY id desc limit 1 ";
         $connDB->imp_sql($sql);

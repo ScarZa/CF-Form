@@ -138,12 +138,23 @@ function AssDepress(content, id = null,url = '../back/API/') {
                 }});
                     $("input[type=submit]").show();
                     });    
-
-            $("#cgi-post").append($("<input type='hidden' name='hn' value='"+$.cookie("hn")+"'>")
-                                ,$("<input type='hidden' name='vn' value='"+$.cookie("vn")+"'>")
-                                ,$("<input type='hidden' name='vstdate' value='"+$.cookie("vstdate")+"'>")
-                                ,$("<input type='hidden' name='user' value='"+$.cookie("user")+"'>")
-                                ,$("<input type='hidden' name='method' value='add_depress'>"));                        
+    $.getJSON(url + "detail_headpatientAPI.php", { data: $.cookie("vn"), data2: $.cookie("an") }, function (data) {
+        console.log(data)
+        $.cookie("hn", data[0].hn);
+        $.cookie("vstdate", data[0].vstdate);
+        $.cookie("sex", data[0].sex);
+        $.cookie("birthday", data[0].birthday);
+        $.cookie("pdx", data[0].pdx);
+        $.cookie("dx0", data[0].dx0);
+        $.cookie("dx1", data[0].dx1);
+        $.cookie("dx2", data[0].dx2);
+        $.cookie("dx3", data[0].dx3);
+        console.log($.cookie("hn"));
+        $("#cgi-post").append($("<input type='hidden' name='hn' value='" + $.cookie("hn") + "'>")
+            , $("<input type='hidden' name='vn' value='" + $.cookie("vn") + "'>")
+            , $("<input type='hidden' name='vstdate' value='" + $.cookie("vstdate") + "'>")
+            , $("<input type='hidden' name='user' value='" + $.cookie("user") + "'>")
+            , $("<input type='hidden' name='method' value='add_depress'>"));
         $("#frmdepress").on('submit', (function (e) {
             e.preventDefault();
             var dataForm = new FormData(this);
@@ -153,7 +164,7 @@ function AssDepress(content, id = null,url = '../back/API/') {
             // }
             var settings = {
                 type: "POST",
-                url: url+"prc2q8q9qAPI.php",
+                url: url + "prc2q8q9qAPI.php",
                 async: true,
                 crossDomain: true,
                 data: dataForm,
@@ -165,27 +176,27 @@ function AssDepress(content, id = null,url = '../back/API/') {
             $.ajax(settings).done(function (result) {
                 alert(result.messege);
                 $("#body_text").empty();
-                AssDepress('#index_content',$.cookie('hn'),url);
+                AssDepress('#index_content', $.cookie('hn'), url);
                 //$("#index_content").empty().load('content/add_user.html');
 
             })
 
 
         }));
-    //});
-    //$("a#adduser").attr("onclick","AddBrandModal();").attr("data-toggle","modal").attr("data-target","#AddBrandModal");                 
-    var column1 = ["วันที่ประเมิน","คะแนน", "ผลการประเมิน"];
-    console.log($.cookie('hn'));
-    console.log($.cookie('birthday'));
-    console.log($.cookie('pdx'));
-    console.log($.cookie('user'));
-    var CTb = new createTableAjax();
-    //RemovejQueryCookie('year')
-    // GetjQueryCookie('year',nowyear)
-    //CTb.FileDel('DelDrawItemAPI.php');
-    //CTb.GetNewTableAjax('sub-contentTB', '../back/API/DT_Drawlotitem.php?' + id, $.cookie('Readerurl') + 'tempSendDataAPI.php', column1
-    CTb.GetNewTableAjax('sub-contentTB', url+'DT_Depress.php?'+$.cookie('hn'), url+'tempSendDataAPI.php', column1
-        , null, null, null, null, false, false, null, false, null, false, null, null, null, null, null, null);
+        //});
+        //$("a#adduser").attr("onclick","AddBrandModal();").attr("data-toggle","modal").attr("data-target","#AddBrandModal");                 
+        var column1 = ["วันที่ประเมิน", "คะแนน", "ผลการประเมิน"];
+        console.log($.cookie('hn'));
+        console.log($.cookie('birthday'));
+        console.log($.cookie('pdx'));
+        console.log($.cookie('user'));
+        var CTb = new createTableAjax();
+        //RemovejQueryCookie('year')
+        // GetjQueryCookie('year',nowyear)
+        //CTb.FileDel('DelDrawItemAPI.php');
+        //CTb.GetNewTableAjax('sub-contentTB', '../back/API/DT_Drawlotitem.php?' + id, $.cookie('Readerurl') + 'tempSendDataAPI.php', column1
+        CTb.GetNewTableAjax('sub-contentTB', url + 'DT_Depress.php?' + $.cookie('hn'), url + 'tempSendDataAPI.php', column1
+            , null, null, null, null, false, false, null, false, null, false, null, null, null, null, null, null);
 
-
+    });
 }

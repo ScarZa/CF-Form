@@ -270,6 +270,7 @@
     <script src="JScontent/Ass_NPIQ.js" type="text/javascript"></script>
     <script src="JScontent/Ass_EMR.js" type="text/javascript"></script>
     <script src="JScontent/Ass_SMIV.js" type="text/javascript"></script>
+    <script src="masked/mask_SMIV.js" type="text/javascript"></script>
     <script src="JScontent/assSlideMenu.js" type="text/javascript"></script>
     <script src="JScontent/assSlideMenuIPD.js" type="text/javascript"></script>
     <script src="JScontent/assSlideMenuDoc.js" type="text/javascript"></script>
@@ -281,16 +282,30 @@
     <script src="masked/mask_Depress.js" type="text/javascript"></script>
     <script src="masked/mask_Suicide.js" type="text/javascript"></script>
     <script src="JScontent/Ass_SAVE.js" type="text/javascript"></script>
+    <script src="JScontent/Ass_ADR.js" type="text/javascript"></script>
+    <script src="masked/mask_ADR.js" type="text/javascript"></script>
     <!-- End JS content -->
     
     <script lang="javascript" type="text/javascript">
         $(function () {
+            $.cookie("user", '' );
+            $.cookie("an", '');
+            $.cookie("doctor", '');
+            $.cookie("vn", '');
+
             var user = get('user');
             var vn = get('vn');
             var an = get('an');
             var doctor = get('doctor');
+
+               
+            if((user=='' || user==undefined) && (vn=='' || vn==undefined)){
+            $.cookie("user", '');
+            $.cookie("an", '');
+            $.cookie("doctor", '');
+            $.cookie("vn", '');
+        }else{
             
-            if(user!=''){
             if(an == undefined){ var AN = '';}else{ var AN = an;}
             if(doctor == undefined){ var Doctor = '';}else{ var Doctor = doctor;}
             $.cookie("user", user);
@@ -303,13 +318,16 @@
         var clean_uri = uri.substring(0, uri.indexOf("?"));
         window.history.replaceState({}, document.title, clean_uri);
     }
-    if (an == undefined && doctor != 'Y') {
+    if($.cookie("vn") == ''){
+
+    }else if (an == undefined && doctor != 'Y' && ($.cookie("vn") != '' || vn != undefined || $.cookie("vn") != 'undefined')) {
       AssSlideMenu("nav#sidebar");
-    } else if (doctor == 'Y') {
+    } else if (doctor == 'Y' && ($.cookie("vn") != '' || vn != undefined || $.cookie("vn") != 'undefined')) {
       AssSlideMenuDoc("nav#sidebar");
-    } else {
+    } else if ($.cookie("vn") != '' || vn != undefined || $.cookie("vn") != 'undefined'){
       AssSlideMenuIPD("nav#sidebar");
     }
+            
         AssHeadPatient("#head-detial");
         
     
@@ -373,7 +391,48 @@
         //     // });
         // //}
         // });
-        })
+        });
+        function MakeHour(content, hour = null) {
+                //var option = "$('<option value=''>ชั่วโมง</option>'),";
+                var option;
+                for (var i = 0; i <= 23; i++) {
+                    if (hour != null) {
+                        if (i == hour.substring(0, 2)) { 
+                            var selected = 'selected';
+                        } else {
+                            var selected = '';
+                        }
+                    } else {
+                        var selected = '';
+                    }
+                    if (i < 10) {
+                        option += "$('<option value='0" + i + "' " + selected + ">0" + i + "</option>'),";
+                    } else {
+                        option += "$('<option value='" + i + "' " + selected + ">" + i + "</option>'),";
+                    }
+                }
+                $(content).append(option);
+            }
+            function MakeMinute(content, minute = null) {
+                var option;
+                for (var i = 0; i <= 59; i++) {
+                    if (minute != null) {
+                        if (i == minute.substring(3, 5)) {
+                            var selected = 'selected';
+                        } else {
+                            var selected = '';
+                        }
+                    } else {
+                        var selected = '';
+                    }
+                    if (i < 10) {
+                        option += "$('<option value='0" + i + "' " + selected + ">0" + i + "</option>'),";
+                    } else {
+                        option += "$('<option value='" + i + "' " + selected + ">" + i + "</option>'),";
+                    }
+                }
+                $(content).append(option);
+            }
     </script>
     <script type="text/javascript">
         function popup(url, name, windowWidth, windowHeight) {

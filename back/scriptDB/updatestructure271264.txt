@@ -1,0 +1,5 @@
+ALTER TABLE `jvl_smiv` 
+ADD COLUMN `processSMIV` int(1) AFTER `vn`;
+ALTER TABLE `jvl_smiv` 
+MODIFY COLUMN `processSMIV` int(1) DEFAULT 1 AFTER `vn`;
+UPDATE jvl_smiv set processSMIV = 1;

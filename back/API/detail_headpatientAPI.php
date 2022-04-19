@@ -33,7 +33,12 @@ $data = isset($_POST['data'])?$_POST['data']:(isset($_GET['data'])?$_GET['data']
 //     $data2 = empty($rslt['an'])?'':$rslt['an'];
 // }
 $sql="select p.hn,v.vn,v.vstdate,p.pname,p.fname,p.lname,p.sex,p.cid,p.birthday,concat(v.age_y,' ปี ',v.age_m,' เดือน ') age,v.vn,v.pdx,v.dx0,v.dx1,v.dx2,v.dx3,v.dx4,v.dx5
-,pt.name ptname,oc.pmh,oc.cc,oc.hpi,cgi.cgis_score,ds.depression_score,ds.suicide_score
+,pt.name ptname,oc.pmh,oc.cc,oc.hpi
+#,cgi.cgis_score
+,(SELECT cgis_score FROM cgi WHERE hn = p.hn ORDER BY id desc limit 1)cgis_score
+#,ds.depression_score,ds.suicide_score
+,(SELECT ds.depression_score FROM depression_screen ds WHERE ds.hn = p.hn ORDER BY ds.depression_screen_id desc limit 1) depression_score
+,(SELECT ds.suicide_score FROM depression_screen ds WHERE ds.hn = p.hn ORDER BY ds.depression_screen_id desc limit 1) suicide_score
 ,(SELECT concat(di.name,' ',di.strength) FROM opitemrece op inner join patient p on op.hn = p.hn inner join ovst o1 on p.hn = o1.hn inner join vn_stat vt on vt.vn = o1.vn inner join drugitems di on di.icode = op.icode WHERE op.icode = '1480070' and ((o1.vn = :vn 
 and op.income in(03,19))) GROUP BY op.vstdate ORDER BY op.vstdate desc limit 1)Clozapine100
 ,(SELECT op.vstdate FROM opitemrece op inner join patient p on op.hn = p.hn inner join ovst o1 on p.hn = o1.hn inner join vn_stat vt on vt.vn = o1.vn inner join drugitems di on di.icode = op.icode WHERE op.icode = '1480070' and ((o1.vn = :vn 
@@ -74,8 +79,8 @@ and op.income in(03,19))) GROUP BY op.vstdate ORDER BY op.vstdate desc limit 1)S
     LEFT OUTER JOIN vn_stat v ON v.hn=p.hn
     left outer join opdscreen oc on oc.vn=v.vn
     left outer join pttype pt on v.pttype=pt.pttype
-    left outer join cgi on cgi.vn = v.vn
-      left outer join depression_screen ds on ds.vn=v.vn
+    #left outer join cgi on cgi.vn = v.vn
+      #left outer join depression_screen ds on ds.vn=v.vn
       LEFT OUTER join jvlsmiv_regis smiv on smiv.hn=p.hn
       LEFT OUTER join jvl_smiv smi on smiv.hn = smi.hn
 		LEFT OUTER join jvl_result_smiv smi1 on smi1.Rsmiv_id = smi.smiv1_1

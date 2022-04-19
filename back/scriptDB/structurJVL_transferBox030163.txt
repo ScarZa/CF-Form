@@ -1,0 +1,4 @@
+ALTER TABLE `jvl_transferBox` 
+ADD COLUMN `resend` text CHARACTER SET utf8 COLLATE utf8_general_ci AFTER `status`,
+ADD COLUMN `rename` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci AFTER `resend`,
+ADD COLUMN `redate` date AFTER `rename`

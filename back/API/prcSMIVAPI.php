@@ -29,8 +29,13 @@ $method = isset($_POST['method']) ? $_POST['method'] : $_GET['method'];
 if ($method == 'add_SMIV') {
        
         $vn = $_POST['vn'];
-        $hn = $_POST['hn'];
+        $sql = "select hn from vn_stat where vn= :vn";
+        $connDB->imp_sql($sql);
+        $execute=array(':vn' => $vn);
+        $sel_hn=$connDB->select_a($execute);
+        $hn = $sel_hn['hn'];
         $recdate = insert_date($_POST['assdate']);
+        $processSMIV = $_POST['processSMIV'];
         $chk_1 = isset($_POST['chk1'])?$_POST['chk1']:0;
         $smiv1_1 = isset($_POST['smiv1_1'])?$_POST['smiv1_1']:'';
         $smiv1_2 = isset($_POST['smiv1_2'])?$_POST['smiv1_2']:'';
@@ -80,21 +85,29 @@ if ($method == 'add_SMIV') {
         $recorder = $conv->utf8_to_tis620($_POST['recorder']);
         $user = $conv->utf8_to_tis620($_POST['user']);
 
-        $data = array($hn,$vn,$chk_1,$smiv1_1,$smiv1_2,$smiv1_3,$smiv1_4,$smiv1_5,$smiv1_6,$smiv1_7,$smiv1_8,$smiv1_9,$smiv1_10,$smiv1_11,$smiv1_12,$t1_12
+        if($processSMIV == 2 or $processSMIV == 3){ 
+            $data = array(null,$hn,$vn,7,$recorder,$regdate);
+    $table = "jvl_follow";
+    $insert_follow = $connDB->insert($table, $data);
+}
+        $data = array($hn,$vn,$processSMIV,$chk_1,$smiv1_1,$smiv1_2,$smiv1_3,$smiv1_4,$smiv1_5,$smiv1_6,$smiv1_7,$smiv1_8,$smiv1_9,$smiv1_10,$smiv1_11,$smiv1_12,$t1_12
                     ,$chk_2,$smiv2_1,$smiv2_2,$smiv2_3,$smiv2_4,$smiv2_5,$smiv2_6,$smiv2_7,$smiv2_8,$smiv2_9,$smiv2_10,$smiv2_11,$smiv2_12,$t2_12
                     ,$chk_3,$smiv3_1,$smiv3_2,$smiv3_3,$t3_3
                     ,$chk_4,$smiv4_1,$smiv4_2,$smiv4_3,$smiv4_4
                     ,$chk_5,$smiv5_1,$smiv5_2,$smiv5_3,$smiv5_4
                     ,$smiv_class,$comment,$recdate,$recorder,$regdate,$user);
         $table = "jvl_smiv";
-        $field = array('hn','vn','chk_1','smiv1_1','smiv1_2','smiv1_3','smiv1_4','smiv1_5','smiv1_6','smiv1_7','smiv1_8','smiv1_9','smiv1_10','smiv1_11','smiv1_12','t1_12'
+        $field = array('hn','vn','processSMIV','chk_1','smiv1_1','smiv1_2','smiv1_3','smiv1_4','smiv1_5','smiv1_6','smiv1_7','smiv1_8','smiv1_9','smiv1_10','smiv1_11','smiv1_12','t1_12'
                     ,'chk_2','smiv2_1','smiv2_2','smiv2_3','smiv2_4','smiv2_5','smiv2_6','smiv2_7','smiv2_8','smiv2_9','smiv2_10','smiv2_11','smiv2_12','t2_12'
                     ,'chk_3','smiv3_1','smiv3_2','smiv3_3','t3_3'
                     ,'chk_4','smiv4_1','smiv4_2','smiv4_3','smiv4_4'
                     ,'chk_5','smiv5_1','smiv5_2','smiv5_3','smiv5_4'
                     ,'smiv_class','comment','recdate','recorder','regdate','user');
         $SMIV = $connDB->insert($table, $data,$field);
-        if($SMIV===false){
+        
+        
+        
+        if($SMIV==false){
             $res = array("messege"=>'ไม่สามารถบันทึก SMIV-V ได้!!!!');
         }else{
             $res = array("messege"=>'บันทึก SMIV-V สำเร็จ!!!!');
